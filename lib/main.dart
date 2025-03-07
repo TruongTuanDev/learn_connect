@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:learn_connect/presentation/screens/search/flash_card_search/flash_card_search_view.dart';
+import 'package:learn_connect/presentation/screens/search/search/search_view.dart';
 import 'firebase_options.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:learn_connect/presentation/screens/signup/view/sign_up.dart';
 
 
 Future<void> main() async {
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: SignUpScreen(),
+      home: SearchScreenApp(),
     );
   }
 }
