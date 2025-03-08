@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:learn_connect/presentation/screens/search/flash_card_search/flash_card_search_view.dart';
+import 'package:learn_connect/presentation/screens/search/search/search_history_model.dart';
 import 'package:learn_connect/presentation/screens/search/search/search_view.dart';
+import 'package:learn_connect/presentation/screens/search/search/search_history_view_model.dart';
+import 'package:learn_connect/presentation/screens/signup/view/sign_up.dart';
 import 'firebase_options.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +15,13 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   debugPrint("Firebase Initialized!");
-  runApp(ProviderScope(child: MyApp()));
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => SearchHistoryViewModel(SearchHistoryModel()),
+      child: const MyApp(),
+    ),
+  );
+  // runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -42,7 +50,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: SearchScreenApp(),
+      home: SignUpScreen(),
     );
   }
 }
