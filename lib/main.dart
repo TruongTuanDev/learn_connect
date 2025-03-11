@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:learn_connect/presentation/screens/home/UserInfoScreen.dart';
 import 'package:learn_connect/presentation/screens/home/UserInterestsScreen.dart';
@@ -15,6 +16,11 @@ Future<void> main() async {
   );
   debugPrint("Firebase Initialized!");
   runApp(ProviderScope(child: MyApp()));
+
+
+void main() {
+  runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {

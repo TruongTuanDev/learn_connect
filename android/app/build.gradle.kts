@@ -1,8 +1,11 @@
 plugins {
     id("com.android.application")
+<<<<<<< HEAD
     // START: FlutterFire Configuration
     id("com.google.gms.google-services")
     // END: FlutterFire Configuration
+=======
+>>>>>>> f9ae60b4d8c03c00283cd264ffe221165404850a
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
@@ -10,8 +13,13 @@ plugins {
 
 android {
     namespace = "com.example.learn_connect"
+<<<<<<< HEAD
     compileSdk = 35
     ndkVersion = "27.0.12077973"
+=======
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
+>>>>>>> f9ae60b4d8c03c00283cd264ffe221165404850a
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -27,7 +35,11 @@ android {
         applicationId = "com.example.learn_connect"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
+<<<<<<< HEAD
         minSdk = 23
+=======
+        minSdk = flutter.minSdkVersion
+>>>>>>> f9ae60b4d8c03c00283cd264ffe221165404850a
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName

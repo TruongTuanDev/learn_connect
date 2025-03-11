@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # See https://www.dartlang.org/guides/libraries/private-files
 
 # Files and directories created by pub
@@ -26,7 +26,7 @@ doc/api/
 
 .flutter-plugins
 .flutter-plugins-dependencies
-=======
+
 # Miscellaneous
 *.class
 *.log
@@ -72,4 +72,4 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
->>>>>>> f9ae60b (First commit)
+
