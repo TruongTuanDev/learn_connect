@@ -3,6 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:learn_connect/presentation/screens/signup/view/sign_up.dart';
+import 'package:learn_connect/presentation/screens/home/view/home.dart';
+
+
+
 
 
 Future<void> main() async {
@@ -41,7 +45,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: SignUpScreen(),
+      home: Home(),
     );
   }
 }
