@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "886366280169",
+    "project_id": "learn-connect-51a0d",
+    "storage_bucket": "learn-connect-51a0d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:886366280169:android:6b73e5534ba4e6ea8d1378",
+        "android_client_info": {
+          "package_name": "com.example.learn_connect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCn0nO4-S5ZuPAK0qx0e_E7EsP05gOUkT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
