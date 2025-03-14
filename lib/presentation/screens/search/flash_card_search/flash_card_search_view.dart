@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:learn_connect/presentation/screens/search/coponents/search_box.dart';
 import 'package:learn_connect/presentation/screens/search/flash_card_search/flash_card_view_model.dart';
 
@@ -84,6 +85,7 @@ class _FlashCardSearchState extends State<FlashCardSearchScreen> {
                 ],
               );
           }),
+
         ),
       ),
     );
