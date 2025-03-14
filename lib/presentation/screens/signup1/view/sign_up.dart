@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:learn_connect/presentation/screens/signup/providers/auth_provider.dart';
+import 'package:learn_connect/presentation/screens/signup1/providers/auth_provider.dart';
 
 class SignUpScreen extends ConsumerWidget {
   final TextEditingController emailController = TextEditingController();
