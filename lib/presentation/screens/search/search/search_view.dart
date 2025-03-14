@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:learn_connect/presentation/screens/search/widgets/search_box.dart';
-import 'search_history_provider.dart';
 
-class SearchScreen extends ConsumerWidget {
+import 'package:learn_connect/presentation/screens/search/coponents/search_box.dart';
+import 'package:provider/provider.dart';
+
+import 'search_history_view_model.dart';
+
+class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
+  @override
+  _SearchScreenState createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future.microtask(() => context.read<SearchHistoryViewModel>().init());
+  }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final searchHistory = ref.watch(searchHistoryProvider);
-    final searchHistoryNotifier = ref.read(searchHistoryProvider.notifier);
+  Widget build(BuildContext context) {
+    final viewModel = context.watch<SearchHistoryViewModel>();
+
 
     return Scaffold(
       appBar: AppBar(
@@ -53,31 +66,34 @@ class SearchScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 20),
             Expanded(
-              child: searchHistory.isEmpty
-                  ? const Center(child: Text("Không có lịch sử tìm kiếm"))
-                  : ListView.builder(
-                itemCount: searchHistory.length,
-                itemBuilder: (context, index) {
-                  final history = searchHistory[index];
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        history.keyWord,
-                        style: const TextStyle(fontSize: 14),
+
+              child:
+                  viewModel.searchHistory.isEmpty
+                      ? const Center(child: Text("Không có lịch sử tìm kiếm"))
+                      : ListView.builder(
+                        itemCount: viewModel.searchHistory.length,
+                        itemBuilder: (context, index) {
+                          final history = viewModel.searchHistory[index];
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                history.keyWord,
+                                style: const TextStyle(fontSize: 14),
+                              ),
+                              IconButton(
+                                onPressed:
+                                    () =>
+                                        viewModel.deleteSearchHistory(history),
+                                icon: const Icon(
+                                  Icons.close,
+                                  color: Colors.black54,
+                                ),
+                              ),
+                            ],
+                          );
+                        },
                       ),
-                      IconButton(
-                        onPressed: () =>
-                            searchHistoryNotifier.deleteSearchHistory(history),
-                        icon: const Icon(
-                          Icons.close,
-                          color: Colors.black54,
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
             ),
           ],
         ),

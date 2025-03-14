@@ -48,7 +48,7 @@ class SignUpNotifier extends StateNotifier<SignUpState> {
 
     try {
       final response = await _dio.post(
-        'https://5000/signup', // API đk
+        'https://5000/signup1', // API đk
         data: model.toJson(),
       );
 

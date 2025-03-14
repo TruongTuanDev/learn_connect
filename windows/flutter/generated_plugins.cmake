@@ -3,11 +3,11 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-<<<<<<< HEAD
   cloud_firestore
   firebase_core
-=======
->>>>>>> f9ae60b4d8c03c00283cd264ffe221165404850a
+
+  flutter_tts
+
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
