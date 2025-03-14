@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:learn_connect/presentation/screens/Flashcard/view/flashcard_screen.dart';
+
+
 import 'package:learn_connect/presentation/screens/home/UserInfoScreen.dart';
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
 
@@ -68,6 +72,15 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
+
+      home: FlashcardScreen(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
 
       home: FriendProfile(),
 
