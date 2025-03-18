@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:learn_connect/presentation/screens/search/coponents/search_box.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +22,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<SearchHistoryViewModel>();
+
 
     return Scaffold(
       appBar: AppBar(
@@ -64,6 +66,7 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
             const SizedBox(height: 20),
             Expanded(
+
               child:
                   viewModel.searchHistory.isEmpty
                       ? const Center(child: Text("Không có lịch sử tìm kiếm"))
