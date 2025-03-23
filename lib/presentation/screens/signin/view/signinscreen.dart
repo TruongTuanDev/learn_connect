@@ -58,15 +58,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
               SizedBox(height: 30),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Tên người dùng',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.person),
-                  contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                ),
-              ),
-              SizedBox(height: 10),
+
               TextField(
                 decoration: InputDecoration(
                   labelText: 'Email',
@@ -96,25 +88,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
               SizedBox(height: 10),
-              TextField(
-                obscureText: !isConfirmPasswordVisible, // Sử dụng biến riêng cho "Nhập lại mật khẩu"
-                decoration: InputDecoration(
-                  labelText: 'Nhập lại mật khẩu',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.lock),
-                  suffixIcon: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isConfirmPasswordVisible = !isConfirmPasswordVisible;
-                      });
-                    },
-                    child: Icon(
-                      isConfirmPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                    ),
-                  ),
-                  contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                ),
-              ),
+
               Row(
                 children: [
                   Checkbox(
