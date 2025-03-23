@@ -1,23 +1,22 @@
 class UserModel {
-  final String id;
-  final String email;
-  final String fullName;
+  String username;
+  String email;
+  String password;
+  List<String>? roles;
 
-  UserModel({required this.id, required this.email, required this.fullName});
-
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
-      id: json['id'],
-      email: json['email'],
-      fullName: json['fullName'],
-    );
-  }
+  UserModel({
+    required this.username,
+    required this.email,
+    required this.password,
+    this.roles,
+  });
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
-      'email': email,
-      'fullName': fullName,
+      "username": username,
+      "email": email,
+      "password": password,
+      "roles": roles ?? ["user"], // Mặc định role là "user"
     };
   }
 }
