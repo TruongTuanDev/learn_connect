@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:learn_connect/presentation/screens/search/search/search_history_model.dart';
+import 'package:learn_connect/presentation/screens/search_flash_card/search/search_history_model.dart';
 
 // Provider cho SearchHistoryModel
 final searchHistoryModelProvider = Provider((ref) => SearchHistoryModel());

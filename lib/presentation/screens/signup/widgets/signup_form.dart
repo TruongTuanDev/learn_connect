@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_connect/routes/routes.dart';
 import 'package:learn_connect/services/auth_service.dart';
 import 'package:learn_connect/data/models/UserModel.dart';
 
@@ -107,7 +108,10 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
           SizedBox(height: 20),
           ElevatedButton(
-            onPressed: _register,
+            onPressed: () {
+              _register();
+              Navigator.pushNamed(context, AppRoutes.information);
+            },
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.zero,
               shape: RoundedRectangleBorder(

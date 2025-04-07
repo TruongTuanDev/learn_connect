@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:learn_connect/presentation/screens/search/coponents/search_box.dart';
+import 'package:learn_connect/presentation/screens/search_flash_card/coponents/search_box.dart';
 import 'package:provider/provider.dart';
 
 import 'search_history_view_model.dart';

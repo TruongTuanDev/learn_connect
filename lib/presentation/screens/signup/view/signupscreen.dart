@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../routes/routes.dart';
 import '../widgets/signup_form.dart';
 import '../widgets/social_buttons.dart';
 
@@ -47,7 +48,9 @@ class SignUpScreen extends StatelessWidget {
               children: [
                 Text('Bạn đã có tài khoản? '),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, AppRoutes.signin);
+                  },
                   child: Text('Đăng nhập', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
                 ),
               ],
