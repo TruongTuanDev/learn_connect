@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:learn_connect/presentation/screens/search/coponents/search_box.dart';
-import 'package:learn_connect/presentation/screens/search/flash_card_search/flash_card_view_model.dart';
+import 'package:learn_connect/presentation/screens/search_flash_card/coponents/search_box.dart';
+import 'package:learn_connect/presentation/screens/search_flash_card/flash_card_search/flash_card_view_model.dart';
 
 class FlashCardSearchScreen extends StatefulWidget{
   const FlashCardSearchScreen({super.key});

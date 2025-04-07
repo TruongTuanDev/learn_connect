@@ -4,43 +4,61 @@ import 'package:learn_connect/data/models/UserModel.dart';
 class AuthService {
   final Dio _dio = Dio(
     BaseOptions(
-      baseUrl: "http://localhost:8080/api",
-      connectTimeout: Duration(seconds: 10),
-      receiveTimeout: Duration(seconds: 10),
+      baseUrl: "http://127.0.0.1:8080",
     ),
   );
+  Future<Map<String, dynamic>> login(String user, String password) async {
+    try {
+      Response response = await _dio.post(
+        "/api/auth/signin",
+        data: {
+          'username': user,
+          'password': password,
+        },
+        options: Options(
+          headers: {'Content-Type': 'application/json'},
+        ),
+      );
 
+      if (response.statusCode == 200) {
+        return {'success': true, 'data': response.data};
+      } else {
+        return {'success': false, 'message': response.data['message'] ?? "Đăng nhập thất bại!"};
+      }
+    } catch (e) {
+      if (e is DioException) {
+        return {'success': false, 'message': e.response?.data['message'] ?? "Lỗi kết nối đến server!"};
+      } else {
+        return {'success': false, 'message': "Có lỗi xảy ra!"};
+      }
+    }
+  }
   Future<String> signup(UserModel user) async {
-    print("ok vào nha");
-    print("User JSON: ${user.toJson()}");  // Kiểm tra dữ liệu người dùng gửi đi
+    print("🔹 Bắt đầu đăng ký...");
+    print("📩 Dữ liệu gửi đi: ${user.toJson()}");
 
     try {
       Response response = await _dio.post(
-        "/auth/signup",
+        "/api/auth/signup",
         data: user.toJson(),
       );
 
-      // In ra toàn bộ phản hồi từ server
-      print("Response: ${response.data}");
+      print("✅ Phản hồi từ server: ${response.data}");
+      print("📡 HTTP Status: ${response.statusCode}");
 
-      // Kiểm tra mã trạng thái HTTP
-      print("HTTP Status: ${response.statusCode}");
-
-      // Nếu thành công, trả về thông báo từ server
-      if (response.statusCode == 200) {
-        return response.data["message"];
+      // Kiểm tra response có hợp lệ không
+      if (response.statusCode == 200 && response.data is Map<String, dynamic>) {
+        return response.data["message"]?.toString() ?? "Đăng ký thành công!";
       } else {
-        return "Signup failed with status code: ${response.statusCode}";
+        return "❌ Đăng ký thất bại, mã lỗi: ${response.statusCode}";
       }
-
     } on DioException catch (e) {
-      // Kiểm tra lỗi nếu có
-      if (e.response != null) {
-        print("Error response: ${e.response!.data}");
-        return "Error: ${e.response!.data["message"]}";
+      print("⚠️ Lỗi xảy ra: $e");
+
+      if (e.response != null && e.response!.data is Map<String, dynamic>) {
+        return "❌ Lỗi: ${e.response!.data["message"]?.toString() ?? "Không xác định"}";
       } else {
-        print("Request error: ${e.message}");
-        return "Signup failed. Please try again.";
+        return "❌ Lỗi kết nối. Vui lòng thử lại!";
       }
     }
   }

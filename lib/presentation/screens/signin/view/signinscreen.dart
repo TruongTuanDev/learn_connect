@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../widgets/signin_form.dart';
+import '../widgets/social_login_buttons.dart';
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -6,10 +8,6 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  bool rememberMe = false;
-  bool isPasswordVisible = false;
-  bool isConfirmPasswordVisible = false; // Thêm biến riêng cho "Nhập lại mật khẩu"
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,10 +27,7 @@ class _SignInScreenState extends State<SignInScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/Logo.png',
-                    height: 100,
-                  ),
+                  Image.asset('assets/Logo.png', height: 100),
                   SizedBox(width: 20),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,126 +53,11 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
               SizedBox(height: 30),
-
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Email',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.email),
-                  contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                ),
-              ),
-              SizedBox(height: 10),
-              TextField(
-                obscureText: !isPasswordVisible,
-                decoration: InputDecoration(
-                  labelText: 'Mật khẩu',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.lock),
-                  suffixIcon: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isPasswordVisible = !isPasswordVisible;
-                      });
-                    },
-                    child: Icon(
-                      isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                    ),
-                  ),
-                  contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                ),
-              ),
-              SizedBox(height: 10),
-
-              Row(
-                children: [
-                  Checkbox(
-                    value: rememberMe,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        rememberMe = value ?? false;
-                      });
-                    },
-                    activeColor: Colors.black,
-                  ),
-                  Text('Nhớ đăng nhập'),
-                  Spacer(),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text('Quên mật khẩu?'),
-                  ),
-                ],
-              ),
-              SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                ),
-                child: Container(
-                  height: 50,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Text(
-                        'Đăng nhập',
-                        style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Container(
-                          margin: EdgeInsets.all(5),
-                          padding: EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(Icons.arrow_forward, color: Colors.blue),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              SignInForm(), // Form nhập liệu
               SizedBox(height: 10),
               Text('Hoặc'),
               SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                      ),
-                      padding: EdgeInsets.all(8),
-                      child: Image.asset('assets/google.png', width: 40, height: 40),
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  InkWell(
-                    onTap: () {},
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                      ),
-                      padding: EdgeInsets.all(8),
-                      child: Image.asset('assets/apple.png', width: 40, height: 40),
-                    ),
-                  ),
-                ],
-              ),
+              SocialLoginButtons(), // Các nút đăng nhập social
               SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

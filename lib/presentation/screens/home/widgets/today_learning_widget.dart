@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_connect/routes/routes.dart';
 
 class TodayLearningWidget extends StatelessWidget {
   @override
@@ -26,9 +27,25 @@ class TodayLearningWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _buildLearningButton("FLASHCARDS", Icons.view_carousel),
-              _buildLearningButton("LUYỆN NGHE", Icons.headphones),
-              _buildLearningButton("LUYỆN ĐỌC", Icons.menu_book),
+              _buildLearningButton(
+                context,
+                "FLASHCARDS",
+                Icons.view_carousel,
+                    () => Navigator.pushNamed(context, AppRoutes.flascard),
+                    // () => print("Nhấn vào LUYỆN NGHE")
+              ),
+              _buildLearningButton(
+                context,
+                "LUYỆN NGHE",
+                Icons.headphones,
+                    () => print("Nhấn vào LUYỆN NGHE"),
+              ),
+              _buildLearningButton(
+                context,
+                "LUYỆN ĐỌC",
+                Icons.menu_book,
+                    () => print("Nhấn vào LUYỆN ĐỌC"),
+              )
             ],
           ),
         ],
@@ -36,11 +53,9 @@ class TodayLearningWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildLearningButton(String text, IconData icon) {
+  Widget _buildLearningButton(BuildContext context, String text, IconData icon, VoidCallback onTap) {
     return ElevatedButton(
-      onPressed: () {
-        // Thêm logic khi nhấn vào các nút ở đây
-      },
+      onPressed: onTap,
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.blueAccent,
         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
