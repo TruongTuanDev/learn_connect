@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
 
       // home:SignUpScreen(),
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.signup, // Màn hình khởi động
+      initialRoute: AppRoutes.loadscreen, // Màn hình khởi động
       onGenerateRoute: AppRoutes.generateRoute, // Quan trọng
     );
   }

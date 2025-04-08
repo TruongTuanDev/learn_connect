@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:learn_connect/presentation/screens/search_flash_card/coponents/search_box.dart';
 import 'package:provider/provider.dart';
 
 import 'search_history_view_model.dart';
@@ -46,7 +45,6 @@ class _SearchScreenState extends State<SearchScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const SearchBox(),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
