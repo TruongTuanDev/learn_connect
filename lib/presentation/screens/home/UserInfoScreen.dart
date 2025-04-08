@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_connect/routes/routes.dart';
 
 void main() {
   runApp(MyApp());
@@ -54,7 +55,10 @@ class UserInfoScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+
+                Navigator.pushNamed(context, AppRoutes.interest);
+              },
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
