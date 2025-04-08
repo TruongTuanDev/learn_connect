@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 import 'package:learn_connect/presentation/screens/home/UserInfoScreen.dart';
 import 'package:learn_connect/presentation/screens/home/UserInterestsScreen.dart';
 import 'package:learn_connect/presentation/screens/profile/view/ProfileScreen.dart';
@@ -16,13 +15,13 @@ import 'package:learn_connect/presentation/screens/search/flash_card_search/flas
 import 'package:learn_connect/presentation/screens/search/search/search_history_model.dart';
 import 'package:learn_connect/presentation/screens/search/search/search_view.dart';
 import 'package:learn_connect/presentation/screens/search/search/search_history_view_model.dart';
-import 'package:learn_connect/presentation/screens/signup/view/sign_up.dart';
+// import 'package:learn_connect/presentation/screens/signup/view/sign_up.dart';
 import 'package:learn_connect/presentation/screens/notify/view/notify.dart';
 import 'package:learn_connect/presentation/screens/friends_profile/view/friend_profile.dart';
 
 import 'firebase_options.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:learn_connect/presentation/screens/signup/view/sign_up.dart';
+// import 'package:learn_connect/presentation/screens/signup/view/sign_up.dart';
 
 
 Future<void> main() async {
@@ -84,5 +83,4 @@ class MyApp extends StatelessWidget {
   }
 }
 
-}
 
