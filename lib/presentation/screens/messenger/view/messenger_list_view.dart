@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
-import 'package:learn_connect/presentation/screens/conversation/call/widgets/call_item.dart';
+import 'package:learn_connect/presentation/screens/messenger/provider/messenger_provider.dart';
+import 'package:learn_connect/presentation/screens/messenger/widgets/messenger_item.dart';
 
-import '../provider/call_provider.dart';
-
-class CallListScreen extends ConsumerWidget {
-  const CallListScreen({super.key});
+class MessengerListScreen extends ConsumerWidget {
+  const MessengerListScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final callsAsyn = ref.watch(callProvider);
-    final DateFormat  formattedDate = DateFormat('dd-MM-yyyy');
+    final messageList = ref.watch(messagingListProvider);
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -53,10 +50,8 @@ class CallListScreen extends ConsumerWidget {
                       onPressed: () {},
                       child: const Text("Nhắn"),
                       style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(
-                          Colors.indigo.shade100,
-                        ),
-                        foregroundColor: WidgetStateProperty.all(Colors.black),
+                        backgroundColor: WidgetStateProperty.all(Colors.green),
+                        foregroundColor: WidgetStateProperty.all(Colors.white),
                         minimumSize: WidgetStateProperty.all(
                           Size(double.infinity, 50),
                         ),
@@ -72,8 +67,10 @@ class CallListScreen extends ConsumerWidget {
                       onPressed: () {},
                       child: const Text("Gọi"),
                       style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(Colors.green),
-                        foregroundColor: WidgetStateProperty.all(Colors.white),
+                        backgroundColor: WidgetStateProperty.all(
+                          Colors.indigo.shade100,
+                        ),
+                        foregroundColor: WidgetStateProperty.all(Colors.black),
                         minimumSize: WidgetStateProperty.all(
                           Size(double.infinity, 50),
                         ),
@@ -87,26 +84,12 @@ class CallListScreen extends ConsumerWidget {
               ),
               SizedBox(height: 20),
               Expanded(
-                child: callsAsyn.when(
-                  data:
-                      (call) => ListView.builder(
-                        itemCount: call.length,
-                        padding: EdgeInsets.zero,
-                        itemBuilder: (context, index) {
-                          return CallItem(
-                            name: call[index].name,
-                            callStatus: call[index].callStatus,
-                            time: formattedDate.format(call[index].time),
-                            avatarUrl: call[index].avatarUrl,
-                          );
-                        },
-                      ),
-                  loading: () => Center(child: CircularProgressIndicator()),
-                  // Phải đặt trong hàm `() =>`
-                  error:
-                      (error, stackTrace) => Center(
-                        child: Text("Lỗi: $error"),
-                      ), // Thêm return Widget
+                child: ListView.builder(
+                  itemCount: messageList.length,
+                  padding: EdgeInsets.zero,
+                  itemBuilder: (context, index) {
+                    return ChatItem(messenger: messageList[index]);
+                  },
                 ),
               ),
             ],
@@ -116,3 +99,4 @@ class CallListScreen extends ConsumerWidget {
     );
   }
 }
+
