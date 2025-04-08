@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:learn_connect/presentation/screens/conversation/call/call_model.dart';
+import 'package:learn_connect/presentation/screens/conversation/call/model/call_model.dart';
 
 final callModelProvider = Provider((ref) => CallModel());
 

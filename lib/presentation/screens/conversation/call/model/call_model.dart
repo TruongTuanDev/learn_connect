@@ -23,7 +23,7 @@ class Call{
         callStatus: callStatus,
         time :DateTime.parse(time)
       ),
-    _ => throw const FormatException('Failed to load search history')
+    _ => throw const FormatException('Failed to load search_all history')
     };
   }
 }
@@ -75,7 +75,7 @@ class CallModel{
       final List<dynamic> jsonList = response.data;
       return jsonList.map((json)=> Call.fromJson(json)).toList();
     }else {
-      throw Exception('Failed to load search history');
+      throw Exception('Failed to load search_all history');
     }*/
     return List<Call>.from(mockCallList);
   }
