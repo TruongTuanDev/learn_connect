@@ -17,7 +17,7 @@ class FlashCard{
         id: id,
         flash_card_type: flash_card_type
       ),
-    _ => throw const FormatException('Failed to load search history')
+    _ => throw const FormatException('Failed to load search_all history')
     };
   }
 }
@@ -41,7 +41,7 @@ class FlashCardModel{
       final List<dynamic> jsonList = response.data;
       return jsonList.map((json)=> SearchHistory.fromJson(json)).toList();
     }else {
-      throw Exception('Failed to load search history');
+      throw Exception('Failed to load search_all history');
     }*/
     return List<FlashCard>.from(_flashCard);
   }

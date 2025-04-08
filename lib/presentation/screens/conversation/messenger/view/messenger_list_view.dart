@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:learn_connect/presentation/screens/conversation/messenger//messenger_item.dart';
-import 'package:learn_connect/presentation/screens/conversation/messenger//messenger_provider.dart';
+import 'package:learn_connect/presentation/screens/conversation/messenger/widgets/messenger_item.dart';
+import 'package:learn_connect/presentation/screens/conversation/messenger/provider/messenger_provider.dart';
 
 class MessengerListScreen extends ConsumerWidget {
   const MessengerListScreen({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'flash_card_model.dart';
+import '../model/search_flash_card_model.dart';
 
 // Provider cho FlashCardModel
 final flashCardModelProvider = Provider((ref) => FlashCardModel());

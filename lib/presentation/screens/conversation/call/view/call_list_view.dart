@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:learn_connect/presentation/screens/conversation/call/call_item.dart';
+import 'package:learn_connect/presentation/screens/conversation/call/widgets/call_item.dart';
 
-import 'call_provider.dart';
+import '../provider/call_provider.dart';
 
 class CallListScreen extends ConsumerWidget {
   const CallListScreen({super.key});
