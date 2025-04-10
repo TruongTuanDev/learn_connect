@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learn_connect/presentation/screens/conversation/messenger/model/message_model.dart';
+import 'package:learn_connect/presentation/screens/messenger/model/message_model.dart';
 class ChatItem extends StatelessWidget {
   final Messenger messenger;
 

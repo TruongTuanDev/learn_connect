@@ -3,7 +3,7 @@ import 'package:learn_connect/presentation/screens/Flashcard/view/flashcard_scre
 import 'package:learn_connect/presentation/screens/home/UserInfoScreen.dart';
 import 'package:learn_connect/presentation/screens/home/UserInterestsScreen.dart';
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
-import 'package:learn_connect/presentation/screens/search_flash_card/search/search_view.dart';
+import 'package:learn_connect/presentation/screens/search_flash_card/view/search_flash_card_view.dart';
 import '../presentation/screens/signin/view/signinscreen.dart';
 import '../presentation/screens/signup/view/signupscreen.dart';
 
@@ -38,7 +38,7 @@ class AppRoutes {
       case home:
         return MaterialPageRoute(builder: (_) => Home());
       case search:
-        return MaterialPageRoute(builder: (_) => SearchScreen());
+        return MaterialPageRoute(builder: (_) => CombinedSearchScreen());
       case flascard:
         return MaterialPageRoute(builder: (_) => FlashcardScreen());
       default:

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learn_connect/presentation/screens/conversation/call/model/status_call.dart';
+import 'package:learn_connect/presentation/screens/call/model/status_call.dart';
 
 class CallItem extends StatelessWidget {
   final String avatarUrl;
