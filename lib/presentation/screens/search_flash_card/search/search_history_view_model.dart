@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:learn_connect/presentation/screens/search/search/search_history_model.dart';
+import 'package:learn_connect/presentation/screens/search_flash_card/search/search_history_model.dart';
 
 class SearchHistoryViewModel extends ChangeNotifier{
   final SearchHistoryModel searchHistoryModel;

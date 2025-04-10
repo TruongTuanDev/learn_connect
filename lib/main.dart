@@ -11,17 +11,22 @@ import 'package:learn_connect/presentation/screens/Flashcard/view/flashcard_scre
 import 'package:learn_connect/presentation/screens/home/UserInfoScreen.dart';
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
 
-import 'package:learn_connect/presentation/screens/search/flash_card_search/flash_card_search_view.dart';
-import 'package:learn_connect/presentation/screens/search/search/search_history_model.dart';
-import 'package:learn_connect/presentation/screens/search/search/search_view.dart';
-import 'package:learn_connect/presentation/screens/search/search/search_history_view_model.dart';
-// import 'package:learn_connect/presentation/screens/signup/view/sign_up.dart';
+
+import 'package:learn_connect/presentation/screens/search_flash_card/flash_card_search/flash_card_search_view.dart';
+import 'package:learn_connect/presentation/screens/search_flash_card/search/search_history_model.dart';
+import 'package:learn_connect/presentation/screens/search_flash_card/search/search_view.dart';
+import 'package:learn_connect/presentation/screens/search_flash_card/search/search_history_view_model.dart';
+
+
 import 'package:learn_connect/presentation/screens/notify/view/notify.dart';
 import 'package:learn_connect/presentation/screens/friends_profile/view/friend_profile.dart';
+import 'package:learn_connect/presentation/screens/signin/view/signinscreen.dart';
+import 'package:learn_connect/routes/routes.dart';
 
 import 'firebase_options.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-// import 'package:learn_connect/presentation/screens/signup/view/sign_up.dart';
+import 'package:learn_connect/presentation/screens/signup/view/signupscreen.dart';
+import '../routes/routes.dart';
 
 
 Future<void> main() async {
@@ -32,22 +37,6 @@ Future<void> main() async {
   );
   debugPrint("Firebase Initialized!");
   runApp(ProviderScope(child: MyApp()));
-
-
-  void main() {
-    // runApp(MyApp());
-    //
-    //
-    // runApp(
-    //   ChangeNotifierProvider(
-    //     create: (context) => SearchHistoryViewModel(SearchHistoryModel()),
-    //     child:  MyApp(),
-    //   ),
-    // );
-    // runApp(ProviderScope(child: MyApp()));
-
-  }
-
 }
 
 class MyApp extends StatelessWidget {
@@ -57,28 +46,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Learn Connect',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
 
-      home:ProfileScreen(),
-
+      // home:SignUpScreen(),
+      debugShowCheckedModeBanner: false,
+      initialRoute: AppRoutes.signup, // Màn hình khởi động
+      onGenerateRoute: AppRoutes.generateRoute, // Quan trọng
     );
   }
 }
