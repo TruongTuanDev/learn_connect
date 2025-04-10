@@ -33,7 +33,6 @@ class _SignUpFormState extends State<SignUpForm> {
   void _register() {
     if (_formKey.currentState!.validate()) {
       createUser();  // Gọi hàm tạo người dùng
-
     }
   }
 
