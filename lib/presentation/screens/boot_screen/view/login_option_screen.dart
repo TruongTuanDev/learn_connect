@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:learn_connect/routes/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -221,7 +222,9 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(
                       width: buttonWidth,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, AppRoutes.signin);
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue.shade900,
                           padding: const EdgeInsets.symmetric(vertical: 16),

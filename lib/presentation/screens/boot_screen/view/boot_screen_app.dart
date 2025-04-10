@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:learn_connect/presentation/screens/boot_screen/view/login_option_screen.dart';
+import 'package:learn_connect/routes/routes.dart';
 
 class BootScreenApp extends StatefulWidget {
   const BootScreenApp({super.key});
@@ -15,11 +16,8 @@ class _BootScreenAppState extends State<BootScreenApp> {
     super.initState();
 
     // Set timer to navigate after 2 seconds
-    Timer(const Duration(seconds: 1), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginScreen()),
-      );
+    Timer(const Duration(seconds: 3), () {
+      Navigator.pushNamed(context, AppRoutes.sigin_social);
     });
   }
 
