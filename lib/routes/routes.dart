@@ -1,31 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:learn_connect/presentation/screens/Flashcard/view/flashcard_screen.dart';
+import 'package:learn_connect/presentation/screens/chatting/provider/chat_screen_provider.dart';
+import 'package:learn_connect/presentation/screens/chatting/view/chat_screen.dart';
 import 'package:learn_connect/presentation/screens/home/UserInfoScreen.dart';
 import 'package:learn_connect/presentation/screens/home/UserInterestsScreen.dart';
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
+import 'package:learn_connect/presentation/screens/messenger/view/messenger_list_view.dart';
 import 'package:learn_connect/presentation/screens/search_flash_card/view/search_flash_card_view.dart';
+
 import '../presentation/screens/signin/view/signinscreen.dart';
 import '../presentation/screens/signup/view/signupscreen.dart';
 
 class AppRoutes {
   //1
   static const String signup = '/signup';
+
   //2
   static const String information = '/signup/information';
+
   //3
   static const String interest = '/signup/information/interest';
+
   //4
   static const String signin = '/signin';
+
   //5
   static const String home = '/home';
+
   //6
   static const String search = '/home/search';
   static const String flascard = '/home/flascard';
+
   //7
+  static const String chat = '/chat';
+
   //8
+  static const String messengers = '/messengers';
   //9
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
+    debugPrint('Route name: ${settings.name}');
+    debugPrint('Arguments: ${settings.arguments}');
+    debugPrint('Type of arguments: ${settings.arguments.runtimeType}');
     switch (settings.name) {
       case signup:
         return MaterialPageRoute(builder: (_) => SignUpScreen());
@@ -41,11 +57,22 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => CombinedSearchScreen());
       case flascard:
         return MaterialPageRoute(builder: (_) => FlashcardScreen());
+      case chat:
+        print("Nav to chat");
+        final receivedId = settings.arguments as String;
+        return MaterialPageRoute(
+          builder: (_) => ChatScreen(receivedId: receivedId),
+        );
+      case messengers:
+        return MaterialPageRoute(builder: (_)=> MessengerListScreen());
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
-            body: Center(child: Text('No route defined for ${settings.name}')),
-          ),
+          builder:
+              (_) => Scaffold(
+                body: Center(
+                  child: Text('No route defined for ${settings.name}'),
+                ),
+              ),
         );
     }
   }

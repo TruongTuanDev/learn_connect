@@ -11,19 +11,6 @@ import 'package:learn_connect/presentation/screens/Flashcard/view/flashcard_scre
 
 import 'package:learn_connect/presentation/screens/home/UserInfoScreen.dart';
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
-
-import 'package:learn_connect/presentation/screens/search_all/flash_card_search/search_flash_card_view.dart';
-import 'package:learn_connect/presentation/screens/search/search/search_all_history_model.dart';
-import 'package:learn_connect/presentation/screens/search/search/search_all_view.dart';
-import 'package:learn_connect/presentation/screens/search/search/search_history_view_model.dart';
-import 'package:learn_connect/presentation/screens/signup/view/sign_up.dart';
-
-import 'package:learn_connect/presentation/screens/search_flash_card/flash_card_search/flash_card_search_view.dart';
-import 'package:learn_connect/presentation/screens/search_flash_card/search/search_history_model.dart';
-import 'package:learn_connect/presentation/screens/search_flash_card/search/search_view.dart';
-import 'package:learn_connect/presentation/screens/search_flash_card/search/search_history_view_model.dart';
-
-
 import 'package:learn_connect/presentation/screens/notify/view/notify.dart';
 import 'package:learn_connect/presentation/screens/friends_profile/view/friend_profile.dart';
 import 'package:learn_connect/presentation/screens/signin/view/signinscreen.dart';
