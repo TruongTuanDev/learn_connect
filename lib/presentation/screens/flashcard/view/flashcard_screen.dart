@@ -1,23 +1,62 @@
-// screens/flashcard_screen.dart
 import 'package:flutter/material.dart';
+import '../../search_flash_card/model/search_flash_card_model.dart';
 import '../models/flashcard_model.dart';
 import '../widgets/flashcard_widget.dart';
+import 'package:learn_connect/services/flashcard_service.dart';
 
 class FlashcardScreen extends StatefulWidget {
+
   @override
   _FlashcardScreenState createState() => _FlashcardScreenState();
 }
 
 class _FlashcardScreenState extends State<FlashcardScreen> {
-  final List<Flashcard> flashcards = [
-    Flashcard(front: "ABSENT (adjective) /ˈæbsənt/", back: "vắng mặt (vì đau ốm,...)Ví dụ:Most students were absent from school at least once (Hầu hết sinh viên đã vắng mặt ít nhất một lần)"),
-    Flashcard(front: "ACCEPT (verb) /əkˈsept/", back: "nhận, chấp nhậnVí dụ:We accept payment by Visa Electron, Visa, Switch, Maestro, Mastercard, JCB, Solo, check or cash. (Chúng tôi chấp nhận thanh toán bằng thẻ Visa Electron, Visa, Switch, Maestro, Mastercard, JCB, Solo, séc hoặc tiền mặt.)"),
-    Flashcard(front: "ACCOMMODATION (noun) /əˌkɒməˈdeɪʃən/", back: "chỗ trọ, chỗ ăn ở Ví dụ: I am not wealthy enough to afford first-class accommodation. (Tôi không đủ giàu để mua được chỗ ở hạng nhất.)"),
-    Flashcard(front: "ACQUIRE (verb) /əˈkwaɪər/", back: "thu được, đạt được Ví dụ: He acquired the firm in 2008. (Ông đã có được công ty vào năm 2008.)"),
-  ];
 
+  late FlashCard flashcard;
+  List<FlashCardItem> flashcards = [];
+  bool isLoading = true;
+  bool isInitialized = false;
   final PageController _pageController = PageController();
   String selectedDifficulty = '';
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    // Chỉ chạy 1 lần
+    if (!isInitialized) {
+      final args = ModalRoute.of(context)?.settings.arguments;
+      print(args);
+      if (args != null && args is FlashCard) {
+        flashcard = args;
+        loadFlashcards();
+        isInitialized = true;
+      } else {
+        print('⚠️ Không nhận được dữ liệu FlashCard từ trang trước!');
+      }
+    }
+  }
+
+  Future<void> loadFlashcards() async {
+    try {
+      final flashcardService = FlashcardService();
+      final result = await flashcardService.getItemsByTopicId(flashcard.id);
+
+      if (result['success'] == true) {
+        final List<dynamic> jsonList = result['data'];
+        setState(() {
+          flashcards = jsonList
+              .map((item) => FlashCardItem.fromJson(item as Map<String, dynamic>))
+              .toList();
+          isLoading = false;
+        });
+      } else {
+        throw Exception(result['message'] ?? '❌ Không thể tải dữ liệu');
+      }
+    } catch (e) {
+      print('🛑 Lỗi khi load flashcards: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +69,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => Navigator.pop(context),
         ),
         titleTextStyle: TextStyle(
           fontSize: 30,
@@ -40,12 +77,15 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
           color: Colors.black,
         ),
       ),
-      body: Column(
+      body: isLoading
+          ? Center(child: CircularProgressIndicator())
+          : Column(
         children: [
           SizedBox(height: 20),
           Text(
-            'TỪ VỰNG TIẾNG ANH VĂN PHÒNG',
+            flashcard.title.toUpperCase(),
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
           ),
           SizedBox(height: 20),
           Expanded(
@@ -72,7 +112,8 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                 label: 'Trung bình',
                 color: Colors.orange,
                 isSelected: selectedDifficulty == 'Trung bình',
-                onTap: () => setState(() => selectedDifficulty = 'Trung bình'),
+                onTap: () =>
+                    setState(() => selectedDifficulty = 'Trung bình'),
               ),
               ReactionButton(
                 icon: Icons.sentiment_dissatisfied,
@@ -113,7 +154,13 @@ class ReactionButton extends StatelessWidget {
       child: Column(
         children: [
           Icon(icon, color: isSelected ? color : Colors.black, size: 32),
-          Text(label, style: TextStyle(color: isSelected ? color : Colors.black, fontWeight: FontWeight.bold)),
+          Text(
+            label,
+            style: TextStyle(
+              color: isSelected ? color : Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );

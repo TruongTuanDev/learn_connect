@@ -4,7 +4,7 @@
 # Files and directories created by pub
 .dart_tool/
 .packages
-/lib/main.dart
+lib/main.dart
 build/
 # If you're building an application, you may want to check-in your pubspec.lock
 pubspec.lock

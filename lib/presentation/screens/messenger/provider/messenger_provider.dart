@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:learn_connect/presentation/screens/conversation/messenger//message_model.dart';
+import 'package:learn_connect/presentation/screens/messenger/model/message_model.dart';
 
 class MessagingListNotifier extends StateNotifier<List<Messenger>> {
   MessagingListNotifier() : super([]){

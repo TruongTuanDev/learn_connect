@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:learn_connect/presentation/screens/conversation/messenger//messenger_item.dart';
-import 'package:learn_connect/presentation/screens/conversation/messenger//messenger_provider.dart';
+import 'package:intl/intl.dart';
+import 'package:learn_connect/presentation/screens/call/widgets/call_item.dart';
 
-class MessengerListScreen extends ConsumerWidget {
-  const MessengerListScreen({super.key});
+import '../provider/call_provider.dart';
+
+class CallListScreen extends ConsumerWidget {
+  const CallListScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final messageList = ref.watch(messagingListProvider);
+    final callsAsyn = ref.watch(callProvider);
+    final DateFormat  formattedDate = DateFormat('dd-MM-yyyy');
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -50,8 +53,10 @@ class MessengerListScreen extends ConsumerWidget {
                       onPressed: () {},
                       child: const Text("Nhắn"),
                       style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(Colors.green),
-                        foregroundColor: WidgetStateProperty.all(Colors.white),
+                        backgroundColor: WidgetStateProperty.all(
+                          Colors.indigo.shade100,
+                        ),
+                        foregroundColor: WidgetStateProperty.all(Colors.black),
                         minimumSize: WidgetStateProperty.all(
                           Size(double.infinity, 50),
                         ),
@@ -67,10 +72,8 @@ class MessengerListScreen extends ConsumerWidget {
                       onPressed: () {},
                       child: const Text("Gọi"),
                       style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(
-                          Colors.indigo.shade100,
-                        ),
-                        foregroundColor: WidgetStateProperty.all(Colors.black),
+                        backgroundColor: WidgetStateProperty.all(Colors.green),
+                        foregroundColor: WidgetStateProperty.all(Colors.white),
                         minimumSize: WidgetStateProperty.all(
                           Size(double.infinity, 50),
                         ),
@@ -84,12 +87,26 @@ class MessengerListScreen extends ConsumerWidget {
               ),
               SizedBox(height: 20),
               Expanded(
-                child: ListView.builder(
-                  itemCount: messageList.length,
-                  padding: EdgeInsets.zero,
-                  itemBuilder: (context, index) {
-                    return ChatItem(messenger: messageList[index]);
-                  },
+                child: callsAsyn.when(
+                  data:
+                      (call) => ListView.builder(
+                        itemCount: call.length,
+                        padding: EdgeInsets.zero,
+                        itemBuilder: (context, index) {
+                          return CallItem(
+                            name: call[index].name,
+                            callStatus: call[index].callStatus,
+                            time: formattedDate.format(call[index].time),
+                            avatarUrl: call[index].avatarUrl,
+                          );
+                        },
+                      ),
+                  loading: () => Center(child: CircularProgressIndicator()),
+                  // Phải đặt trong hàm `() =>`
+                  error:
+                      (error, stackTrace) => Center(
+                        child: Text("Lỗi: $error"),
+                      ), // Thêm return Widget
                 ),
               ),
             ],
@@ -99,4 +116,3 @@ class MessengerListScreen extends ConsumerWidget {
     );
   }
 }
-

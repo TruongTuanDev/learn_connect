@@ -49,7 +49,7 @@ class SignUpScreen extends StatelessWidget {
                 Text('Bạn đã có tài khoản? '),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.signin);
+                    Navigator.pushNamed(context, AppRoutes.sigin_social);
                   },
                   child: Text('Đăng nhập', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
                 ),

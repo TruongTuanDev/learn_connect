@@ -1,26 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:learn_connect/presentation/screens/home/UserInfoScreen.dart';
-import 'package:learn_connect/presentation/screens/home/UserInterestsScreen.dart';
-import 'package:learn_connect/presentation/screens/profile/view/ProfileScreen.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:learn_connect/presentation/screens/Flashcard/view/flashcard_screen.dart';
 
 
-import 'package:learn_connect/presentation/screens/home/UserInfoScreen.dart';
-import 'package:learn_connect/presentation/screens/home/view/home.dart';
-
-
-import 'package:learn_connect/presentation/screens/search_flash_card/flash_card_search/flash_card_search_view.dart';
-import 'package:learn_connect/presentation/screens/search_flash_card/search/search_history_model.dart';
-import 'package:learn_connect/presentation/screens/search_flash_card/search/search_view.dart';
-import 'package:learn_connect/presentation/screens/search_flash_card/search/search_history_view_model.dart';
-
-
-import 'package:learn_connect/presentation/screens/notify/view/notify.dart';
-import 'package:learn_connect/presentation/screens/friends_profile/view/friend_profile.dart';
-import 'package:learn_connect/presentation/screens/signin/view/signinscreen.dart';
 import 'package:learn_connect/routes/routes.dart';
 
 import 'firebase_options.dart';
@@ -53,10 +34,11 @@ class MyApp extends StatelessWidget {
 
       // home:SignUpScreen(),
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.signup, // Màn hình khởi động
+      initialRoute: AppRoutes.loadscreen, // Màn hình khởi động
       onGenerateRoute: AppRoutes.generateRoute, // Quan trọng
     );
   }
 }
+
 
 

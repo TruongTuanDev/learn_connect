@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learn_connect/routes/routes.dart';
-import 'package:learn_connect/services/auth_service.dart'; // Import file xử lý API
+import 'package:learn_connect/services/auth_service.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // Import file xử lý API
 
 class SignInForm extends StatefulWidget {
   @override
@@ -32,8 +33,10 @@ class _SignInFormState extends State<SignInForm> {
 
     if (result['success']) {
       _showMessage("Đăng nhập thành công!");
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString("access_token", result['data']['accessToken']);
       Navigator.pushNamed(context, AppRoutes.home);
-      print("Token nhận được: ${result['data']['token']}");
+      print("Token nhận được: ${result['data']['accessToken']}");
     } else {
       _showMessage(result['message']);
     }
