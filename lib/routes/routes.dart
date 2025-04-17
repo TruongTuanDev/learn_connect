@@ -6,6 +6,7 @@ import 'package:learn_connect/presentation/screens/boot_screen/view/login_option
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
 
 import 'package:learn_connect/presentation/screens/search_flash_card/view/search_flash_card_view.dart';
+import 'package:learn_connect/presentation/screens/swipe_friend/view/swipe_friend.dart';
 
 
 
@@ -32,6 +33,8 @@ class AppRoutes {
   //6
   static const String search = '/home/search';
   static const String flascard = '/home/flascard';
+  static const String swipe_friend = '/home/swipe_friend';
+
   //7
   //8
   //9
@@ -54,6 +57,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => Home());
       case search:
         return MaterialPageRoute(builder: (_) => CombinedSearchScreen());
+      case swipe_friend:
+        return MaterialPageRoute(builder: (_) => SwipePage());
       case flascard:
         return MaterialPageRoute(builder: (_) => CombinedSearchScreen());
       default:
