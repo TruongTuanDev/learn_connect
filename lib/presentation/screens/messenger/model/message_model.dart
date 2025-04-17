@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 @immutable
 class Messenger {
+  final String id;
   final String avatarUrl;
   final String name;
   final String message;
@@ -10,6 +11,7 @@ class Messenger {
   final int unread;
 
   const Messenger({
+    required this.id,
     required this.avatarUrl,
     required this.name,
     required this.message,
@@ -28,6 +30,7 @@ class Messenger {
   factory Messenger.fromJson(Map<String, dynamic> json) {
     return switch (json) {
       {
+        'id' : String id,
       'avatarUrl': String avatarUrl,
       'name': String name,
       'message': String message,
@@ -35,6 +38,7 @@ class Messenger {
       'unread': int unread
       } =>
           Messenger(
+            id: id,
             avatarUrl: avatarUrl,
             name: name,
             message: message,
@@ -49,22 +53,25 @@ class Messenger {
 class MessengerModel {
   final List<Messenger> mockChatList = [
     Messenger(
+      id: "tam",
       avatarUrl: "https://th.bing.com/th/id/OIP.w65TVIDbyX--uD5dgpOCDQ"
           "HaFj?w=288&h=216&c=7&r=0&o=5&dpr=1.3&pid=1.7",
-      name: "Nguyễn A",
+      name: "Nguyễn Tâm",
       message: "Học bài chưa?",
       time: "14:59",
       unread: 3,
     ),
     Messenger(
+      id: "phuc",
       avatarUrl: "https://th.bing.com/th/id/OIP.w65TVIDbyX--uD5dgpOCDQ"
           "HaFj?w=288&h=216&c=7&r=0&o=5&dpr=1.3&pid=1.7",
-      name: "Nguyễn B",
+      name: "Nguyễn Phuc",
       message: "Nhắc học quá",
       time: "06:35",
       unread: 2,
     ),
     Messenger(
+      id: "tuan",
       avatarUrl: "https://th.bing.com/th/id/OIP.w65TVIDbyX--uD5dgpOCDQ"
           "HaFj?w=288&h=216&c=7&r=0&o=5&dpr=1.3&pid=1.7",
       name: "Nguyễn C",
@@ -73,6 +80,7 @@ class MessengerModel {
       unread: 0,
     ),
     Messenger(
+      id: "d",
       avatarUrl: "https://th.bing.com/th/id/OIP.w65TVIDbyX--uD5dgpOCDQ"
           "HaFj?w=288&h=216&c=7&r=0&o=5&dpr=1.3&pid=1.7",
       name: "Nguyễn D",

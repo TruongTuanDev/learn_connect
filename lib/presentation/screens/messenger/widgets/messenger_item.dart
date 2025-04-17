@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:learn_connect/presentation/screens/chatting/provider/chat_screen_provider.dart';
 import 'package:learn_connect/presentation/screens/messenger/model/message_model.dart';
+import 'package:learn_connect/routes/routes.dart';
+
 class ChatItem extends StatelessWidget {
   final Messenger messenger;
 
@@ -12,7 +15,14 @@ class ChatItem extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         splashColor: Colors.blue.withAlpha(40),
-        onTap: () {},
+        onTap: () {
+          print("Tapped on card for id: ${messenger.id}");
+          Navigator.pushNamed(
+            context,
+            AppRoutes.chat,
+            arguments: messenger.id,
+          );
+        },
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
           child: Row(
@@ -66,5 +76,3 @@ class ChatItem extends StatelessWidget {
     );
   }
 }
-
-
