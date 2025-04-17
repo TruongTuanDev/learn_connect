@@ -46,6 +46,7 @@ dependencies:
   flutter_tts: ^3.6.3
   animate_do: ^4.2.0
   intl: ^0.18.0
+  socket_io_client: ^2.0.3
 
 dev_dependencies:
   flutter_test:

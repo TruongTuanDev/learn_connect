@@ -13,8 +13,8 @@ import 'package:learn_connect/presentation/screens/home/view/home.dart';
 
 
 
-import 'package:learn_connect/presentation/screens/search_flash_card/flash_card_search/flash_card_search_view.dart';
 
+import 'package:learn_connect/presentation/screens/search_flash_card/flash_card_search/flash_card_search_view.dart';
 
 
 
