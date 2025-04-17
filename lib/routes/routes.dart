@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learn_connect/presentation/screens/Flashcard/view/flashcard_screen.dart';
+
 import 'package:learn_connect/presentation/screens/chatting/provider/chat_screen_provider.dart';
 import 'package:learn_connect/presentation/screens/chatting/view/chat_screen.dart';
 import 'package:learn_connect/presentation/screens/home/UserInfoScreen.dart';
@@ -12,13 +13,16 @@ import '../presentation/screens/signin/view/signinscreen.dart';
 import '../presentation/screens/signup/view/signupscreen.dart';
 
 class AppRoutes {
+  //0
+  static const String loadscreen = '/load';
   //1
   static const String signup = '/signup';
 
   //2
   static const String information = '/signup/information';
 
-  //3
+  static const String sigin_social  = '/signup/sigin_social';
+ //3
   static const String interest = '/signup/information/interest';
 
   //4
@@ -43,8 +47,12 @@ class AppRoutes {
     debugPrint('Arguments: ${settings.arguments}');
     debugPrint('Type of arguments: ${settings.arguments.runtimeType}');
     switch (settings.name) {
+      case loadscreen:
+        return MaterialPageRoute(builder: (_) => BootScreenApp());
       case signup:
         return MaterialPageRoute(builder: (_) => SignUpScreen());
+      case sigin_social:
+        return MaterialPageRoute(builder: (_) => LoginScreen());
       case information:
         return MaterialPageRoute(builder: (_) => UserInfoScreen());
       case interest:
@@ -56,6 +64,7 @@ class AppRoutes {
       case search:
         return MaterialPageRoute(builder: (_) => CombinedSearchScreen());
       case flascard:
+
         return MaterialPageRoute(builder: (_) => FlashcardScreen());
       case chat:
         print("Nav to chat");
@@ -65,6 +74,7 @@ class AppRoutes {
         );
       case messengers:
         return MaterialPageRoute(builder: (_)=> MessengerListScreen());
+
       default:
         return MaterialPageRoute(
           builder:

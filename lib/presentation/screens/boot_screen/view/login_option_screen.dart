@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:learn_connect/routes/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -62,93 +63,79 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
-    // Lấy kích thước màn hình để tính tỉ lệ
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
     final buttonWidth = screenWidth * 0.7;
-
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey.shade300),
-        ),
-        child: SafeArea(
-          child: Column(
-            children: [
-
-              // Logo
-              // Logo
-              Container(
-                height: screenHeight * 0.4,
-                alignment: Alignment.center,
-                margin: const EdgeInsets.only(top: 30),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Center(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).padding.top -
+                    MediaQuery.of(context).padding.bottom,
+              ),
+              child: IntrinsicHeight(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(
-                      'assets/images/logo.png',
-                      fit: BoxFit.contain,
-                      width: screenWidth * 0.4, // Adjust size as needed
-                    ),
-                    const SizedBox(height: 16), // Khoảng cách giữa ảnh và text
-                    Text(
-                      'Bridge to English',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue.shade900,
-                      ),
-                    ),
-                    Text(
-                      'Learn From Home',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
 
-
-
-              Container(
-                height: screenHeight * 0.50,
-                margin: const EdgeInsets.only(top: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 10),
-                      child: const Text(
-                        'Cho phép bạn tiếp tục với',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black87,
+                    // Logo section
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/logo.png',
+                          fit: BoxFit.contain,
+                          width: screenWidth * 0.4,
                         ),
-                      ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Bridge to English',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blue.shade900,
+                          ),
+                        ),
+                        const Text(
+                          'Learn From Home',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
 
+                    const SizedBox(height: 40),
 
-                    //Box option login
+                    const Text(
+                      'Cho phép bạn tiếp tục với',
+                      style: TextStyle(fontSize: 20, color: Colors.black87),
+                    ),
+
                     const SizedBox(height: 20),
+
+                    // Google Button
                     SizedBox(
                       width: buttonWidth,
                       child: OutlinedButton(
-                        onPressed: () {_showPopup(context);},
+                        onPressed: () => _showPopup(context),
                         style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
+                          padding: const EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
                           side: const BorderSide(color: Colors.grey),
                         ),
-                        //option login
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -166,18 +153,18 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-
                       ),
                     ),
 
-
                     const SizedBox(height: 20),
+
+                    // Facebook Button
                     SizedBox(
                       width: buttonWidth,
                       child: OutlinedButton(
-                        onPressed: () {_showPopup(context);},
+                        onPressed: () => _showPopup(context),
                         style: OutlinedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 30),
+                          padding: const EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),
                           ),
@@ -200,28 +187,24 @@ class LoginScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-
                       ),
                     ),
 
-
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 40),
-                      child: const Text(
-                        'Hoặc',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.black87,
-
-                        ),
-                      ),
+                    const SizedBox(height: 40),
+                    const Text(
+                      'Hoặc',
+                      style: TextStyle(fontSize: 16, color: Colors.black87),
                     ),
 
+                    const SizedBox(height: 20),
 
+                    // Đăng nhập
                     SizedBox(
                       width: buttonWidth,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, AppRoutes.signin);
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue.shade900,
                           padding: const EdgeInsets.symmetric(vertical: 16),
@@ -234,10 +217,7 @@ class LoginScreen extends StatelessWidget {
                           children: const [
                             Text(
                               'Đăng nhập tài khoản',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                              ),
+                              style: TextStyle(fontSize: 16, color: Colors.white),
                             ),
                             SizedBox(width: 8),
                             Icon(Icons.arrow_forward, color: Colors.white),
@@ -246,43 +226,35 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
 
+                    const SizedBox(height: 30),
 
-
-                    // Sign up link
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'Bạn chưa có tài khoản? ',
-                            style: TextStyle(color: Colors.black87),
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            style: TextButton.styleFrom(
-                              padding: EdgeInsets.zero,
-                              minimumSize: Size.zero,
-                              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            ),
-                            child: Text(  // Bỏ từ khóa const
-                              'Đăng ký',
-                              style: TextStyle(
-                                color: Colors.blue.shade900,
-                                fontWeight: FontWeight.bold,
-                              ),
+                    // Đăng ký link
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text('Bạn chưa có tài khoản? ',
+                            style: TextStyle(color: Colors.black87)),
+                        TextButton(
+                          onPressed: () {},
+                          child: Text(
+                            'Đăng ký',
+                            style: TextStyle(
+                              color: Colors.blue.shade900,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ],
-                      ),
-                    )
+                        ),
+                      ],
+                    ),
+
                   ],
                 ),
               ),
-            ],
+            ),
           ),
         ),
       ),
     );
   }
+
 }
