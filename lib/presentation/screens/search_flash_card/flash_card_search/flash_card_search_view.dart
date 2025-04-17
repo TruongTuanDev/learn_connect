@@ -153,7 +153,7 @@ class _CombinedSearchScreenState extends ConsumerState<CombinedSearchScreen> {
                             child: Padding(
                               padding: const EdgeInsets.all(12.0),
                               child: Text(
-                                flashcard.flash_card_type,
+                                flashcard.title,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   fontSize: 14,

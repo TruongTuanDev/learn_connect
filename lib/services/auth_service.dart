@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:learn_connect/data/models/UserModel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   final Dio _dio = Dio(

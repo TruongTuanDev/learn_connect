@@ -35,6 +35,8 @@ class AppRoutes {
   static const String search = '/home/search';
   static const String flascard = '/home/flascard';
 
+  static const String flascard_item = '/home/flascard/flashcard_item';
+
   //7
   static const String chat = '/chat';
 
@@ -65,7 +67,11 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => CombinedSearchScreen());
       case flascard:
 
-        return MaterialPageRoute(builder: (_) => FlashcardScreen());
+        return MaterialPageRoute(builder: (_) => CombinedSearchScreen());
+      case flascard_item:
+        return MaterialPageRoute(builder: (_) => FlashcardScreen(), settings: settings,);
+
+
       case chat:
         print("Nav to chat");
         final receivedId = settings.arguments as String;

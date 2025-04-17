@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../routes/routes.dart';
 import '../widgets/signin_form.dart';
 import '../widgets/social_login_buttons.dart';
 
@@ -64,7 +65,9 @@ class _SignInScreenState extends State<SignInScreen> {
                 children: [
                   Text('Bạn chưa có tài khoản? '),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, AppRoutes.signup);
+                    },
                     child: Text('Đăng ký', style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
                   ),
                 ],
