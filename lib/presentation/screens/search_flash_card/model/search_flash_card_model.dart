@@ -1,48 +1,73 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:learn_connect/services/flashcard_service.dart';
 
 @immutable
-class FlashCard{
+class FlashCard {
   final String id;
-  final String flash_card_type;
+  final bool enabled;
+  final String status;
+  final String title;
+  final String description;
+  final String language;
+  final String createdAt;
+  final String updatedAt;
 
-  const FlashCard({required this.id, required this.flash_card_type});
+  const FlashCard({
+    required this.id,
+    required this.enabled,
+    required this.status,
+    required this.title,
+    required this.description,
+    required this.language,
+    required this.createdAt,
+    required this.updatedAt,
+  });
 
-  //json dont have datetime type, change it to string
-  Map<String, dynamic> toJson() => {'id' : id, 'flashCardType': flash_card_type};
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'enabled': enabled,
+    'status': status,
+    'title': title,
+    'description': description,
+    'language': language,
+    'created_at': createdAt,
+    'updated_at': updatedAt,
+  };
 
-  factory FlashCard.fromJson(Map<String, dynamic> json){
-    return switch(json) {
-      {'id' : String id, 'flashCardType' : String flash_card_type} => FlashCard(
-        id: id,
-        flash_card_type: flash_card_type
-      ),
-    _ => throw const FormatException('Failed to load search_all history')
-    };
+  factory FlashCard.fromJson(Map<String, dynamic> json) {
+    if (json.containsKey('id') && json.containsKey('title')) {
+      return FlashCard(
+        id: json['id'] as String,
+        enabled: json['enabled'] as bool? ?? false,
+        status: json['status'] as String? ?? '',
+        title: json['title'] as String? ?? '',
+        description: json['description'] as String? ?? '',
+        language: json['language'] as String? ?? '',
+        createdAt: json['created_at'] as String? ?? '',
+        updatedAt: json['updated_at'] as String? ?? '',
+      );
+    } else {
+      throw const FormatException('❌ Dữ liệu không hợp lệ khi parse FlashCard');
+    }
   }
 }
 
-class FlashCardModel{
-
-  final List<FlashCard> _flashCard = [
-    FlashCard(id: "1", flash_card_type: "Cambridge Vocabulary for IELTS (20 units)"),
-    FlashCard(id: "2", flash_card_type:   "Từ vựng tiếng Anh văn phòng"),
-    FlashCard(id: "3", flash_card_type: "Từ vựng tiếng Anh giao tiếp nâng cao"),
-    FlashCard(id: "4", flash_card_type: "Từ vựng tiếng Anh giao tiếp trung cấp"),
-    FlashCard(id: "5", flash_card_type: "Từ vựng Tiếng Anh giao tiếp cơ bản"),
-    FlashCard(id: "6", flash_card_type:    "TOEFL Word List")
-  ];
+class FlashCardModel {
   final dio = Dio();
 
-  Future<List<FlashCard>> fetchFlashCards() async{
-    /*final response = await dio.get("path");
+  Future<List<FlashCard>> fetchFlashCards() async {
+    final FlashcardService flashcardService = FlashcardService();
+    final result = await flashcardService.getTopics();
 
-    if(response.statusCode == 200){
-      final List<dynamic> jsonList = response.data;
-      return jsonList.map((json)=> SearchHistory.fromJson(json)).toList();
-    }else {
-      throw Exception('Failed to load search_all history');
-    }*/
-    return List<FlashCard>.from(_flashCard);
+    if (result['success'] == true) {
+      final List<dynamic> jsonList = result['data'];
+
+      return jsonList
+          .map((item) => FlashCard.fromJson(item as Map<String, dynamic>))
+          .toList();
+    } else {
+      throw Exception(result['message'] ?? '❌ Không thể tải danh sách chủ đề');
+    }
   }
 }

@@ -1,7 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:learn_connect/routes/routes.dart';
+import 'package:learn_connect/services/flashcard_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+class TodayLearningWidget extends StatefulWidget {
+  @override
+  _TodayLearningState createState() => _TodayLearningState();
+}
 
-class TodayLearningWidget extends StatelessWidget {
+class _TodayLearningState extends State<TodayLearningWidget> {
+  final TextEditingController userController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  bool rememberMe = false;
+  bool isPasswordVisible = false;
+  bool isLoading = false;
+
+  final FlashcardService flashcardService = FlashcardService(); // 🔥 Sử dụng AuthService
+
+  Future<void> _getTopic() async {
+
+      Navigator.pushNamed(context, AppRoutes.search);
+
+  }
+
+  void _showMessage(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,8 +56,8 @@ class TodayLearningWidget extends StatelessWidget {
                 context,
                 "FLASHCARDS",
                 Icons.view_carousel,
-                    () => Navigator.pushNamed(context, AppRoutes.flascard),
-                    // () => print("Nhấn vào LUYỆN NGHE")
+                    () => !isLoading ? _getTopic() : null,
+
               ),
               _buildLearningButton(
                 context,
