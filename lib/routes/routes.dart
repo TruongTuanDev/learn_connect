@@ -3,15 +3,18 @@ import 'package:learn_connect/presentation/screens/Flashcard/view/flashcard_scre
 
 import 'package:learn_connect/presentation/screens/chatting/provider/chat_screen_provider.dart';
 import 'package:learn_connect/presentation/screens/chatting/view/chat_screen.dart';
-import 'package:learn_connect/presentation/screens/home/UserInfoScreen.dart';
-import 'package:learn_connect/presentation/screens/home/UserInterestsScreen.dart';
+
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
 import 'package:learn_connect/presentation/screens/messenger/view/messenger_list_view.dart';
 import 'package:learn_connect/presentation/screens/search_flash_card/view/search_flash_card_view.dart';
 import 'package:learn_connect/presentation/screens/swipe_friend/view/swipe_friend.dart';
 
+import '../presentation/screens/boot_screen/view/boot_screen_app.dart';
+import '../presentation/screens/boot_screen/view/login_option_screen.dart';
 import '../presentation/screens/signin/view/signinscreen.dart';
 import '../presentation/screens/signup/view/signupscreen.dart';
+import '../presentation/screens/user_information/view/UserInfoScreen.dart';
+import '../presentation/screens/user_information/view/UserInterestsScreen.dart';
 
 class AppRoutes {
   //0

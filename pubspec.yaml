@@ -52,6 +52,8 @@ dependencies:
 
   socket_io_client: ^2.0.3
 
+  flutter_dotenv: ^5.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -81,6 +83,7 @@ flutter:
     - assets/google.png
     - assets/flag_vn.png
     - assets/images/logo.png
+    - .env
 
   # To add assets to your application, add an assets section, like this:
   # assets:
