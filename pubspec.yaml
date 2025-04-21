@@ -80,7 +80,7 @@ flutter:
     - assets/apple.png
     - assets/google.png
     - assets/flag_vn.png
-    - assets/images/logo.png
+    - assets/images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
