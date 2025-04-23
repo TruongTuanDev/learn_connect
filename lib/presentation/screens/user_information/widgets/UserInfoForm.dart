@@ -1,15 +1,68 @@
 import 'package:flutter/material.dart';
-class UserInfoForm extends StatelessWidget {
+
+class UserInfoForm extends StatefulWidget {
+  final Function(Map<String, dynamic>) onFormDataChanged;
+
+  UserInfoForm({required this.onFormDataChanged});
+
+  @override
+  _UserInfoFormState createState() => _UserInfoFormState();
+}
+
+class _UserInfoFormState extends State<UserInfoForm> {
+  final fullNameController = TextEditingController();
+  final nicknameController = TextEditingController();
+  final birthDateController = TextEditingController();
+  final emailController = TextEditingController();
+  final phoneController = TextEditingController();
+  String? selectedGender;
+
+  void updateFormData() {
+    widget.onFormDataChanged({
+      'fullName': fullNameController.text,
+      'nickname': nicknameController.text,
+      'birthDate': birthDateController.text,
+      'email': emailController.text,
+      'phone': phoneController.text,
+      'gender': selectedGender,
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomTextField(label: 'Tên đầy đủ'),
-        CustomTextField(label: 'Biệt danh'),
-        CustomTextField(label: 'Ngày sinh', icon: Icons.calendar_today),
-        CustomTextField(label: 'Email', icon: Icons.email),
-        PhoneField(),
-        GenderDropdown(),
+        CustomTextField(
+          label: 'Tên đầy đủ',
+          controller: fullNameController,
+          onChanged: (_) => updateFormData(),
+        ),
+        CustomTextField(
+          label: 'Biệt danh',
+          controller: nicknameController,
+          onChanged: (_) => updateFormData(),
+        ),
+        CustomTextField(
+          label: 'Ngày sinh',
+          controller: birthDateController,
+          icon: Icons.calendar_today,
+          onChanged: (_) => updateFormData(),
+        ),
+        CustomTextField(
+          label: 'Email',
+          controller: emailController,
+          icon: Icons.email,
+          onChanged: (_) => updateFormData(),
+        ),
+        PhoneField(controller: phoneController, onChanged: (_) => updateFormData()),
+        GenderDropdown(
+          onChanged: (value) {
+            setState(() {
+              selectedGender = value;
+            });
+            updateFormData();
+          },
+        ),
       ],
     );
   }
@@ -18,14 +71,18 @@ class UserInfoForm extends StatelessWidget {
 class CustomTextField extends StatelessWidget {
   final String label;
   final IconData? icon;
+  final TextEditingController controller;
+  final Function(String)? onChanged;
 
-  CustomTextField({required this.label, this.icon});
+  CustomTextField({required this.label, this.icon, required this.controller, this.onChanged});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8),
       child: TextField(
+        controller: controller,
+        onChanged: onChanged,
         decoration: InputDecoration(
           labelText: label,
           prefixIcon: icon != null ? Icon(icon) : null,
@@ -37,11 +94,18 @@ class CustomTextField extends StatelessWidget {
 }
 
 class PhoneField extends StatelessWidget {
+  final TextEditingController controller;
+  final Function(String)? onChanged;
+
+  PhoneField({required this.controller, this.onChanged});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8),
       child: TextField(
+        controller: controller,
+        onChanged: onChanged,
         decoration: InputDecoration(
           prefixIcon: Row(
             mainAxisSize: MainAxisSize.min,
@@ -65,22 +129,26 @@ class PhoneField extends StatelessWidget {
 }
 
 class GenderDropdown extends StatelessWidget {
+  final Function(String?) onChanged;
+
+  GenderDropdown({required this.onChanged});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8),
       child: DropdownButtonFormField<String>(
+        items: ['Nam', 'Nữ', 'Khác']
+            .map((gender) => DropdownMenuItem<String>(
+          value: gender,
+          child: Text(gender),
+        ))
+            .toList(),
+        onChanged: onChanged,
         decoration: InputDecoration(
+          labelText: 'Giới tính',
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         ),
-        items: ['Nam', 'Nữ', 'Khác'].map((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value),
-          );
-        }).toList(),
-        onChanged: (newValue) {},
-        hint: Text('Giới tính'),
       ),
     );
   }

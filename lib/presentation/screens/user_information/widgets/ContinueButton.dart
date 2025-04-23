@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:learn_connect/presentation/screens/user_information//view/UserInterestsScreen.dart';
+
+import '../view/LanguageInfoPage.dart';
 class ContinueButton extends StatelessWidget {
+  final Map<String, dynamic> formData;
+
+  // Nhận formData từ UserInfoScreen
+  ContinueButton({required this.formData});
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -14,7 +20,7 @@ class ContinueButton extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => UserInterestsScreen()),
+          MaterialPageRoute(builder: (context) => LanguageInfoScreen(formData: formData)),
         );
       },
       child: Row(
