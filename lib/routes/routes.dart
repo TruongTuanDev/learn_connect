@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:learn_connect/presentation/screens/Flashcard/view/flashcard_screen.dart';
+import 'package:learn_connect/presentation/screens/boot_screen/view/boot_screen_app.dart';
+import 'package:learn_connect/presentation/screens/boot_screen/view/login_option_screen.dart';
 
 import 'package:learn_connect/presentation/screens/chatting/provider/chat_screen_provider.dart';
 import 'package:learn_connect/presentation/screens/chatting/view/chat_screen.dart';
-
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
 import 'package:learn_connect/presentation/screens/messenger/view/messenger_list_view.dart';
 import 'package:learn_connect/presentation/screens/search_flash_card/view/search_flash_card_view.dart';
 import 'package:learn_connect/presentation/screens/swipe_friend/view/swipe_friend.dart';
-
+import 'package:learn_connect/presentation/screens/question_ai/view/test_ai.dart';
+import 'package:learn_connect/presentation/screens/user_information/view/UserInfoScreen.dart';
+import 'package:learn_connect/presentation/screens/user_information/view/UserInterestsScreen.dart';
 import '../presentation/screens/boot_screen/view/boot_screen_app.dart';
 import '../presentation/screens/boot_screen/view/login_option_screen.dart';
 import '../presentation/screens/signin/view/signinscreen.dart';
@@ -38,6 +41,7 @@ class AppRoutes {
   //6
   static const String search = '/home/search';
   static const String flascard = '/home/flascard';
+  static const String vocabulary = '/home/vocabulary';
 
   static const String swipe_friend = '/home/swipe_friend';
 
@@ -46,10 +50,10 @@ class AppRoutes {
 
 
   //7
-  static const String chat = '/chat';
+  static const String chat = 'home/messengers/chat';
 
   //8
-  static const String messengers = '/messengers';
+  static const String messengers = 'home/messengers';
   //9
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -73,6 +77,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => Home());
       case search:
         return MaterialPageRoute(builder: (_) => CombinedSearchScreen());
+      case vocabulary:
+        return MaterialPageRoute(builder: (_) => TestAiScreen());
       case swipe_friend:
         return MaterialPageRoute(builder: (_) => SwipePage());
       case flascard:

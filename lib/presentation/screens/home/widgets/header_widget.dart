@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:learn_connect/routes/routes.dart';
+
 
 class HeaderWidget extends StatelessWidget {
   @override
@@ -15,7 +17,7 @@ class HeaderWidget extends StatelessWidget {
               width: 33,
               height: 34,
               child: Image.network(
-                "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/90b5ea2a-5ba8-477b-a04b-7fdc700a15f4",
+                "assets/images/logo.png",
                 fit: BoxFit.fill,
               ),
             ),
@@ -29,21 +31,33 @@ class HeaderWidget extends StatelessWidget {
                 ),
               ),
             ),
-            _buildIcon("https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/1815c942-c0b5-44c0-bb6f-b3b729a877e4"),
-            _buildIcon("https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/67bacdf9-89d2-4ac5-ad27-ce8a9616147e"),
-            _buildIcon("https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/f7ed61e0-19ce-48b5-b01c-722aa8ebccc6", size: 41),
+            _buildIcon("assets/images/mesenger.png",() {
+              Navigator.pushNamed(context, AppRoutes.messengers);
+            },),
+            _buildIcon("assets/images/notyfication.png",() {
+              print("Bạn vừa nhấn vào biểu tượng!");
+              // Thêm chức năng khác tại đây (chuyển trang, hiển thị popup, v.v.)
+            },),
+            _buildIcon("assets/images/avartar.png",() {
+              print("Bạn vừa nhấn vào biểu tượng!");
+              // Thêm chức năng khác tại đây (chuyển trang, hiển thị popup, v.v.)
+            },),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildIcon(String url, {double size = 22}) {
-    return Container(
-      margin: const EdgeInsets.only(right: 12),
-      width: size,
-      height: size,
-      child: Image.network(url, fit: BoxFit.fill),
-    );
+  Widget _buildIcon(String url , VoidCallback onTap) {
+      return GestureDetector(
+      onTap: onTap,
+      child: Image.asset(
+      url,
+      width: 40,
+      height: 40,
+      fit: BoxFit.fill,
+      ),
+      );
+
   }
 }

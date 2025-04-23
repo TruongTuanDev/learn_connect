@@ -82,8 +82,9 @@ flutter:
     - assets/apple.png
     - assets/google.png
     - assets/flag_vn.png
+    - assets/images/
     - assets/images/logo.png
-    - .env
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:

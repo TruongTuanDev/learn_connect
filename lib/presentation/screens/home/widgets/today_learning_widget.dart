@@ -67,6 +67,12 @@ class _TodayLearningState extends State<TodayLearningWidget> {
               ),
               _buildLearningButton(
                 context,
+                "ÔN TỪ VỰNG",
+                Icons.menu_book,
+                    () => Navigator.pushNamed(context, AppRoutes.vocabulary)
+              ),
+              _buildLearningButton(
+                context,
                 "LUYỆN ĐỌC",
                 Icons.menu_book,
                     () => print("Nhấn vào LUYỆN ĐỌC"),

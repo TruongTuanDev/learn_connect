@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'models/quiz_question.dart';
-import 'services/gemini_service.dart';
-import 'widgets/config_screen.dart';
-import 'widgets/quiz_page.dart';
-import 'widgets/results_page.dart';
+import '../models/quiz_question.dart';
+import '../services/gemini_service.dart';
+import '../widgets/config_screen.dart';
+import '../widgets/quiz_page.dart';
+import '../widgets/results_page.dart';
 
 class TestAiScreen extends StatefulWidget {
   const TestAiScreen({Key? key}) : super(key: key);
