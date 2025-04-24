@@ -10,13 +10,18 @@ class NavigationWidget extends StatelessWidget {
       ),
       padding: const EdgeInsets.only(top: 8, bottom: 8, left: 27, right: 4),
       margin: const EdgeInsets.only(bottom: 21),
-      child: Row(
-        children: [
-          _buildNavItem("Trang chủ"),
-          _buildNavItem("Tìm bạn bè"),
-          _buildNavItem("Học tập"),
-          _buildNavItem("Cộng đồng"),
-        ],
+      width: double.infinity,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            _buildNavItem("Trang chủ"),
+            _buildNavItem("Tìm bạn bè"),
+            _buildNavItem("Học tập"),
+            _buildNavItem("Cộng đồng"),
+            // Thêm nhiều item nếu cần
+          ],
+        ),
       ),
     );
   }
