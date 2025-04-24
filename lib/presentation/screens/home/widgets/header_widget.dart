@@ -7,7 +7,7 @@ class HeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return IntrinsicHeight(
       child: Container(
-        padding: const EdgeInsets.only(top: 49),
+        padding: const EdgeInsets.only(top: 30, right: 30, bottom: 40),
         color: Color(0xFFF4F8FE),
         width: double.infinity,
         child: Row(
@@ -34,10 +34,12 @@ class HeaderWidget extends StatelessWidget {
             _buildIcon("assets/images/mesenger.png",() {
               Navigator.pushNamed(context, AppRoutes.messengers);
             },),
+            SizedBox(width: 16),
             _buildIcon("assets/images/notyfication.png",() {
               print("Bạn vừa nhấn vào biểu tượng!");
               // Thêm chức năng khác tại đây (chuyển trang, hiển thị popup, v.v.)
             },),
+            SizedBox(width: 16),
             _buildIcon("assets/images/avartar.png",() {
               print("Bạn vừa nhấn vào biểu tượng!");
               // Thêm chức năng khác tại đây (chuyển trang, hiển thị popup, v.v.)
@@ -48,16 +50,14 @@ class HeaderWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildIcon(String url , VoidCallback onTap) {
-      return GestureDetector(
+  Widget _buildIcon(String url, VoidCallback onTap) {
+    return GestureDetector(
       onTap: onTap,
-      child: Image.asset(
-      url,
-      width: 40,
-      height: 40,
-      fit: BoxFit.fill,
+      child: CircleAvatar(
+        radius: 20,
+        backgroundImage: AssetImage(url),
+        backgroundColor: Colors.transparent,
       ),
-      );
-
+    );
   }
 }
