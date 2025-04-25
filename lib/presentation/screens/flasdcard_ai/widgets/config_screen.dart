@@ -4,13 +4,10 @@ class ConfigScreen extends StatelessWidget {
   final String selectedLanguage;
   final String selectedTopic;
   final String selectedLevel;
-  final List<String> languages;
-  final List<String> topics;
-  final List<String> levels;
   final Function(String) onLanguageChanged;
   final Function(String) onTopicChanged;
   final Function(String) onLevelChanged;
-  final VoidCallback onStartQuiz;
+  final VoidCallback onGenerateFlashcards;
   final bool isLoading;
 
   const ConfigScreen({
@@ -18,13 +15,10 @@ class ConfigScreen extends StatelessWidget {
     required this.selectedLanguage,
     required this.selectedTopic,
     required this.selectedLevel,
-    required this.languages,
-    required this.topics,
-    required this.levels,
     required this.onLanguageChanged,
     required this.onTopicChanged,
     required this.onLevelChanged,
-    required this.onStartQuiz,
+    required this.onGenerateFlashcards,
     required this.isLoading,
   }) : super(key: key);
 
@@ -38,7 +32,7 @@ class ConfigScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 12),
             Text(
-              'Create Your Quiz',
+              'Create Your Flashcards',
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
@@ -46,7 +40,7 @@ class ConfigScreen extends StatelessWidget {
               ),
             ),
             Text(
-              'Customize your learning experience',
+              'Customize your vocabulary learning experience',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.grey.shade700,
@@ -92,7 +86,15 @@ class ConfigScreen extends StatelessWidget {
                       ),
                       value: selectedLanguage,
                       items:
-                          languages
+                          [
+                                'English',
+                                'Spanish',
+                                'French',
+                                'German',
+                                'Chinese',
+                                'Japanese',
+                                'Vietnamese',
+                              ]
                               .map(
                                 (lang) => DropdownMenuItem(
                                   value: lang,
@@ -130,7 +132,16 @@ class ConfigScreen extends StatelessWidget {
                       ),
                       value: selectedTopic,
                       items:
-                          topics
+                          [
+                                'General',
+                                'Business',
+                                'Travel',
+                                'Food',
+                                'Technology',
+                                'Health',
+                                'Education',
+                                'Sports',
+                              ]
                               .map(
                                 (topic) => DropdownMenuItem(
                                   value: topic,
@@ -168,7 +179,7 @@ class ConfigScreen extends StatelessWidget {
                       ),
                       value: selectedLevel,
                       items:
-                          levels
+                          ['Beginner', 'Intermediate', 'Advanced']
                               .map(
                                 (lvl) => DropdownMenuItem(
                                   value: lvl,
@@ -189,7 +200,7 @@ class ConfigScreen extends StatelessWidget {
             const SizedBox(height: 30),
             Center(
               child: ElevatedButton(
-                onPressed: isLoading ? null : onStartQuiz,
+                onPressed: isLoading ? null : onGenerateFlashcards,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue.shade700,
                   foregroundColor: Colors.white,
@@ -228,7 +239,7 @@ class ConfigScreen extends StatelessWidget {
                           ],
                         )
                         : const Text(
-                          'Start Quiz',
+                          'Generate Flashcards',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
