@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:learn_connect/presentation/screens/chatting/provider/chat_screen_provider.dart';
 import 'package:learn_connect/presentation/screens/messenger/model/message_model.dart';
 import 'package:learn_connect/routes/routes.dart';
+import 'package:learn_connect/services/socket_service.dart';
 
-class ChatItem extends StatelessWidget {
+class ChatItem extends ConsumerWidget {
   final Messenger messenger;
 
-  ChatItem({required this.messenger});
+  const ChatItem({super.key, required this.messenger});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final onlineUsers = ref.watch(onlineUsersProvider);
+    final isOnline = onlineUsers.contains(messenger.id);
+    print(onlineUsers);
     return Card(
       margin: EdgeInsets.fromLTRB(0, 0, 0, 2),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         splashColor: Colors.blue.withAlpha(40),
         onTap: () {
-          print("Tapped on card for id: ${messenger.id}");
           Navigator.pushNamed(
             context,
             AppRoutes.chat,
@@ -30,10 +34,27 @@ class ChatItem extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
           child: Row(
             children: [
-              CircleAvatar(
-                radius: 20,
-                backgroundColor: Colors.black,
-                backgroundImage: NetworkImage(messenger.avatarUrl),
+              Stack(
+                children: [
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundImage: NetworkImage(messenger.avatarUrl),
+                  ),
+                  if (isOnline)
+                    Positioned(
+                      right: 0,
+                      bottom: 0,
+                      child: Container(
+                        width: 12,
+                        height: 12,
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 2),
+                        ),
+                      ),
+                    ),
+                ],
               ),
               SizedBox(width: 12),
               Expanded(
@@ -50,7 +71,8 @@ class ChatItem extends StatelessWidget {
                     SizedBox(height: 4),
                     Text(
                       messenger.message,
-                      style: TextStyle(color: Colors.grey[600], fontSize: 14),
+                      style:
+                      TextStyle(color: Colors.grey[600], fontSize: 14),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ],

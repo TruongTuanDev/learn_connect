@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:learn_connect/presentation/screens/chatting/provider/chat_screen_provider.dart';
 import 'package:learn_connect/presentation/screens/messenger/provider/messenger_provider.dart';
 import 'package:learn_connect/presentation/screens/messenger/widgets/messenger_item.dart';
 
@@ -9,6 +10,7 @@ class MessengerListScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final messageList = ref.watch(messagingListProvider);
+    ref.watch(socketServiceProvider);
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
