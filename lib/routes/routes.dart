@@ -5,6 +5,8 @@ import 'package:learn_connect/presentation/screens/boot_screen/view/login_option
 
 import 'package:learn_connect/presentation/screens/chatting/provider/chat_screen_provider.dart';
 import 'package:learn_connect/presentation/screens/chatting/view/chat_screen.dart';
+import 'package:learn_connect/presentation/screens/flasdcard_ai/view/flashcard_screen.dart';
+import 'package:learn_connect/presentation/screens/flasdcard_ai/view/option_ai.dart';
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
 import 'package:learn_connect/presentation/screens/messenger/view/messenger_list_view.dart';
 import 'package:learn_connect/presentation/screens/search_flash_card/view/search_flash_card_view.dart';
@@ -41,6 +43,7 @@ class AppRoutes {
   //6
   static const String search = '/home/search';
   static const String flascard = '/home/flascard';
+  static const String flascard_ai = '/home/flascard_ai';
   static const String vocabulary = '/home/vocabulary';
 
   static const String swipe_friend = '/home/swipe_friend';
@@ -82,8 +85,9 @@ class AppRoutes {
       case swipe_friend:
         return MaterialPageRoute(builder: (_) => SwipePage());
       case flascard:
-
         return MaterialPageRoute(builder: (_) => CombinedSearchScreen());
+      case flascard_ai:
+        return MaterialPageRoute(builder: (_) => InputScreen());
       case flascard_item:
         return MaterialPageRoute(builder: (_) => FlashcardScreen(), settings: settings,);
 
