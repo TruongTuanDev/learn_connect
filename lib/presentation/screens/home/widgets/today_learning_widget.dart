@@ -55,8 +55,14 @@ class _TodayLearningState extends State<TodayLearningWidget> {
                 _buildLearningButton(
                   context,
                   "FLASHCARDS",
-                  Icons.view_carousel,
+                  Icons.menu_book	,
                       () => !isLoading ? _getTopic() : null,
+                ),
+                _buildLearningButton(
+                  context,
+                  "FLASHCARDS AI",
+                  Icons.memory,
+                      () => Navigator.pushNamed(context, AppRoutes.flascard_ai),
                 ),
                 _buildLearningButton(
                   context,
