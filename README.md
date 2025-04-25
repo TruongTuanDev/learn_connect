@@ -1,10 +1,7 @@
 # learn_connect
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 Đồ Án Lập Trình Đa Nền Tảng
-=======
-=======
->>>>>>> f9ae60b4d8c03c00283cd264ffe221165404850a
+
 
 A new Flutter project.
 
@@ -20,7 +17,3 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
-<<<<<<< HEAD
->>>>>>> f9ae60b (First commit)
-=======
->>>>>>> f9ae60b4d8c03c00283cd264ffe221165404850a

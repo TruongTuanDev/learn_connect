@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 @immutable
 class FlashCardItem {
-  final String id;
   final String word;
   final String type;
   final String phonetic;
@@ -12,7 +11,6 @@ class FlashCardItem {
   final String audioUrl;
 
   const FlashCardItem({
-    required this.id,
     required this.word,
     required this.type,
     required this.phonetic,
@@ -42,7 +40,6 @@ class FlashCardItem {
     }
 
     return FlashCardItem(
-      id: json['id'] as String,
       word: json['word'] as String,
       type: json['type'] as String,
       phonetic: json['phonetic'] as String,
@@ -55,7 +52,6 @@ class FlashCardItem {
 
 
   Map<String, dynamic> toJson() => {
-    'id': id,
     'word': word,
     'type': type,
     'phonetic': phonetic,

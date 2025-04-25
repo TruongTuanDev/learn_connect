@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
-import '../../search_flash_card/model/search_flash_card_model.dart';
 import '../models/flashcard_model.dart';
 import '../widgets/flashcard_widget.dart';
-import 'package:learn_connect/services/flashcard_service.dart';
 
-class FlashcardScreen extends StatefulWidget {
-
+class FlashcardAIScreen extends StatefulWidget {
   @override
   _FlashcardScreenState createState() => _FlashcardScreenState();
 }
 
-class _FlashcardScreenState extends State<FlashcardScreen> {
-
-  late FlashCard flashcard;
+class _FlashcardScreenState extends State<FlashcardAIScreen> {
+  late FlashCardItem flashcard;
   List<FlashCardItem> flashcards = [];
-  bool isLoading = true;
   bool isInitialized = false;
   final PageController _pageController = PageController();
   String selectedDifficulty = '';
@@ -23,38 +18,19 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    // Chỉ chạy 1 lần
     if (!isInitialized) {
       final args = ModalRoute.of(context)?.settings.arguments;
-      print(args);
-      if (args != null && args is FlashCard) {
-        flashcard = args;
-        loadFlashcards();
+
+      if (args != null && args is Map) {
+        flashcard = args['flashcard'] as FlashCardItem;
+        flashcards = (args['items'] as List<dynamic>)
+            .map((item) => item as FlashCardItem)
+            .toList();
         isInitialized = true;
+        setState(() {});
       } else {
-        print('⚠️ Không nhận được dữ liệu FlashCard từ trang trước!');
+        print('⚠️ Không nhận được dữ liệu từ trang trước!');
       }
-    }
-  }
-
-  Future<void> loadFlashcards() async {
-    try {
-      final flashcardService = FlashcardService();
-      final result = await flashcardService.getItemsByTopicId(flashcard.id);
-
-      if (result['success'] == true) {
-        final List<dynamic> jsonList = result['data'];
-        setState(() {
-          flashcards = jsonList
-              .map((item) => FlashCardItem.fromJson(item as Map<String, dynamic>))
-              .toList();
-          isLoading = false;
-        });
-      } else {
-        throw Exception(result['message'] ?? '❌ Không thể tải dữ liệu');
-      }
-    } catch (e) {
-      print('🛑 Lỗi khi load flashcards: $e');
     }
   }
 
@@ -77,13 +53,13 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
           color: Colors.black,
         ),
       ),
-      body: isLoading
+      body: flashcards.isEmpty
           ? Center(child: CircularProgressIndicator())
           : Column(
         children: [
           SizedBox(height: 20),
           Text(
-            flashcard.title.toUpperCase(),
+            flashcard.word.toUpperCase(),
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
@@ -120,7 +96,8 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                 label: 'Khó',
                 color: Colors.red,
                 isSelected: selectedDifficulty == 'Khó',
-                onTap: () => setState(() => selectedDifficulty = 'Khó'),
+                onTap: () =>
+                    setState(() => selectedDifficulty = 'Khó'),
               ),
             ],
           ),

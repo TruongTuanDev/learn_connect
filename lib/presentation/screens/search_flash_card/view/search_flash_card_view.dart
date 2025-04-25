@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:learn_connect/presentation/screens/search_flash_card/provider/search_all_history_provider.dart';
+import 'package:learn_connect/routes/routes.dart';
 import 'package:learn_connect/presentation/screens/search_flash_card/provider/search_flash_card_provider.dart';
+import 'package:learn_connect/presentation/screens/search_flash_card/provider/search_all_history_provider.dart';
 
 class CombinedSearchScreen extends ConsumerStatefulWidget {
   const CombinedSearchScreen({Key? key}) : super(key: key);
@@ -12,13 +13,14 @@ class CombinedSearchScreen extends ConsumerStatefulWidget {
 }
 
 class _CombinedSearchScreenState extends ConsumerState<CombinedSearchScreen> {
-  bool isSearchActive = false; // Trạng thái hiển thị danh sách hoặc lịch sử
+  bool isSearchActive = false;
 
   void _toggleSearch() {
     setState(() {
       isSearchActive = !isSearchActive;
     });
   }
+
   void _onSearch() {
     setState(() {
       isSearchActive = true;
@@ -27,16 +29,20 @@ class _CombinedSearchScreenState extends ConsumerState<CombinedSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final flashCardsAsync = ref.watch(flashCardsProvider);
+    final flashCardsAsync = ref.watch(flashCardsProvider); // Đảm bảo xem flashcards
     final searchHistory = ref.watch(searchHistoryProvider);
     final searchHistoryNotifier = ref.read(searchHistoryProvider.notifier);
+    final searchKeyword = ref.watch(searchKeywordProvider.state); // Sử dụng watch để phản hồi thay đổi từ khóa tìm kiếm
+    final filteredFlashCards = ref.watch(filteredFlashCardsProvider); // Đọc lại filtered flashcards mỗi khi từ khóa thay đổi
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: const Icon(Icons.arrow_back, color: Colors.black),
         ),
         title: const Text(
@@ -50,9 +56,8 @@ class _CombinedSearchScreenState extends ConsumerState<CombinedSearchScreen> {
       ),
       body: GestureDetector(
         onTap: () {
-          if (isSearchActive) _toggleSearch(); // Ẩn lịch sử tìm kiếm và hiện flashcards
-          print("parent");
-        }, // Đảm bảo chỉ xử lý vùng trống
+          if (isSearchActive) _toggleSearch();
+        },
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
@@ -72,6 +77,14 @@ class _CombinedSearchScreenState extends ConsumerState<CombinedSearchScreen> {
                 ),
                 child: TextField(
                   onTap: _onSearch,
+                  onChanged: (value) {
+                    // Cập nhật từ khóa tìm kiếm
+
+                    ref.read(searchKeywordProvider.notifier).state = value;
+                    isSearchActive = false;
+                    print("list topic: $filteredFlashCards ");
+                    print("Từ khóa sẽ là: $value");
+                  },
                   decoration: const InputDecoration(
                     hintText: "Tìm kiếm",
                     prefixIcon: Icon(Icons.search, color: Colors.blue),
@@ -87,10 +100,13 @@ class _CombinedSearchScreenState extends ConsumerState<CombinedSearchScreen> {
                   children: [
                     const Text(
                       "Gần đây",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      style:
+                      TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     TextButton(
-                      onPressed: () {print("con");},
+                      onPressed: () {
+                        print("Xem tất cả lịch sử");
+                      },
                       child: const Text(
                         "Xem tất cả",
                         style: TextStyle(fontSize: 14, color: Colors.blue),
@@ -105,10 +121,11 @@ class _CombinedSearchScreenState extends ConsumerState<CombinedSearchScreen> {
                     itemBuilder: (context, index) {
                       final history = searchHistory[index];
                       return GestureDetector(
-                        behavior: HitTestBehavior.translucent, // Đảm bảo không kích hoạt onTap vùng trống
+                        behavior: HitTestBehavior.translucent,
                         onTap: () {
-                          // Xử lý sự kiện nhấn vào phần tử trong lịch sử tìm kiếm
                           print("Đã chọn: ${history.keyWord}");
+                          ref.read(searchKeywordProvider.notifier).state =
+                              history.keyWord;
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,10 +137,8 @@ class _CombinedSearchScreenState extends ConsumerState<CombinedSearchScreen> {
                             IconButton(
                               onPressed: () => searchHistoryNotifier
                                   .deleteSearchHistory(history),
-                              icon: const Icon(
-                                Icons.close,
-                                color: Colors.black54,
-                              ),
+                              icon: const Icon(Icons.close,
+                                  color: Colors.black54),
                             ),
                           ],
                         ),
@@ -134,38 +149,55 @@ class _CombinedSearchScreenState extends ConsumerState<CombinedSearchScreen> {
               ] else ...[
                 Expanded(
                   child: flashCardsAsync.when(
-                    data: (flashCards) => GridView.builder(
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1.4,
-                        crossAxisSpacing: 16,
-                        mainAxisSpacing: 16,
-                      ),
-                      itemCount: flashCards.length,
-                      itemBuilder: (context, index) {
-                        final flashcard = flashCards[index];
-                        return Container(
-                          decoration: BoxDecoration(
-                            color: Colors.pink[100],
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Text(
-                                flashcard.flash_card_type,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black,
+                    data: (flashCards) {
+                      final flashCardsToShow =
+                      searchKeyword.state.trim().isEmpty
+                          ? flashCards
+                          : filteredFlashCards;
+
+                      return GridView.builder(
+                        gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 1.4,
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 16,
+                        ),
+                        itemCount: flashCardsToShow.length,
+                        itemBuilder: (context, index) {
+                          final flashcard = flashCardsToShow[index];
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                AppRoutes.flascard_item,
+                                arguments: flashcard,
+                              );
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.pink[100],
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Text(
+                                    flashcard.title,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      },
-                    ),
+                          );
+                        },
+                      );
+                    },
                     loading: () =>
                     const Center(child: CircularProgressIndicator()),
                     error: (error, stackTrace) =>

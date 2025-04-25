@@ -5,14 +5,29 @@ import 'package:learn_connect/presentation/screens/boot_screen/view/login_option
 
 import 'package:learn_connect/presentation/screens/chatting/provider/chat_screen_provider.dart';
 import 'package:learn_connect/presentation/screens/chatting/view/chat_screen.dart';
+
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
 import 'package:learn_connect/presentation/screens/messenger/view/messenger_list_view.dart';
 import 'package:learn_connect/presentation/screens/search_flash_card/view/search_flash_card_view.dart';
 import 'package:learn_connect/presentation/screens/user_information/view/UserInfoScreen.dart';
 import 'package:learn_connect/presentation/screens/user_information/view/UserInterestsScreen.dart';
 
+import 'package:learn_connect/presentation/screens/flasdcard_ai/view/flashcard_screen.dart';
+import 'package:learn_connect/presentation/screens/flasdcard_ai/view/option_ai.dart';
+import 'package:learn_connect/presentation/screens/home/view/home.dart';
+import 'package:learn_connect/presentation/screens/messenger/view/messenger_list_view.dart';
+import 'package:learn_connect/presentation/screens/search_flash_card/view/search_flash_card_view.dart';
+import 'package:learn_connect/presentation/screens/swipe_friend/view/swipe_friend.dart';
+import 'package:learn_connect/presentation/screens/question_ai/view/question_ai.dart';
+import 'package:learn_connect/presentation/screens/user_information/view/UserInfoScreen.dart';
+import 'package:learn_connect/presentation/screens/user_information/view/UserInterestsScreen.dart';
+import '../presentation/screens/boot_screen/view/boot_screen_app.dart';
+import '../presentation/screens/boot_screen/view/login_option_screen.dart';
+
 import '../presentation/screens/signin/view/signinscreen.dart';
 import '../presentation/screens/signup/view/signupscreen.dart';
+import '../presentation/screens/user_information/view/UserInfoScreen.dart';
+import '../presentation/screens/user_information/view/UserInterestsScreen.dart';
 
 class AppRoutes {
   //0
@@ -36,12 +51,20 @@ class AppRoutes {
   //6
   static const String search = '/home/search';
   static const String flascard = '/home/flascard';
+  static const String flascard_ai = '/home/flascard_ai';
+  static const String vocabulary = '/home/vocabulary';
+
+  static const String swipe_friend = '/home/swipe_friend';
+
+
+  static const String flascard_item = '/home/flascard/flashcard_item';
+
 
   //7
-  static const String chat = '/chat';
+  static const String chat = 'home/messengers/chat';
 
   //8
-  static const String messengers = '/messengers';
+  static const String messengers = 'home/messengers';
   //9
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -65,9 +88,18 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => Home());
       case search:
         return MaterialPageRoute(builder: (_) => CombinedSearchScreen());
+      case vocabulary:
+        return MaterialPageRoute(builder: (_) => TestAiScreen());
+      case swipe_friend:
+        return MaterialPageRoute(builder: (_) => SwipePage());
       case flascard:
+        return MaterialPageRoute(builder: (_) => CombinedSearchScreen());
+      case flascard_ai:
+        return MaterialPageRoute(builder: (_) => InputScreen());
+      case flascard_item:
+        return MaterialPageRoute(builder: (_) => FlashcardScreen(), settings: settings,);
 
-        return MaterialPageRoute(builder: (_) => FlashcardScreen());
+
       case chat:
         print("Nav to chat");
         final args  = settings.arguments as Map<String, dynamic>;
