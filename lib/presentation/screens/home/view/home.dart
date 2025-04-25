@@ -37,26 +37,30 @@ class _HomeState extends State<Home> {
               ConnectionSuggestionWidget(),
               SizedBox(height: 10),
 
-              // --- thay phần cứng bằng FutureBuilder ---
+              // 👉 Bài đăng lấy từ API
               FutureBuilder<List<Post>>(
                 future: _postsFuture,
-                builder: (context, snap) {
-                  if (snap.connectionState == ConnectionState.waiting) {
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(child: CircularProgressIndicator());
                   }
-                  if (snap.hasError) {
-                    return Center(child: Text('Error: ${snap.error}'));
+                  if (snapshot.hasError) {
+                    return Center(child: Text('Lỗi: ${snapshot.error}'));
                   }
-                  final posts = snap.data!;
+
+                  final posts = snapshot.data!;
                   return Column(
-                    children: posts.map((p) => PostWidget(
-                      username: p.username,
-                      timeAgo: p.timeAgo,
-                      content: p.content,
-                      likes: p.likes,
-                      comments: p.comments,
-                      avatarUrl: p.avatarUrl,
-                    )).toList(),
+                    children: posts.map((p) {
+                      return PostWidget(
+                        username: p.username,
+                        timeAgo: p.timeAgo,
+                        content: p.content,
+                        likes: p.likes,
+                        comments: p.comments,
+                        avatarUrl: p.avatarUrl,
+                        postId: p.id ?? '', // Gán đúng ID từ DB (nullable-safe)
+                      );
+                    }).toList(),
                   );
                 },
               ),
