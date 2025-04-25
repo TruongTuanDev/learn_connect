@@ -5,10 +5,11 @@ import 'package:learn_connect/presentation/screens/chatting/provider/chat_screen
 
 class ChatScreen extends ConsumerStatefulWidget {
   final String receivedId;
-
+  final String receiverName;
   const ChatScreen({
     Key? key,
-    required this.receivedId
+    required this.receivedId,
+    required this.receiverName
   }) : super(key: key);
 
   @override
@@ -30,7 +31,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   Widget build(BuildContext context) {
     final messages = ref.watch(chatMessagesProvider(widget.receivedId));
     return Scaffold(
-      appBar: AppBar(title: Text("Chat với ${widget.receivedId}")),
+      appBar: AppBar(title: Text("Chat với ${widget.receiverName}")),
       body: Column(
         children: [
           Expanded(

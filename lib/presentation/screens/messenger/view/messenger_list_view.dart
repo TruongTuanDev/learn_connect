@@ -83,12 +83,16 @@ class MessengerListScreen extends ConsumerWidget {
               ),
               SizedBox(height: 20),
               Expanded(
-                child: ListView.builder(
-                  itemCount: messageList.length,
-                  padding: EdgeInsets.zero,
-                  itemBuilder: (context, index) {
-                    return ChatItem(messenger: messageList[index]);
-                  },
+                child: RefreshIndicator(
+                  onRefresh: () => ref
+                      .read(messagingListProvider.notifier)
+                      .fetchMessengerList(),
+                  child: ListView.builder(
+                    itemCount: messageList.length,
+                    itemBuilder: (context, index) {
+                      return ChatItem(messenger: messageList[index]);
+                    },
+                  ),
                 ),
               ),
             ],

@@ -20,7 +20,10 @@ class ChatItem extends StatelessWidget {
           Navigator.pushNamed(
             context,
             AppRoutes.chat,
-            arguments: messenger.id,
+            arguments: {
+              'id': messenger.id,
+              'name': messenger.name,
+            },
           );
         },
         child: Padding(

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:learn_connect/presentation/screens/Flashcard/view/flashcard_screen.dart';
+import 'package:learn_connect/presentation/screens/boot_screen/view/boot_screen_app.dart';
+import 'package:learn_connect/presentation/screens/boot_screen/view/login_option_screen.dart';
 
 import 'package:learn_connect/presentation/screens/chatting/provider/chat_screen_provider.dart';
 import 'package:learn_connect/presentation/screens/chatting/view/chat_screen.dart';
-import 'package:learn_connect/presentation/screens/home/UserInfoScreen.dart';
-import 'package:learn_connect/presentation/screens/home/UserInterestsScreen.dart';
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
 import 'package:learn_connect/presentation/screens/messenger/view/messenger_list_view.dart';
 import 'package:learn_connect/presentation/screens/search_flash_card/view/search_flash_card_view.dart';
+import 'package:learn_connect/presentation/screens/user_information/view/UserInfoScreen.dart';
+import 'package:learn_connect/presentation/screens/user_information/view/UserInterestsScreen.dart';
 
 import '../presentation/screens/signin/view/signinscreen.dart';
 import '../presentation/screens/signup/view/signupscreen.dart';
@@ -68,9 +70,11 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => FlashcardScreen());
       case chat:
         print("Nav to chat");
-        final receivedId = settings.arguments as String;
+        final args  = settings.arguments as Map<String, dynamic>;
+        final userId = args['id'];
+        final name = args['name'];
         return MaterialPageRoute(
-          builder: (_) => ChatScreen(receivedId: receivedId),
+          builder: (_) => ChatScreen(receivedId: userId, receiverName: name,),
         );
       case messengers:
         return MaterialPageRoute(builder: (_)=> MessengerListScreen());
