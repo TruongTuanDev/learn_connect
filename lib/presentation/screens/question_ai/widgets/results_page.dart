@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-class ResultsPage extends StatelessWidget {
+class ResultsPage extends StatefulWidget {
   final int score;
   final int totalQuestions;
   final VoidCallback onResetQuiz;
@@ -17,7 +18,43 @@ class ResultsPage extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<ResultsPage> createState() => _ResultsPageState();
+}
+
+class _ResultsPageState extends State<ResultsPage> {
+  @override
+  void initState() {
+    super.initState();
+    sendScoreToTelegram(widget.score, widget.totalQuestions);
+  }
+
+  Future<void> sendScoreToTelegram(int score, int totalQuestions) async {
+    const String token = '7760835572:AAFSgw9jJ6D16zx0q2kzWFmZgDpUfSkrp6g'; // <-- Thay bằng token của bạn
+    const String chatId = '1920122481'; // <-- Thay bằng chat_id của bạn
+
+    final String message = '''
+🎉 Quiz Completed!
+📊 Score: $score / $totalQuestions
+📈 Percentage: ${(score / totalQuestions * 100).toStringAsFixed(0)}%
+''';
+
+    final url = Uri.parse('https://api.telegram.org/bot$token/sendMessage');
+
+    try {
+      await http.post(url, body: {
+        'chat_id': chatId,
+        'text': message,
+      });
+    } catch (e) {
+      debugPrint('Failed to send message to Telegram: $e');
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final score = widget.score;
+    final totalQuestions = widget.totalQuestions;
+
     return Container(
       padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
@@ -42,10 +79,9 @@ class ResultsPage extends StatelessWidget {
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors:
-                      score >= totalQuestions / 2
-                          ? [Colors.blue.shade100, Colors.blue.shade50]
-                          : [Colors.amber.shade100, Colors.amber.shade50],
+                  colors: score >= totalQuestions / 2
+                      ? [Colors.blue.shade100, Colors.blue.shade50]
+                      : [Colors.amber.shade100, Colors.amber.shade50],
                 ),
                 borderRadius: BorderRadius.circular(24),
               ),
@@ -102,7 +138,7 @@ class ResultsPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       ElevatedButton.icon(
-                        onPressed: onResetQuiz,
+                        onPressed: widget.onResetQuiz,
                         icon: const Icon(Icons.refresh),
                         label: const Text('Try Again'),
                         style: ElevatedButton.styleFrom(
@@ -113,7 +149,7 @@ class ResultsPage extends StatelessWidget {
                         ),
                       ),
                       ElevatedButton.icon(
-                        onPressed: onNewQuiz,
+                        onPressed: widget.onNewQuiz,
                         icon: const Icon(Icons.settings),
                         label: const Text('New Quiz'),
                         style: ElevatedButton.styleFrom(
@@ -131,7 +167,7 @@ class ResultsPage extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           ElevatedButton.icon(
-            onPressed: onReviewQuestions,
+            onPressed: widget.onReviewQuestions,
             icon: const Icon(Icons.question_answer),
             label: const Text('Review Questions'),
             style: ElevatedButton.styleFrom(

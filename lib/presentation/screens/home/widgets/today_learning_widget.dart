@@ -3,6 +3,7 @@ import 'package:learn_connect/routes/routes.dart';
 import 'package:learn_connect/services/flashcard_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 class TodayLearningWidget extends StatefulWidget {
   @override
   _TodayLearningState createState() => _TodayLearningState();
@@ -15,12 +16,10 @@ class _TodayLearningState extends State<TodayLearningWidget> {
   bool isPasswordVisible = false;
   bool isLoading = false;
 
-  final FlashcardService flashcardService = FlashcardService(); // 🔥 Sử dụng AuthService
+  final FlashcardService flashcardService = FlashcardService();
 
   Future<void> _getTopic() async {
-
-      Navigator.pushNamed(context, AppRoutes.search);
-
+    Navigator.pushNamed(context, AppRoutes.search);
   }
 
   void _showMessage(String message) {
@@ -49,42 +48,53 @@ class _TodayLearningState extends State<TodayLearningWidget> {
             ),
           ),
           SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _buildLearningButton(
-                context,
-                "FLASHCARDS",
-                Icons.view_carousel,
-                    () => !isLoading ? _getTopic() : null,
-
-              ),
-              _buildLearningButton(
-                context,
-                "LUYỆN NGHE",
-                Icons.headphones,
-                    () => print("Nhấn vào LUYỆN NGHE"),
-              ),
-              _buildLearningButton(
-                context,
-                "ÔN TỪ VỰNG",
-                Icons.menu_book,
-                    () => Navigator.pushNamed(context, AppRoutes.vocabulary)
-              ),
-              _buildLearningButton(
-                context,
-                "LUYỆN ĐỌC",
-                Icons.menu_book,
-                    () => print("Nhấn vào LUYỆN ĐỌC"),
-              )
-            ],
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                _buildLearningButton(
+                  context,
+                  "FLASHCARDS",
+                  Icons.menu_book	,
+                      () => !isLoading ? _getTopic() : null,
+                ),
+                _buildLearningButton(
+                  context,
+                  "FLASHCARDS AI",
+                  Icons.memory,
+                      () => Navigator.pushNamed(context, AppRoutes.flascard_ai),
+                ),
+                _buildLearningButton(
+                  context,
+                  "LUYỆN NGHE",
+                  Icons.headphones,
+                      () => print("Nhấn vào LUYỆN NGHE"),
+                ),
+                _buildLearningButton(
+                  context,
+                  "ÔN TỪ VỰNG",
+                  Icons.assignment,
+                      () => Navigator.pushNamed(context, AppRoutes.vocabulary),
+                ),
+                _buildLearningButton(
+                  context,
+                  "LUYỆN ĐỌC",
+                  Icons.menu_book,
+                      () => print("Nhấn vào LUYỆN ĐỌC"),
+                ),
+                // Thêm các button khác nếu cần
+              ].map((e) => Padding(
+                padding: const EdgeInsets.only(right: 12),
+                child: e,
+              )).toList(),
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildLearningButton(BuildContext context, String text, IconData icon, VoidCallback onTap) {
+  Widget _buildLearningButton(BuildContext context, String text, IconData icon, VoidCallback? onTap) {
     return ElevatedButton(
       onPressed: onTap,
       style: ElevatedButton.styleFrom(
@@ -95,6 +105,7 @@ class _TodayLearningState extends State<TodayLearningWidget> {
         ),
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: 28, color: Colors.white),
           SizedBox(height: 5),

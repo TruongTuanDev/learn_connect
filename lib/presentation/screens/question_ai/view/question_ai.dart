@@ -25,6 +25,7 @@ class _TestAiScreenState extends State<TestAiScreen> {
   final PageController _pageController = PageController();
 
   final List<String> languages = [
+    'Korean',
     'English',
     'Vietnamese',
     'French',
