@@ -1,10 +1,12 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:learn_connect/config/app_config.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class SocketService {
+  final Ref ref;
   late final IO.Socket socket;
 
-  SocketService() {
+  SocketService(this.ref) {
     socket = IO.io(
       AppConfig.socketServerUrl,
       <String, dynamic>{
@@ -16,12 +18,17 @@ class SocketService {
     socket.connect();
 
     socket.on('connect', (_) {
-      // Khi kết nối thành công, gửi event đăng ký (join) với senderId
       socket.emit('join', {'userId': AppConfig.userId});
+    });
+
+    socket.on('online-users', (data) {
+      if (data is List) {
+        ref.read(onlineUsersProvider.notifier).state =
+        List<String>.from(data); // Update provider
+      }
     });
   }
 
-  // Gửi tin nhắn đến một người nhận xác định
   void sendMessage(String receiverId, String content) {
     socket.emit('send-private-message', {
       'senderId': AppConfig.userId,
@@ -31,7 +38,6 @@ class SocketService {
     });
   }
 
-  // Lắng nghe sự kiện tin nhắn từ server
   void listenToMessages(Function(Map<String, dynamic>) onMessageReceived) {
     socket.on('receive-private-message', (data) {
       onMessageReceived(Map<String, dynamic>.from(data));
@@ -42,3 +48,5 @@ class SocketService {
     socket.dispose();
   }
 }
+
+final onlineUsersProvider = StateProvider <List<String>>((ref) => []);

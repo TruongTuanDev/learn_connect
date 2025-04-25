@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
-@immutable
 class Messenger {
   final String id;
   final String avatarUrl;
@@ -19,36 +18,31 @@ class Messenger {
     required this.unread,
   });
 
+  factory Messenger.fromJson(Map<String, dynamic> json) {
+    final timestamp = DateTime.tryParse(json['timestamp']) ?? DateTime.now();
+    final formattedTime = timeago.format(timestamp);
+
+    return Messenger(
+      id: json['otherUserId'] as String,
+      avatarUrl: "https://ui-avatars.com/api/?name=${json['username']}",
+      name: json['username'] as String,
+      message: json['lastMessage'] as String,
+      time: formattedTime,
+      unread: 0,
+    );
+  }
+
   Map<String, dynamic> toJson() => {
+    'id': id,
     'avatarUrl': avatarUrl,
     'name': name,
     'message': message,
     'time': time,
     'unread': unread,
   };
-
-  factory Messenger.fromJson(Map<String, dynamic> json) {
-    return switch (json) {
-      {
-        'id' : String id,
-      'avatarUrl': String avatarUrl,
-      'name': String name,
-      'message': String message,
-      'time': String time,
-      'unread': int unread
-      } =>
-          Messenger(
-            id: id,
-            avatarUrl: avatarUrl,
-            name: name,
-            message: message,
-            time: time,
-            unread: unread,
-          ),
-      _ => throw const FormatException('Failed to parse chat message')
-    };
-  }
 }
+
+
 
 class MessengerModel {
   final List<Messenger> mockChatList = [
