@@ -12,6 +12,14 @@ import 'package:learn_connect/presentation/screens/user_information/view/UserInt
 
 
 
+
+import 'package:learn_connect/presentation/screens/home/view/home.dart';
+import 'package:learn_connect/presentation/screens/messenger/view/messenger_list_view.dart';
+import 'package:learn_connect/presentation/screens/search_flash_card/view/search_flash_card_view.dart';
+import 'package:learn_connect/presentation/screens/user_information/view/UserInfoScreen.dart';
+import 'package:learn_connect/presentation/screens/user_information/view/UserInterestsScreen.dart';
+
+
 import 'package:learn_connect/presentation/screens/flasdcard_ai/view/flashcard_screen.dart';
 import 'package:learn_connect/presentation/screens/flasdcard_ai/view/option_ai.dart';
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
@@ -25,6 +33,10 @@ import 'package:learn_connect/presentation/screens/boot_screen/view/login_option
 
 import 'package:learn_connect/presentation/screens/question_ai/view/question_ai.dart';
 
+import 'package:learn_connect/presentation/screens/user_information/view/UserInfoScreen.dart';
+import 'package:learn_connect/presentation/screens/user_information/view/UserInterestsScreen.dart';
+import '../presentation/screens/boot_screen/view/boot_screen_app.dart';
+import '../presentation/screens/boot_screen/view/login_option_screen.dart';
 
 import '../presentation/screens/signin/view/signinscreen.dart';
 import '../presentation/screens/signup/view/signupscreen.dart';
@@ -107,9 +119,11 @@ class AppRoutes {
 
       case chat:
         print("Nav to chat");
-        final receivedId = settings.arguments as String;
+        final args  = settings.arguments as Map<String, dynamic>;
+        final userId = args['id'];
+        final name = args['name'];
         return MaterialPageRoute(
-          builder: (_) => ChatScreen(receivedId: receivedId),
+          builder: (_) => ChatScreen(receivedId: userId, receiverName: name,),
         );
       case messengers:
         return MaterialPageRoute(builder: (_)=> MessengerListScreen());
