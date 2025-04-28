@@ -49,7 +49,7 @@ class AuthService {
 
       // Kiểm tra response có hợp lệ không
       if (response.statusCode == 200 && response.data is Map<String, dynamic>) {
-        return response.data["message"]?.toString() ?? "Đăng ký thành công!";
+        return response.data["id_user"]?.toString() ?? "Đăng ký thành công!";
       } else {
         return "❌ Đăng ký thất bại, mã lỗi: ${response.statusCode}";
       }

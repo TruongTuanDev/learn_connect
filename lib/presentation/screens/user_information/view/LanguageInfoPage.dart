@@ -2,15 +2,25 @@ import 'package:flutter/material.dart';
 import 'CulturePreferencePage.dart';
 
 class LanguageInfoScreen extends StatefulWidget {
-  final Map<String, dynamic> formData;
-
-  LanguageInfoScreen({required this.formData});
 
   @override
   _LanguageInfoScreenState createState() => _LanguageInfoScreenState();
 }
 
 class _LanguageInfoScreenState extends State<LanguageInfoScreen> {
+  dynamic args;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+
+    args = ModalRoute.of(context)?.settings.arguments;
+
+    print("in cái args xem:+ $args" );
+
+    // Chỉ set khi chưa có formData (tránh overwrite khi rebuild)
+
+  }
   String nativeLanguage = 'Tiếng Việt';
 
   final List<Map<String, String>> targetLanguages = [
@@ -20,7 +30,7 @@ class _LanguageInfoScreenState extends State<LanguageInfoScreen> {
     {'name': 'Tiếng Hàn', 'flag': '🇰🇷'},
   ];
 
-  Map<String, String> selectedLanguages = {}; // {'Tiếng Nhật': 'Sơ cấp'}
+  Map<String, String> selectedLanguages = {};
   List<String> goals = [];
   List<String> learningGoals = ['Giao tiếp', 'Thi lấy chứng chỉ', 'Du học', 'Công việc'];
   String dailyTime = '30 phút';
@@ -41,7 +51,7 @@ class _LanguageInfoScreenState extends State<LanguageInfoScreen> {
       onTap: onTap,
       child: Container(
         alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         decoration: BoxDecoration(
           color: isSelected ? Colors.blue.shade50 : Colors.white,
           borderRadius: BorderRadius.circular(14),
@@ -55,11 +65,14 @@ class _LanguageInfoScreenState extends State<LanguageInfoScreen> {
           children: [
             if (emoji != null) Text(emoji, style: TextStyle(fontSize: 18)),
             if (emoji != null) SizedBox(width: 6),
-            Text(
-              text,
-              style: TextStyle(
-                color: isSelected ? Colors.blueAccent : Colors.black87,
-                fontWeight: FontWeight.w600,
+            Flexible(
+              child: Text(
+                text,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  color: isSelected ? Colors.blueAccent : Colors.black87,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ],
@@ -75,10 +88,15 @@ class _LanguageInfoScreenState extends State<LanguageInfoScreen> {
       crossAxisCount: 2,
       mainAxisSpacing: 12,
       crossAxisSpacing: 12,
-      childAspectRatio: 3.8,
+      childAspectRatio: 2.8,
       children: targetLanguages.map((lang) {
         final isSelected = selectedLanguages.containsKey(lang['name']);
-        return buildSelectableBox(lang['name']!, isSelected, () => toggleLanguage(lang['name']!), emoji: lang['flag']);
+        return buildSelectableBox(
+          lang['name']!,
+          isSelected,
+              () => toggleLanguage(lang['name']!),
+          emoji: lang['flag'],
+        );
       }).toList(),
     );
   }
@@ -90,7 +108,7 @@ class _LanguageInfoScreenState extends State<LanguageInfoScreen> {
       crossAxisCount: 2,
       mainAxisSpacing: 12,
       crossAxisSpacing: 12,
-      childAspectRatio: 3.8,
+      childAspectRatio: 2.8,
       children: items.map((item) {
         final isSelected = selectedList.contains(item);
         return buildSelectableBox(item, isSelected, () => onTap(item));
@@ -138,26 +156,37 @@ class _LanguageInfoScreenState extends State<LanguageInfoScreen> {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Trình độ - $lang", style: TextStyle(fontWeight: FontWeight.w500)),
-                        DropdownButton<String>(
-                          value: selectedLanguages[lang],
-                          isExpanded: true,
-                          items: levels.map((lvl) {
-                            return DropdownMenuItem(child: Text(lvl), value: lvl);
-                          }).toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              selectedLanguages[lang] = value!;
-                            });
-                          },
-                        ),
                         SizedBox(height: 10),
+                        Text("Trình độ - $lang", style: TextStyle(fontWeight: FontWeight.w500)),
+                        SizedBox(height: 6),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal: 12),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey.shade300),
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.grey.shade50,
+                          ),
+                          child: DropdownButton<String>(
+                            value: selectedLanguages[lang],
+                            isExpanded: true,
+                            underline: SizedBox(),
+                            icon: Icon(Icons.arrow_drop_down),
+                            items: levels.map((lvl) {
+                              return DropdownMenuItem(child: Text(lvl), value: lvl);
+                            }).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                selectedLanguages[lang] = value!;
+                              });
+                            },
+                          ),
+                        ),
                       ],
                     );
                   }).toList(),
                 ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 24),
               Text("Mục tiêu học tập", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               SizedBox(height: 12),
               buildGrid(learningGoals, goals, (goal) {
@@ -184,7 +213,9 @@ class _LanguageInfoScreenState extends State<LanguageInfoScreen> {
                 child: ElevatedButton.icon(
                   onPressed: () {
                     final combinedData = {
-                      ...widget.formData,
+                      'id_user' : args['id_user'],
+                      'username': args['username'],
+                      'email': args['email'],
                       'nativeLanguage': nativeLanguage,
                       'selectedLanguages': selectedLanguages,
                       'goals': goals,

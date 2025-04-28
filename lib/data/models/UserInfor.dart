@@ -1,4 +1,5 @@
 class UserInfo {
+  final String id_user;
   final String username;
   final String fullName;
   final String? nickname;
@@ -18,6 +19,7 @@ class UserInfo {
   final String? updatedAt;
 
   UserInfo({
+    required this.id_user,
     required this.username,
     required this.fullName,
     this.nickname,
@@ -36,6 +38,7 @@ class UserInfo {
   });
 
   factory UserInfo.fromJson(Map<String, dynamic> json) => UserInfo(
+    id_user: json['id_user'],
     username: json['username'],
     fullName: json['fullName'],
     nickname: json['nickname'],
@@ -54,6 +57,7 @@ class UserInfo {
   );
 
   Map<String, dynamic> toJson() => {
+    'id_user': id_user,
     'username': username,
     'fullName': fullName,
     'nickname': nickname,

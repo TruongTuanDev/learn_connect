@@ -162,13 +162,14 @@ class _CulturePreferencesScreenState extends State<CulturePreferencesScreen> {
                   };
                   print("username í là: " + widget.formData['username']);
                   UserInfo user = UserInfo(
+                    id_user: widget.formData['id_user'] as String,
                     username: widget.formData['username'] as String,
-                    fullName: widget.formData['fullName'],
-                    nickname: widget.formData['nickname'],
-                    birthDate: widget.formData['birthDate'],
+                    fullName: "",
+                    nickname: "",
+                    birthDate: "",
                     email: widget.formData['email'],
-                    phoneCode: widget.formData['phone'],
-                    gender: widget.formData['gender'],
+                    phoneCode: "",
+                    gender: "",
                     nativeLanguage: widget.formData['nativeLanguage'],
                     targetLanguages: Map<String, String>.from(widget.formData['selectedLanguages'] ?? {}),
                     learningGoals: List<String>.from(widget.formData['goals'] ?? []),

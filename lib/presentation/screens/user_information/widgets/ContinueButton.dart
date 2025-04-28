@@ -20,7 +20,7 @@ class ContinueButton extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => LanguageInfoScreen(formData: formData)),
+          MaterialPageRoute(builder: (context) => LanguageInfoScreen()),
         );
       },
       child: Row(
