@@ -34,12 +34,20 @@ class FriendActivityWidget extends StatelessWidget {
 
   Widget _buildFriendAvatars() {
     List<String> imageUrls = [
-      "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/3e7b2b72-3306-4614-9067-758baec16d3e",
+      "assets/images/phuc.jpg",
       "assets/images/avartar.png",
-      "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/4bd53245-4902-4d2c-95c6-b4a83f264998",
-      "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/10dfd615-5f33-4bd0-81e6-e9939aae3b82",
+      "assets/images/tam.jpg",
       "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/46469780-42c0-4f09-aecf-f4bc0b81ff95",
+      "assets/images/truc.jpg",
       "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/a99cafc1-4b1e-4a6c-8a92-85afc218fc61"
+    ];
+    List<String> names = [
+      "An Nhiên",
+      "Minh Khoa",
+      "Bảo Hân",
+      "Hữu Tín",
+      "Merry",
+      "Gia Hưng"
     ];
 
     return Padding(

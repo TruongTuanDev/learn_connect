@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:learn_connect/presentation/screens/swipe_friend/view/swipe_friend.dart';
+import 'package:learn_connect/routes/routes.dart';
 
 class NavigationWidget extends StatelessWidget {
   @override
@@ -15,21 +17,27 @@ class NavigationWidget extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: Row(
           children: [
-            _buildNavItem("Trang chủ"),
-            _buildNavItem("Tìm bạn bè"),
-            _buildNavItem("Học tập"),
-            _buildNavItem("Cộng đồng"),
-            // Thêm nhiều item nếu cần
+            _buildNavItem(context, "Trang chủ"),
+            _buildNavItem(context, "Tìm bạn bè"),
+            _buildNavItem(context, "Học tập"),
+            _buildNavItem(context, "Cộng đồng"),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildNavItem(String title) {
+  Widget _buildNavItem(BuildContext context, String title) {
     return InkWell(
       onTap: () {
-        print('$title Pressed');
+        if (title == "Tìm bạn bè") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => SwipePage()),
+          );
+        } else {
+          print('$title Pressed');
+        }
       },
       child: Container(
         decoration: BoxDecoration(

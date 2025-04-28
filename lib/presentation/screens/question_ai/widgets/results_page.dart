@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class ResultsPage extends StatefulWidget {
   final int score;
@@ -31,11 +32,20 @@ class _ResultsPageState extends State<ResultsPage> {
   Future<void> sendScoreToTelegram(int score, int totalQuestions) async {
     const String token = '7760835572:AAFSgw9jJ6D16zx0q2kzWFmZgDpUfSkrp6g'; // <-- Thay bằng token của bạn
     const String chatId = '1920122481'; // <-- Thay bằng chat_id của bạn
-
+    final String userName = "Trương Văn Tuấn";
+    final String formattedTime = DateFormat('HH:mm:ss - dd/MM/yyyy').format(DateTime.now());
     final String message = '''
-🎉 Quiz Completed!
-📊 Score: $score / $totalQuestions
-📈 Percentage: ${(score / totalQuestions * 100).toStringAsFixed(0)}%
+╔═══════════════════════════╗
+   🎉 Chúc mừng, $userName!
+╚═══════════════════════════╝
+
+📝 Kết quả bài kiểm tra:
+📊 Số điểm: $score / $totalQuestions
+📈 Tỉ lệ đúng: ${(score / totalQuestions * 100).toStringAsFixed(0)}%
+
+🕒 Thời gian hoàn thành: $formattedTime
+
+🏆 Tiếp tục phát huy nhé!
 ''';
 
     final url = Uri.parse('https://api.telegram.org/bot$token/sendMessage');

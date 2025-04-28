@@ -5,6 +5,9 @@ import 'package:learn_connect/presentation/screens/boot_screen/view/login_option
 
 import 'package:learn_connect/presentation/screens/chatting/provider/chat_screen_provider.dart';
 import 'package:learn_connect/presentation/screens/chatting/view/chat_screen.dart';
+import 'package:learn_connect/presentation/screens/explore/view/ExploreScreen.dart';
+import 'package:learn_connect/presentation/screens/flasdcard_ai/view/flashcard_ai.dart';
+
 
 
 import 'package:learn_connect/presentation/screens/user_information/view/UserInfoScreen.dart';
@@ -20,8 +23,7 @@ import 'package:learn_connect/presentation/screens/user_information/view/UserInf
 import 'package:learn_connect/presentation/screens/user_information/view/UserInterestsScreen.dart';
 
 
-import 'package:learn_connect/presentation/screens/flasdcard_ai/view/flashcard_screen.dart';
-import 'package:learn_connect/presentation/screens/flasdcard_ai/view/option_ai.dart';
+
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
 import 'package:learn_connect/presentation/screens/messenger/view/messenger_list_view.dart';
 import 'package:learn_connect/presentation/screens/search_flash_card/view/search_flash_card_view.dart';
@@ -74,6 +76,7 @@ class AppRoutes {
 
   static const String swipe_friend = '/home/swipe_friend';
 
+  static const String explore = '/explore';
 
   static const String flascard_item = '/home/flascard/flashcard_item';
 
@@ -104,6 +107,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => SignInScreen());
       case home:
         return MaterialPageRoute(builder: (_) => Home());
+      case explore:
+        return MaterialPageRoute(builder: (_) => ExploreScreen());
       case search:
         return MaterialPageRoute(builder: (_) => CombinedSearchScreen());
       case vocabulary:
@@ -113,7 +118,7 @@ class AppRoutes {
       case flascard:
         return MaterialPageRoute(builder: (_) => CombinedSearchScreen());
       case flascard_ai:
-        return MaterialPageRoute(builder: (_) => InputScreen());
+        return MaterialPageRoute(builder: (_) => FlashcardAIScreen());
       case flascard_item:
         return MaterialPageRoute(builder: (_) => FlashcardScreen(), settings: settings,);
 
