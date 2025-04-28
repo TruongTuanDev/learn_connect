@@ -52,11 +52,20 @@ class ChatNotifier extends StateNotifier<List<Message>> {
   }
 }
 
+final socketServiceProvider = Provider<SocketService>((ref) {
+  final socketService = SocketService(ref);
+  ref.onDispose(() {
+    socketService.dispose();
+  });
+  return socketService;
+});
+
+
 final chatMessagesProvider = StateNotifierProvider.family<ChatNotifier, List<Message>, String>((ref, receivedId) {
-  final socketService = SocketService();
+  final socketService = ref.watch(socketServiceProvider);
   return ChatNotifier(
     socketService: socketService,
     receivedId: receivedId,
-    messageService: MessageService()
+    messageService: MessageService(),
   );
 });
