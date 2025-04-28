@@ -43,6 +43,7 @@ class AppRoutes {
   static const String information = '/signup/information';
 
 
+
   static const String sigin_social  = '/signup/sigin_social';
  //3
   static const String interest = '/signup/information/interest';
@@ -84,7 +85,7 @@ class AppRoutes {
       case sigin_social:
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case information:
-        return MaterialPageRoute(builder: (_) => UserInfoScreen(),settings: settings,);
+        return MaterialPageRoute(builder: (_) => LanguageInfoScreen(),settings: settings);
       case interest:
         return MaterialPageRoute(builder: (_) => UserInterestsScreen());
       case signin:
