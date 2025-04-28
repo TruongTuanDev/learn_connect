@@ -13,26 +13,31 @@ class _SignUpFormState extends State<SignUpForm> {
   bool isPasswordVisible = false;
   bool isConfirmPasswordVisible = false;
   bool rememberMe = false;
-
+  String result = "";
   TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
   // Hàm tạo người dùng
-  void createUser() {
+  Future<void> createUser() async {
     UserModel user = UserModel(
       username: usernameController.text,
       email: emailController.text,
       password: passwordController.text,
     );
-    AuthService().signup(user);
+    print("Result trong createUser: $result");
+    result = await AuthService().signup(user);
+    print("Result trong createUser: $result");
+    setState(() {
+      this.result = result;
+    });
   }
 
   // Hàm đăng ký
-  void _register() {
+  Future<void> _register() async {
     if (_formKey.currentState!.validate()) {
-      createUser();  // Gọi hàm tạo người dùng
+      await createUser();  // Gọi hàm tạo người dùng
     }else{
       print("lỗi gòi kìa");
     }
@@ -109,10 +114,14 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
           SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {
-              _register();
+            onPressed: () async {
+              await  _register();
               print("username day ne: " +usernameController.text);
-              Navigator.pushNamed(context, AppRoutes.information, arguments: usernameController.text);
+              Navigator.pushNamed(context, AppRoutes.information, arguments: {
+                "id_user" :result,
+                'username': usernameController.text,
+                'email': emailController.text,
+              },);
             },
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.zero,
