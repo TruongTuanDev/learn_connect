@@ -29,11 +29,17 @@ class UserCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
-            child: Image.network(
-              user['image']!,
-              height: 250,
-              width: double.infinity,
-              fit: BoxFit.cover,
+            child: Padding(
+              padding: EdgeInsets.all(16),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15), // hoặc bo tròn theo thẻ bên ngoài
+                child: Image.asset(
+                  user['image']!,
+                  height: 400, // hoặc bạn có thể đặt chiều cao cố định
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           ),
           SizedBox(height: 20),

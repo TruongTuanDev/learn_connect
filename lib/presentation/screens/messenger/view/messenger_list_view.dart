@@ -13,10 +13,6 @@ class MessengerListScreen extends ConsumerWidget {
     ref.watch(socketServiceProvider);
     return Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () {},
-          ),
           title: Text(
             "Tin nhắn",
             style: TextStyle(

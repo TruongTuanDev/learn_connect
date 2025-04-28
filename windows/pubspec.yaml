@@ -29,7 +29,6 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   http: ^0.13.0
-  image_picker: ^1.0.4
   flutter:
     sdk: flutter
 
@@ -52,9 +51,6 @@ dependencies:
   shared_preferences: ^2.2.2
 
   socket_io_client: ^2.0.3
-  timeago: ^3.5.0
-
-  flutter_dotenv: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -84,9 +80,7 @@ flutter:
     - assets/apple.png
     - assets/google.png
     - assets/flag_vn.png
-    - assets/images/
     - assets/images/logo.png
-
 
   # To add assets to your application, add an assets section, like this:
   # assets:

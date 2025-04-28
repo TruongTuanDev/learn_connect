@@ -33,6 +33,8 @@ class _SignUpFormState extends State<SignUpForm> {
   void _register() {
     if (_formKey.currentState!.validate()) {
       createUser();  // Gọi hàm tạo người dùng
+    }else{
+      print("lỗi gòi kìa");
     }
   }
 
@@ -109,7 +111,8 @@ class _SignUpFormState extends State<SignUpForm> {
           ElevatedButton(
             onPressed: () {
               _register();
-              Navigator.pushNamed(context, AppRoutes.information);
+              print("username day ne: " +usernameController.text);
+              Navigator.pushNamed(context, AppRoutes.information, arguments: usernameController.text);
             },
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.zero,

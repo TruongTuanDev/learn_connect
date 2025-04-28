@@ -11,6 +11,7 @@ import 'package:learn_connect/presentation/screens/Flashcard/view/flashcard_scre
 
 
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
+import 'package:learn_connect/presentation/screens/recommended_friends/recommended_friends_screen.dart';
 
 
 
@@ -58,7 +59,8 @@ class MyApp extends StatelessWidget {
 
       // home:SignUpScreen(),
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.signup, // Màn hình khởi động
+      // home : RecommendedFriendsScreen(idUser: "m"),
+      initialRoute: AppRoutes.home, // Màn hình khởi động
       onGenerateRoute: AppRoutes.generateRoute, // Quan trọng
     );
   }
