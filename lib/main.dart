@@ -42,15 +42,16 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   debugPrint("Firebase Initialized!");
-  runApp(ProviderScope(child: MyApp()));
+  runApp(
+      ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget  {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       title: 'Learn Connect',
       theme: ThemeData(
@@ -59,8 +60,8 @@ class MyApp extends StatelessWidget {
 
       // home:SignUpScreen(),
       debugShowCheckedModeBanner: false,
-      // home : RecommendedFriendsScreen(idUser: "m"),
-      initialRoute: AppRoutes.home, // Màn hình khởi động
+      home : MatchCard(match: null, onTap: () {  },),
+      initialRoute: AppRoutes.signup, // Màn hình khởi động
       onGenerateRoute: AppRoutes.generateRoute, // Quan trọng
     );
   }

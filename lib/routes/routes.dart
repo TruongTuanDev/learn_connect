@@ -5,6 +5,7 @@ import 'package:learn_connect/presentation/screens/boot_screen/view/login_option
 
 import 'package:learn_connect/presentation/screens/chatting/provider/chat_screen_provider.dart';
 import 'package:learn_connect/presentation/screens/chatting/view/chat_screen.dart';
+import 'package:learn_connect/presentation/screens/dictionary/view/DictionaryScreen.dart';
 import 'package:learn_connect/presentation/screens/explore/view/ExploreScreen.dart';
 import 'package:learn_connect/presentation/screens/flasdcard_ai/view/flashcard_ai.dart';
 
@@ -67,6 +68,9 @@ class AppRoutes {
 
   //5
   static const String home = '/home';
+  static const String dictionary = '/home/dictionary';
+
+
 
   //6
   static const String search = '/home/search';
@@ -109,6 +113,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => Home());
       case explore:
         return MaterialPageRoute(builder: (_) => ExploreScreen());
+      case dictionary:
+        return MaterialPageRoute(builder: (_) => DictionaryScreen());
       case search:
         return MaterialPageRoute(builder: (_) => CombinedSearchScreen());
       case vocabulary:

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:learn_connect/presentation/screens/search_ai/PartnerFinderApp.dart';
 import 'package:learn_connect/presentation/screens/swipe_friend/view/swipe_friend.dart';
 import 'package:learn_connect/routes/routes.dart';
 
 class NavigationWidget extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
@@ -28,6 +31,7 @@ class NavigationWidget extends StatelessWidget {
   }
 
   Widget _buildNavItem(BuildContext context, String title) {
+
     return InkWell(
       onTap: () {
         if (title == "Tìm bạn bè") {
@@ -35,7 +39,12 @@ class NavigationWidget extends StatelessWidget {
             context,
             MaterialPageRoute(builder: (_) => SwipePage()),
           );
-        } else {
+        } else if(title == "Cộng đồng") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => PartnerFinderScreen()),
+          );
+        }else if(title == "Tìm bạn bè") {
           print('$title Pressed');
         }
       },

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:learn_connect/data/models/UserModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,7 +23,16 @@ class AuthService {
       );
 
       if (response.statusCode == 200) {
-        return {'success': true, 'data': response.data};
+        debugPrint('API Response: ${response.data}');
+        print("Đaăng nhập thành côg");
+        return {
+          'success': true,
+          'data': response.data, // Bao gồm cả userInfo
+          'accessToken': response.data['accessToken'],
+          'userInfo': response.data['userInfo'], // Trích xuất userInfo
+          'matchedLanguagePartners' : response.data['matchedLanguagePartners']
+        };
+
       } else {
         return {'success': false, 'message': response.data['message'] ?? "Đăng nhập thất bại!"};
       }

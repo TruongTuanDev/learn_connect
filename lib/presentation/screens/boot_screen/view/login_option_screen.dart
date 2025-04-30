@@ -235,7 +235,9 @@ class LoginScreen extends StatelessWidget {
                         const Text('Bạn chưa có tài khoản? ',
                             style: TextStyle(color: Colors.black87)),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushNamed(context, AppRoutes.signup);
+                          },
                           child: Text(
                             'Đăng ký',
                             style: TextStyle(
