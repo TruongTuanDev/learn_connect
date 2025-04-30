@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:learn_connect/data/models/post.dart';
 import 'package:learn_connect/presentation/screens/explore/view/ExploreScreen.dart';
 import 'package:learn_connect/presentation/screens/moment/view/MomentsScreen.dart';
+import 'package:learn_connect/presentation/screens/profile/view/ProfileScreen.dart';
 import 'package:learn_connect/routes/routes.dart';
 import 'package:learn_connect/services/api_service.dart';
 import 'package:learn_connect/presentation/screens/home/widgets/header_widget.dart';
@@ -26,13 +27,7 @@ class _HomeState extends State<Home> {
   final ImagePicker _picker = ImagePicker();
   int _currentIndex = 0;
 
-  final List<Widget> _pages = [
-    HomePageContent(),
-    ExploreScreen(), // Giả sử bạn có một ExploreScreen
-    MomentsScreen(), // Giả sử bạn có một MomentsScreen
-    Text('Màn hình Thông báo'), // Placeholder
-    Text('Màn hình Hồ sơ'),       // Placeholder
-  ];
+
 
   @override
   void initState() {
@@ -51,6 +46,18 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    // print("args là : $args");
+    final user = args['user'];
+    final userInfor = args['userInfor'];
+    // print("userId là : $user");
+    // print("userInfor là : $userInfor");
+    final List<Widget> _pages = [
+      HomePageContent(),
+      ExploreScreen(), // Giả sử bạn có một ExploreScreen
+      MomentsScreen(), // Giả sử bạn có một MomentsScreen
+      ProfileScreen(user: user, userInfor: userInfor),       // Placeholder
+    ];
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
@@ -231,8 +238,8 @@ class _HomeState extends State<Home> {
               ),
               SizedBox(width: 40), // Khoảng trống cho FAB
               _buildTabItem(
-                icon: Icons.notifications,
-                label: "Thông báo",
+                icon: Icons.history,
+                label: "Nhật ký",
                 isSelected: _currentIndex == 2,
                 onTap: () {
                   setState(() {

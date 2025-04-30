@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
       // home:SignUpScreen(),
       debugShowCheckedModeBanner: false,
       // home : RecommendedFriendsScreen(idUser: "m"),
-      initialRoute: AppRoutes.home, // Màn hình khởi động
+      initialRoute: AppRoutes.signin, // Màn hình khởi động
       onGenerateRoute: AppRoutes.generateRoute, // Quan trọng
     );
   }

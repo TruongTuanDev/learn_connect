@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:learn_connect/presentation/screens/explore/widgets/BannerSlider.dart';
 import 'package:learn_connect/presentation/screens/explore/widgets/app_card.dart';
 import 'package:learn_connect/presentation/screens/explore/widgets/culture_card.dart';
 import 'package:learn_connect/presentation/screens/explore/widgets/connection_card.dart';
 import 'package:learn_connect/presentation/screens/explore/widgets/custom_search_delegate.dart';
+
+import '../widgets/TopCultureWidget.dart';
+import 'VanHoaPage.dart';
 
 class ExploreScreen extends StatefulWidget {
   @override
@@ -14,12 +18,18 @@ class _ExplorePageState extends State<ExploreScreen> {
     'Duolingo', 'Babbel', 'Memrise', 'HelloTalk', 'Tandem'
   ];
 
-  final List<String> cultures = [
-    'Văn hóa Nhật Bản', 'Văn hóa Hàn Quốc', 'Văn hóa Pháp', 'Văn hóa Tây Ban Nha', 'Văn hóa Ấn Độ'
+  final List<Map<String, String>> cultures = [
+    {'name': 'Văn hóa Nhật Bản', 'imagePath': 'assets/culture/japan.png'},
+    {'name': 'Văn hóa Hàn Quốc', 'imagePath': 'assets/culture/korea.png'},
+    {'name': 'Văn hóa Pháp', 'imagePath': 'assets/culture/france.png'},
+    {'name': 'Văn hóa Tây Ban Nha', 'imagePath': 'assets/culture/taybannha.png'},
+    {'name': 'Văn hóa Ấn Độ', 'imagePath': 'assets/culture/ando.png'},
   ];
-
-  final List<String> connectionTopics = [
-    'Tìm bạn học tiếng Nhật', 'Giao lưu với người bản xứ Hàn Quốc', 'Thực hành tiếng Pháp', 'Chia sẻ kinh nghiệm học tiếng Tây Ban Nha'
+  final List<Map<String, String>> connectionTopics = [
+    {'name': 'Nhật Bản', 'imagePath': 'assets/friend/japan.png'},
+    {'name': 'Hàn Quốc', 'imagePath': 'assets/friend/korea.png'},
+    {'name': 'Pháp', 'imagePath': 'assets/friend/ando.png'},
+    {'name': 'Tây Ban Nha', 'imagePath': 'assets/friend/taybannha.png'},
   ];
 
   String searchQuery = '';
@@ -33,7 +43,7 @@ class _ExplorePageState extends State<ExploreScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Khám Phá Ứng Dụng & Văn Hóa'),
+        title: Text('Khám phá văn hóa',style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Georgia',)),
         backgroundColor: Colors.blueAccent,
         actions: [
           IconButton(
@@ -51,29 +61,18 @@ class _ExplorePageState extends State<ExploreScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Ứng Dụng Học Ngoại Ngữ',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blueAccent),
-              ),
-            ),
             Container(
-              height: 200,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: languageApps.length,
-                itemBuilder: (context, index) {
-                  return AppCard(appName: languageApps[index], imagePath: 'assets/language_app_${index + 1}.png');
-                },
-              ),
+              height: 200, // để đủ hiển thị cả slider và indicator dots
+              child:BannerSlider(),
             ),
+
+
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
                 'Khám Phá Văn Hóa',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green,fontFamily: 'Georgia',),
               ),
             ),
             Container(
@@ -82,7 +81,15 @@ class _ExplorePageState extends State<ExploreScreen> {
                 scrollDirection: Axis.horizontal,
                 itemCount: cultures.length,
                 itemBuilder: (context, index) {
-                  return CultureCard(culture: cultures[index], imagePath: 'assets/culture_${index + 1}.png');
+                  return GestureDetector(
+                    onTap: () {
+                      // Hành động khi nhấn vào
+                    },
+                    child: CultureCard(
+                      culture_name: cultures[index]['name']!,
+                      imagePath: cultures[index]['imagePath']!,
+                    ),
+                  );
                 },
               ),
             ),
@@ -91,7 +98,7 @@ class _ExplorePageState extends State<ExploreScreen> {
               padding: const EdgeInsets.all(16.0),
               child: Text(
                 'Kết Nối Bạn Bè Quốc Tế',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.purpleAccent),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.purpleAccent,fontFamily: 'Georgia',),
               ),
             ),
             Container(
@@ -100,9 +107,21 @@ class _ExplorePageState extends State<ExploreScreen> {
                 scrollDirection: Axis.horizontal,
                 itemCount: connectionTopics.length,
                 itemBuilder: (context, index) {
-                  return ConnectionCard(connectionTopic: connectionTopics[index]);
+                  return ConnectionCard(connectionTopic: connectionTopics[index]['name']!,
+                      imagePath: connectionTopics[index]['imagePath']!);
                 },
               ),
+            ),
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
+                'Bảng Xếp Hạng',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue,fontFamily: 'Georgia',),
+              ),
+            ),
+            Container(
+                child: TopCultureWidget()
             ),
           ],
         ),
