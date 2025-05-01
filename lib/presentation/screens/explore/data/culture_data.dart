@@ -21,7 +21,7 @@ final List<Map<String, dynamic>> cultures = [
       },
       {
         'title': 'Lễ hội văn hóa',
-        'imageUrl': 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fvneconomy.vn%2Fnhat-ban-chuan-bi-cho-mua-hoa-anh-dao-qua-tai-du-lich.htm&psig=AOvVaw3GCkejLJxcX9P7akYOtRjo&ust=1745952204155000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKC3ldax-4wDFQAAAAAdAAAAABAE',
+        'imageUrl': 'https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         'description': 'Lễ hội hoa anh đào tượng trưng cho vẻ đẹp ngắn ngủi và tinh tế của thiên nhiên Nhật Bản.',
       },
     ],
@@ -37,29 +37,29 @@ final List<Map<String, dynamic>> cultures = [
     'sections': [
       {
         'title': 'Giới thiệu',
-        'imageUrl': 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Seoul_skyline.jpg',
+        'imageUrl': 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         'description': 'Hàn Quốc pha trộn hài hòa giữa truyền thống và hiện đại, từ cung điện cổ đến K-pop.',
       },
       {
         'title': 'Trang phục truyền thống',
-        'imageUrl': 'https://upload.wikimedia.org/wikipedia/commons/2/2e/Korean_Hanbok.jpg',
+        'imageUrl': 'https://images.unsplash.com/photo-1602479185195-32f5cd203559?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         'description': 'Hanbok là trang phục truyền thống tượng trưng cho vẻ đẹp tao nhã của người Hàn.',
       },
       {
         'title': 'Ẩm thực đặc trưng',
-        'imageUrl': 'https://upload.wikimedia.org/wikipedia/commons/3/35/Korean_food-Bibimbap-02.jpg',
+        'imageUrl': 'https://images.unsplash.com/photo-1573470571028-a0ca7a723959?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         'description': 'Kimchi, Bibimbap và Bulgogi là những món ăn nổi tiếng của ẩm thực Hàn Quốc.',
       },
       {
         'title': 'Lễ hội văn hóa',
-        'imageUrl': 'https://upload.wikimedia.org/wikipedia/commons/8/87/Korea_Seollal_Traditional_Game.jpg',
+        'imageUrl': 'https://images.unsplash.com/photo-1729533036930-df3e5077ca87?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
         'description': 'Seollal - Tết Nguyên Đán Hàn Quốc là lễ hội quan trọng, đoàn tụ gia đình và truyền thống.',
       },
     ],
     'galleryImages': [
-      'https://upload.wikimedia.org/wikipedia/commons/0/0b/Changdeokgung.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/d/d1/Bibimbap_in_Jeonju.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/e/e6/Korean_dancers_performing.jpg',
+      'https://plus.unsplash.com/premium_photo-1661886323367-fc6579695eba?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1544499494-f06d80f4427d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'https://images.unsplash.com/photo-1604212467162-2b0f6f58612a?q=80&w=2120&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     ],
   },
 

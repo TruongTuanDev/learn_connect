@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'dart:typed_data'; // để dùng Uint8List
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -6,7 +9,7 @@ import 'package:learn_connect/presentation/screens/profile/widgets/profile_avata
 import '../../../../data/models/UserInfor.dart';
 import '../../../../services/userInfor_service.dart';
 import '../view/ProfileScreen.dart';
-
+import 'package:image_picker/image_picker.dart';
 class EditProfileScreen extends StatefulWidget {
   final Map<String, dynamic> userInfor;
   final Map<String, dynamic> user;
@@ -22,8 +25,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   late TextEditingController birthDateController;
   late TextEditingController emailController;
   late TextEditingController phoneController;
+  File? _selectedImage;
+
+  Uint8List? _imageBytes;
 
 
+  final ImagePicker _picker = ImagePicker();
   String? selectedGender;
 
   @override
@@ -36,8 +43,20 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     emailController = TextEditingController(text: widget.userInfor['email']);
     phoneController = TextEditingController(text: widget.userInfor['phoneCode']); // Nếu có sẵn số thì truyền text:
     selectedGender = widget.userInfor['gender'];
-
+    if (widget.userInfor['imageBytes'] != null && widget.userInfor['imageBytes'] is String) {
+      _imageBytes = base64Decode(widget.userInfor['imageBytes']);
+    }
   }
+  Future<void> _pickImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      final bytes = await pickedFile.readAsBytes();
+      setState(() {
+        _imageBytes = bytes;
+      });
+    }
+  }
+
 
   @override
   void dispose() {
@@ -46,7 +65,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     birthDateController.dispose();
     emailController.dispose();
     phoneController.dispose();
-
+    // _imageBytes.dispose();
     super.dispose();
   }
 
@@ -61,11 +80,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       phoneCode: phoneController.text,
       gender: selectedGender,
       nativeLanguage:  widget.userInfor['nativeLanguage'],
-      targetLanguages: Map<String, String>.from(widget.userInfor['targetLanguages:'] ?? {}),
+      targetLanguages: Map<String, String>.from(widget.userInfor['targetLanguages'] ?? {}),
       learningGoals: List<String>.from(widget.userInfor['goals'] ?? []),
       dailyTime: widget.userInfor['dailyTime'],
       interestedCountries:widget.userInfor['selectedCountries'] ,
       culturalPreferences:widget.userInfor['selectedPreferences'] ,
+        imageBytes: _imageBytes != null
+            ? base64Encode(_imageBytes!)
+            : (widget.userInfor['imageBytes'] ?? ''),
+
     );
      await UserInforService().updatenewInfor(user1);
 
@@ -85,13 +108,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       appBar: AppBar(title: Text('Sửa hồ sơ'), centerTitle: true),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ProfileAvatar(),
+            _buildProfileAvatar(),
             SizedBox(height: 20),
             _buildTextField('Tên đầy đủ', controller: fullNameController),
             _buildTextField('Biệt danh', controller: nicknameController),
@@ -106,6 +131,27 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       ),
     );
   }
+
+  Widget _buildProfileAvatar() {
+    return GestureDetector(
+      onTap: _pickImage,
+      child: CircleAvatar(
+        radius: 40,
+        backgroundColor: Colors.grey[300],
+        backgroundImage: _imageBytes != null ? MemoryImage(_imageBytes!) : null,
+        child: _imageBytes == null
+            ? Icon(Icons.camera_alt, color: Colors.grey[600])
+            : null,
+      ),
+    );
+  }
+
+
+
+
+
+
+
 
   Widget _buildTextField(String label, {required TextEditingController controller, IconData? icon}) {
     return Padding(

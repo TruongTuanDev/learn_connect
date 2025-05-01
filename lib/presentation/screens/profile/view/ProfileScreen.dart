@@ -15,12 +15,12 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("user và userInfor là:$user + $userInfor ");
+    // print("user và userInfor là:$user + $userInfor ");
     return Scaffold(
       appBar: AppBar(title: Text('Hồ sơ')),
       body: Column(
         children: [
-          ProfileAvatar(),
+          ProfileAvatar(imageBytesBase64:userInfor['imageBytes'] ),
           Text(userInfor['fullName'] ?? 'Tên người dùng', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           Text(userInfor['email'] ?? '', style: TextStyle(color: Colors.grey)),
           SizedBox(height: 20),
