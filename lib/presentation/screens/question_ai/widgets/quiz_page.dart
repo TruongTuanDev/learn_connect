@@ -37,7 +37,6 @@ class QuizPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 elevation: 4,
-                color: Colors.white,
                 shadowColor: Colors.blue.shade100,
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
