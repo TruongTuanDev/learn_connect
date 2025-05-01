@@ -7,7 +7,16 @@ import '../widgets/enhanced_card_side.dart';
 import '../widgets/reaction_button.dart';
 
 class FlashcardAIScreen extends StatefulWidget {
-  const FlashcardAIScreen({Key? key}) : super(key: key);
+  final String? initialLanguage;
+  final String? initialLevel;
+  final String? initialTopic;
+
+  const FlashcardAIScreen({
+    Key? key,
+    this.initialLanguage,
+    this.initialLevel,
+    this.initialTopic,
+  }) : super(key: key);
 
   @override
   State<FlashcardAIScreen> createState() => _FlashcardAIScreenState();
@@ -15,9 +24,9 @@ class FlashcardAIScreen extends StatefulWidget {
 
 class _FlashcardAIScreenState extends State<FlashcardAIScreen> {
   // Selected options
-  String selectedLanguage = 'English';
-  String selectedLevel = 'Beginner';
-  String selectedTopic = 'General';
+  late String selectedLanguage;
+  late String selectedLevel;
+  late String selectedTopic;
 
   // Flashcards list
   List<FlashcardModel> flashcards = [];
@@ -33,6 +42,14 @@ class _FlashcardAIScreenState extends State<FlashcardAIScreen> {
 
   // Gemini service for generating flashcards
   final GeminiService _geminiService = GeminiService();
+
+  @override
+  void initState() {
+    super.initState();
+    selectedLanguage = widget.initialLanguage ?? 'English';
+    selectedLevel = widget.initialLevel ?? 'Beginner';
+    selectedTopic = widget.initialTopic ?? 'General';
+  }
 
   // Generate flashcards using Gemini
   Future<void> generateFlashcards() async {

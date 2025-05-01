@@ -92,8 +92,15 @@ flutter:
 #    - packages/country_icons/icons/flags/svg/
 
     - assets/images/comunication.png
-    - assets/culture/
-
+    - assets/images/Hobbies.png
+    - assets/images/music.png
+    - assets/images/work.png
+    - assets/images/food.png
+    - assets/images/Beauty.png
+    - assets/images/Cooking.png
+    - assets/images/Shopping.png
+    - assets/images/Books.png
+    - assets/images/Sport.png
 
 
   # To add assets to your application, add an assets section, like this:
