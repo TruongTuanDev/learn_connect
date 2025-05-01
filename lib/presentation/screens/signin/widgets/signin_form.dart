@@ -59,8 +59,8 @@ class _SignInFormState extends ConsumerState<SignInForm> {
             matchedPartners
         );
       Navigator.pushNamed(context, AppRoutes.home,arguments: {
-        'user': result['data']['user'],
-        'userInfor': result['data']['userInfor']
+        'user': result['data']['userInfo'],
+        'userInfor': result['data']['userInfo']
       });
         }
 
