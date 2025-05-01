@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_connect/presentation/screens/dictionary/view/DictionaryScreen.dart';
 import 'package:learn_connect/routes/routes.dart';
 import 'package:learn_connect/services/flashcard_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -78,9 +79,10 @@ class _TodayLearningState extends State<TodayLearningWidget> {
                 ),
                 _buildLearningButton(
                   context,
-                  "LUYỆN ĐỌC",
-                  Icons.menu_book,
-                      () => print("Nhấn vào LUYỆN ĐỌC"),
+                  "TỪ ĐIỂN",
+                  Icons.library_books,
+                      () => Navigator.push(context, MaterialPageRoute(builder: (context) => DictionaryScreen()),
+                      )
                 ),
                 // Thêm các button khác nếu cần
               ].map((e) => Padding(

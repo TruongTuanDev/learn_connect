@@ -59,6 +59,7 @@ class _HomeState extends State<Home> {
       ProfileScreen(user: user, userInfor: userInfor),       // Placeholder
     ];
     return Scaffold(
+
       body: IndexedStack(
         index: _currentIndex,
         children: _pages,
