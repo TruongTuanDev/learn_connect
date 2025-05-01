@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-
 import '../../../providers/providers.dart';
 
 class PartnerFinderScreen extends ConsumerWidget {
@@ -18,9 +17,9 @@ class PartnerFinderScreen extends ConsumerWidget {
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
         title: const Text('Đối tác ngôn ngữ'),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.blue,
         elevation: 10,
-        shadowColor: Colors.deepPurple.withOpacity(0.5),
+        shadowColor: Colors.blue.withOpacity(0.5),
         actions: [
           IconButton(
             icon: const Icon(Icons.filter_alt, color: Colors.white),

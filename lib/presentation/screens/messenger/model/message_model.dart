@@ -19,14 +19,15 @@ class Messenger {
   });
 
   factory Messenger.fromJson(Map<String, dynamic> json) {
-    final timestamp = DateTime.tryParse(json['timestamp']) ?? DateTime.now();
-    final formattedTime = timeago.format(timestamp);
+    final timestampStr = json['timestamp'] as String?;
+    final timestamp = timestampStr != null ? DateTime.tryParse(timestampStr) : null;
+    final formattedTime = timestamp != null ? timeago.format(timestamp) : 'Chưa có tin nhắn';
 
     return Messenger(
       id: json['otherUserId'] as String,
       avatarUrl: "https://ui-avatars.com/api/?name=${json['username']}",
       name: json['username'] as String,
-      message: json['lastMessage'] as String,
+      message: json['lastMessage'] as String? ?? '',
       time: formattedTime,
       unread: 0,
     );

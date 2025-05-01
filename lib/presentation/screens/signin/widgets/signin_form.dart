@@ -53,6 +53,7 @@ class _SignInFormState extends ConsumerState<SignInForm> {
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('access_token', result['data']['accessToken']);
         AppConfig.userId = result['data']['id'];
+        print("Id user "+ AppConfig.userId);
         // final List<dynamic> matchedPartners = result['data']['matchedLanguagePartners'];
         final matchedPartners = result['data']['matchedLanguagePartners'];
 

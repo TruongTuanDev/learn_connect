@@ -5,6 +5,8 @@ import 'package:learn_connect/services/flashcard_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../ai_conversation/widgets/ai_chat_screen.dart';
+
 class TodayLearningWidget extends StatefulWidget {
   @override
   _TodayLearningState createState() => _TodayLearningState();
@@ -67,9 +69,12 @@ class _TodayLearningState extends State<TodayLearningWidget> {
                 ),
                 _buildLearningButton(
                   context,
-                  "LUYỆN NGHE",
+                  "TRÒ CHUYỆN AI",
                   Icons.headphones,
-                      () => print("Nhấn vào LUYỆN NGHE"),
+                        () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AIChatScreen()),
+                    )
                 ),
                 _buildLearningButton(
                   context,
