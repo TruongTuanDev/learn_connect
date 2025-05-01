@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:learn_connect/config/app_config.dart';
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
 import 'package:learn_connect/presentation/screens/search_ai/PartnerFinderApp.dart';
 import 'package:learn_connect/routes/routes.dart';
@@ -51,6 +52,7 @@ class _SignInFormState extends ConsumerState<SignInForm> {
       if (result['success']) {
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('access_token', result['data']['accessToken']);
+        AppConfig.userId = result['data']['id'];
         // final List<dynamic> matchedPartners = result['data']['matchedLanguagePartners'];
         final matchedPartners = result['data']['matchedLanguagePartners'];
 
