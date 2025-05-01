@@ -19,17 +19,16 @@ class TopicGridScreen extends StatefulWidget {
 class _TopicGridScreenState extends State<TopicGridScreen> {
   final List<Map<String, String>> topics = const [
     {'title': 'Comunication', 'image': 'assets/images/comunication.png'},
-    {'title': 'Work', 'image': 'assets/images/comunication.png'},
-    {'title': 'Food', 'image': 'assets/images/comunication.png'},
-    {'title': 'Technology', 'image': 'assets/images/comunication.png'},
-    {'title': 'Comunication1', 'image': 'assets/images/comunication.png'},
-    {'title': 'Work1', 'image': 'assets/images/comunication.png'},
-    {'title': 'Food1', 'image': 'assets/images/comunication.png'},
-    {'title': 'Technology1', 'image': 'assets/images/comunication.png'},
-    {'title': 'Comunication2', 'image': 'assets/images/comunication.png'},
-    {'title': 'Work2', 'image': 'assets/images/comunication.png'},
-    {'title': 'Food2', 'image': 'assets/images/comunication.png'},
-    {'title': 'Technology2', 'image': 'assets/images/comunication.png'}
+    {'title': 'Hobbies', 'image': 'assets/images/Hobbies.png'},
+    {'title': 'Music', 'image': 'assets/images/music.png'},
+    {'title': 'Work', 'image': 'assets/images/work.png'},
+    {'title': 'Food', 'image': 'assets/images/food.png'},
+    {'title': 'Beauty', 'image': 'assets/images/Beauty.png'},
+    {'title': 'Cooking', 'image': 'assets/images/Cooking.png'},
+    {'title': 'Shopping', 'image': 'assets/images/Shopping.png'},
+    {'title': 'Books', 'image': 'assets/images/Books.png'},
+    {'title': 'Sport', 'image': 'assets/images/Sport.png'}
+    
   ];
 
   final TextEditingController _searchController = TextEditingController();
