@@ -44,6 +44,7 @@ class _SignInFormState extends ConsumerState<SignInForm> {
 
     setState(() => _isLoading = true);
 
+
     try {
       final result = await authService.login(username, password);
 
@@ -57,13 +58,12 @@ class _SignInFormState extends ConsumerState<SignInForm> {
         ref.read(userPartnersProvider.notifier).setPartners(
             matchedPartners
         );
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Home(),
-          ),
-        );
+      Navigator.pushNamed(context, AppRoutes.home,arguments: {
+        'user': result['data']['user'],
+        'userInfor': result['data']['userInfor']
+      });
         }
+
 
     } catch (e) {
       _showSnackBar('Lỗi kết nối: ${e.toString()}');

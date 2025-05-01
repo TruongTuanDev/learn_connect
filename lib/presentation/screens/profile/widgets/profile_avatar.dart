@@ -5,7 +5,7 @@ class ProfileAvatar extends StatelessWidget {
     return CircleAvatar(
       radius: 40,
       backgroundColor: Colors.grey[300],
-      child: Icon(Icons.camera_alt, color: Colors.grey[600]),
+      child: Icon(Icons.face, color: Colors.grey[600]),
     );
   }
 }

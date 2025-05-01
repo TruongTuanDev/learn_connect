@@ -60,8 +60,10 @@ class MyApp extends ConsumerWidget  {
 
       // home:SignUpScreen(),
       debugShowCheckedModeBanner: false,
-      home : MatchCard(match: null, onTap: () {  },),
+
+   
       initialRoute: AppRoutes.signup, // Màn hình khởi động
+
       onGenerateRoute: AppRoutes.generateRoute, // Quan trọng
     );
   }

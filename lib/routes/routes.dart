@@ -8,6 +8,7 @@ import 'package:learn_connect/presentation/screens/chatting/view/chat_screen.dar
 import 'package:learn_connect/presentation/screens/dictionary/view/DictionaryScreen.dart';
 import 'package:learn_connect/presentation/screens/explore/view/ExploreScreen.dart';
 import 'package:learn_connect/presentation/screens/flasdcard_ai/view/flashcard_ai.dart';
+import 'package:learn_connect/presentation/screens/profile/view/ProfileScreen.dart';
 
 
 
@@ -110,7 +111,7 @@ class AppRoutes {
       case signin:
         return MaterialPageRoute(builder: (_) => SignInScreen());
       case home:
-        return MaterialPageRoute(builder: (_) => Home());
+        return MaterialPageRoute(builder: (_) => Home(), settings: settings,);
       case explore:
         return MaterialPageRoute(builder: (_) => ExploreScreen());
       case dictionary:
