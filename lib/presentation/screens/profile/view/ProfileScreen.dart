@@ -4,21 +4,40 @@ import 'package:learn_connect/presentation/screens/profile/widgets/profile_optio
 import 'package:learn_connect/presentation/screens/profile/widgets/edit_profile_screen.dart';
 import 'package:learn_connect/presentation/screens/profile/widgets/language_selection_screen.dart';
 class ProfileScreen extends StatelessWidget {
+  final Map<String, dynamic> user;
+  final Map<String, dynamic> userInfor;
+
+  const ProfileScreen({
+    Key? key,
+    required this.user,
+    required this.userInfor,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    print("user và userInfor là:$user + $userInfor ");
     return Scaffold(
       appBar: AppBar(title: Text('Hồ sơ')),
       body: Column(
         children: [
           ProfileAvatar(),
-          Text('Thủy Trúc', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          Text('ntruc0198@gmail.com', style: TextStyle(color: Colors.grey)),
+          Text(userInfor['fullName'] ?? 'Tên người dùng', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text(user['email'] ?? '', style: TextStyle(color: Colors.grey)),
           SizedBox(height: 20),
           Expanded(
             child: ListView(
               children: [
                 ProfileOption(title: 'Sửa hồ sơ', icon: Icons.edit, onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => EditProfileScreen()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditProfileScreen(
+                        userInfor: userInfor,
+                        user: user,
+                      ),
+                    ),
+                  );
+
                 }),
                 ProfileOption(title: 'Sở thích', icon: Icons.favorite, onTap: () {}),
                 ProfileOption(title: 'Thông báo', icon: Icons.notifications, onTap: () {}),
@@ -33,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
                       MaterialPageRoute(builder: (context) => LanguageSelectionScreen()),
                     );
                     if (result != null) {
-                      // Cập nhật giao diện với ngôn ngữ mới
+                      // cập nhật giao diện nếu cần
                     }
                   },
                 ),
@@ -50,6 +69,3 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
-
-
-
