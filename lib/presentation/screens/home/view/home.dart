@@ -15,6 +15,10 @@ import 'package:learn_connect/presentation/screens/home/widgets/connection_sugge
 import 'package:learn_connect/presentation/screens/home/widgets/post_widget.dart';
 import 'package:image_picker/image_picker.dart';
 
+void main() {
+  runApp(MaterialApp(home: Home()));
+}
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -26,8 +30,6 @@ class _HomeState extends State<Home> {
   File? _selectedImage;
   final ImagePicker _picker = ImagePicker();
   int _currentIndex = 0;
-
-
 
   @override
   void initState() {
@@ -46,24 +48,22 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    final args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     // print("args là : $args");
     final user = args['user'];
     final userInfor = args['userInfor'];
     // print("userId là : $user");
     // print("userInfor là : $userInfor");
+
     final List<Widget> _pages = [
       HomePageContent(),
       ExploreScreen(), // Giả sử bạn có một ExploreScreen
       MomentsScreen(), // Giả sử bạn có một MomentsScreen
-      ProfileScreen(user: user, userInfor: userInfor),       // Placeholder
+      ProfileScreen(user: user, userInfor: userInfor), // Placeholder
     ];
     return Scaffold(
-
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _pages,
-      ),
+      body: IndexedStack(index: _currentIndex, children: _pages),
       floatingActionButton: Container(
         height: 50,
         width: 50,
@@ -108,7 +108,10 @@ class _HomeState extends State<Home> {
                           children: [
                             Text(
                               'Tạo bài viết mới',
-                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             SizedBox(height: 20),
                             TextField(
@@ -158,7 +161,9 @@ class _HomeState extends State<Home> {
                                 SizedBox(width: 10),
                                 ElevatedButton(
                                   onPressed: () {
-                                    print('Nội dung: ${_contentController.text}');
+                                    print(
+                                      'Nội dung: ${_contentController.text}',
+                                    );
                                     print('Ảnh: ${_selectedImage?.path}');
                                     _contentController.clear();
                                     _selectedImage = null;
@@ -170,7 +175,7 @@ class _HomeState extends State<Home> {
                                   child: Text('Đăng'),
                                 ),
                               ],
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -207,12 +212,7 @@ class _HomeState extends State<Home> {
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 10,
-              ),
-            ],
+            boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 10)],
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -277,10 +277,7 @@ class _HomeState extends State<Home> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            icon,
-            color: isSelected ? Colors.blueAccent : Colors.grey,
-          ),
+          Icon(icon, color: isSelected ? Colors.blueAccent : Colors.grey),
           SizedBox(height: 4),
           Text(
             label,

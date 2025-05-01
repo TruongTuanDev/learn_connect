@@ -61,13 +61,12 @@ class MyApp extends ConsumerWidget  {
       // home:SignUpScreen(),
       debugShowCheckedModeBanner: false,
 
-   
+
       initialRoute: AppRoutes.signup, // Màn hình khởi động
 
       onGenerateRoute: AppRoutes.generateRoute, // Quan trọng
     );
   }
 }
-
 
 
