@@ -44,8 +44,16 @@ class ConnectionSuggestionWidget extends StatelessWidget {
                 "Tuấn Trương",
               ),
               _buildUserItem(
-                "https://figma-alpha-api.s3.us-west-2.amazonaws.com/images/6a393e58-4b97-4fa9-bb22-7f982f00e5e0",
-                "Peter",
+                "assets/images/truc.jpg",
+                "Merry",
+              ),
+              _buildUserItem(
+                "assets/images/phuc.jpg",
+                "Phúc",
+              ),
+              _buildUserItem(
+                "assets/images/tam.jpg",
+                "Nguyễn Thị Tâm",
               ),
             ],
           ),

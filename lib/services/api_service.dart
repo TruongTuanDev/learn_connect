@@ -5,7 +5,7 @@ import '../data/models/comment_model.dart';
 import '../data/models/post.dart';
 
 class ApiService {
-  static const String baseUrl = 'http://localhost:8080/api'; // Thay bằng IP nếu chạy trên thiết bị thật
+  static const String baseUrl = 'http://127.0.0.1:8080/api'; // Thay bằng IP nếu chạy trên thiết bị thật
 
   static Future<List<Post>> fetchPosts() async {
     final response = await http.get(Uri.parse('$baseUrl/posts'));

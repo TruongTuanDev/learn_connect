@@ -35,7 +35,10 @@ class _SignInFormState extends State<SignInForm> {
       _showMessage("Đăng nhập thành công!");
       final prefs = await SharedPreferences.getInstance();
       prefs.setString("access_token", result['data']['accessToken']);
-      Navigator.pushNamed(context, AppRoutes.home);
+      Navigator.pushNamed(context, AppRoutes.home,arguments: {
+        'user': result['data']['user'],
+        'userInfor': result['data']['userInfor']
+      });
       print("Token nhận được: ${result['data']['accessToken']}");
     } else {
       _showMessage(result['message']);

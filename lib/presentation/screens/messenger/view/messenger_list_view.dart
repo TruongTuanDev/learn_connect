@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:learn_connect/presentation/screens/chatting/provider/chat_screen_provider.dart';
 import 'package:learn_connect/presentation/screens/messenger/provider/messenger_provider.dart';
 import 'package:learn_connect/presentation/screens/messenger/widgets/messenger_item.dart';
 
@@ -9,12 +10,9 @@ class MessengerListScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final messageList = ref.watch(messagingListProvider);
+    ref.watch(socketServiceProvider);
     return Scaffold(
         appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () {},
-          ),
           title: Text(
             "Tin nhắn",
             style: TextStyle(
@@ -83,12 +81,16 @@ class MessengerListScreen extends ConsumerWidget {
               ),
               SizedBox(height: 20),
               Expanded(
-                child: ListView.builder(
-                  itemCount: messageList.length,
-                  padding: EdgeInsets.zero,
-                  itemBuilder: (context, index) {
-                    return ChatItem(messenger: messageList[index]);
-                  },
+                child: RefreshIndicator(
+                  onRefresh: () => ref
+                      .read(messagingListProvider.notifier)
+                      .fetchMessengerList(),
+                  child: ListView.builder(
+                    itemCount: messageList.length,
+                    itemBuilder: (context, index) {
+                      return ChatItem(messenger: messageList[index]);
+                    },
+                  ),
                 ),
               ),
             ],

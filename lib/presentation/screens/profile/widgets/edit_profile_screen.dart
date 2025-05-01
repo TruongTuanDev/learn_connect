@@ -1,26 +1,104 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'package:learn_connect/presentation/screens/profile/widgets/profile_avatar.dart';
-class EditProfileScreen extends StatelessWidget {
+
+import '../../../../data/models/UserInfor.dart';
+import '../../../../services/userInfor_service.dart';
+import '../view/ProfileScreen.dart';
+
+class EditProfileScreen extends StatefulWidget {
+  final Map<String, dynamic> userInfor;
+  final Map<String, dynamic> user;
+  EditProfileScreen({Key? key, required this.userInfor, required this.user}) : super(key: key);
+
+  @override
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> {
+  late TextEditingController fullNameController;
+  late TextEditingController nicknameController;
+  late TextEditingController birthDateController;
+  late TextEditingController emailController;
+  late TextEditingController phoneController;
+
+
+  String? selectedGender;
+
+  @override
+  void initState() {
+    super.initState();
+
+    fullNameController = TextEditingController(text: widget.userInfor['fullName']);
+    nicknameController = TextEditingController(text: widget.userInfor['nickname']);
+    birthDateController = TextEditingController(text: widget.userInfor['birthDate']);
+    emailController = TextEditingController(text: widget.user['email']);
+    phoneController = TextEditingController(text: widget.userInfor['phoneCode']); // Nếu có sẵn số thì truyền text:
+    selectedGender = widget.userInfor['gender'];
+
+  }
+
+  @override
+  void dispose() {
+    fullNameController.dispose();
+    nicknameController.dispose();
+    birthDateController.dispose();
+    emailController.dispose();
+    phoneController.dispose();
+
+    super.dispose();
+  }
+
+  Future<void> _updateProfile() async {
+    UserInfo user1 = UserInfo(
+      id_user:  widget.user['id'] as String,
+      username: widget.user['username'] as String,
+      fullName: fullNameController.text,
+      nickname: nicknameController.text,
+      birthDate: birthDateController.text,
+      email: emailController.text,
+      phoneCode: phoneController.text,
+      gender: selectedGender,
+      nativeLanguage:  widget.userInfor['nativeLanguage'],
+      targetLanguages: Map<String, String>.from(widget.userInfor['targetLanguages:'] ?? {}),
+      learningGoals: List<String>.from(widget.userInfor['goals'] ?? []),
+      dailyTime: widget.userInfor['dailyTime'],
+      interestedCountries:widget.userInfor['selectedCountries'] ,
+      culturalPreferences:widget.userInfor['selectedPreferences'] ,
+    );
+    final result = await UserInforService().updatenewInfor(user1);
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ProfileScreen(
+          user: widget.user,
+          userInfor: user1.toJson(), // Đây mới là dữ liệu đã cập nhật
+        ),
+      ),
+    );
+
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Sửa hồ sơ'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: Text('Sửa hồ sơ'), centerTitle: true),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
             ProfileAvatar(),
             SizedBox(height: 20),
-            _buildTextField('Tên đầy đủ'),
-            _buildTextField('Biệt danh'),
-            _buildTextField('Ngày sinh', icon: Icons.calendar_today),
-            _buildTextField('Email', icon: Icons.email),
+            _buildTextField('Tên đầy đủ', controller: fullNameController),
+            _buildTextField('Biệt danh', controller: nicknameController),
+            _buildTextField('Ngày sinh', controller: birthDateController, icon: Icons.calendar_today),
+            _buildTextField('Email', controller: emailController, icon: Icons.email),
             _buildPhoneField(),
             _buildDropdownField('Giới Tính', ['Nam', 'Nữ', 'Khác']),
-            _buildTextField('Sinh Viên'),
             SizedBox(height: 20),
             _buildUpdateButton(),
           ],
@@ -29,10 +107,11 @@ class EditProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField(String label, {IconData? icon}) {
+  Widget _buildTextField(String label, {required TextEditingController controller, IconData? icon}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextField(
+        controller: controller,
         decoration: InputDecoration(
           labelText: label,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
@@ -46,6 +125,7 @@ class EditProfileScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextField(
+        controller: phoneController,
         keyboardType: TextInputType.phone,
         decoration: InputDecoration(
           labelText: 'Số điện thoại',
@@ -69,13 +149,18 @@ class EditProfileScreen extends StatelessWidget {
   Widget _buildDropdownField(String label, List<String> items) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: DropdownButtonFormField(
+      child: DropdownButtonFormField<String>(
+        value: selectedGender,
         decoration: InputDecoration(
           labelText: label,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         ),
         items: items.map((e) => DropdownMenuItem(value: e, child: Text(e))).toList(),
-        onChanged: (value) {},
+        onChanged: (value) {
+          setState(() {
+            selectedGender = value;
+          });
+        },
       ),
     );
   }
@@ -89,7 +174,7 @@ class EditProfileScreen extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           backgroundColor: Colors.blue,
         ),
-        onPressed: () {},
+        onPressed: _updateProfile,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

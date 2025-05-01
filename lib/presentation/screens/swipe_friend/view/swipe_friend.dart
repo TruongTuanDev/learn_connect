@@ -11,20 +11,69 @@ class _SwipePageState extends State<SwipePage> {
   List<SwipeItem> _swipeItems = [];
   late MatchEngine _matchEngine;
 
-  List<Map<String, String>> users = [
+  final List<Map<String, String>> users = [
     {
-      'name': 'Maria',
-      'language': 'Tây Ban Nha → Tiếng Việt',
-      'age': 9.toString(),
-      'image': 'https://i.imgur.com/0y8Ftya.jpg'
+      'name': 'Lê Viết Toàn',
+      'language': 'Tiếng Việt → Tiếng Anh',
+      'age': '9',
+      'image': 'assets/images/avartar.png',
     },
     {
       'name': 'John',
       'language': 'Tiếng Anh → Tiếng Nhật',
-      'age': 10.toString(),
-      'image': 'https://i.imgur.com/QCNbOAo.png'
+      'age': '10',
+      'image': 'assets/images/phuc.jpg',
+    },
+    {
+      'name': 'Nguyễn Thảo Nhi',
+      'language': 'Tiếng Việt → Tiếng Hàn',
+      'age': '12',
+      'image': 'assets/images/tam.jpg',
+    },
+    {
+      'name': 'David Kim',
+      'language': 'Tiếng Hàn → Tiếng Anh',
+      'age': '13',
+      'image': 'assets/images/truc.jpg',
+    },
+    {
+      'name': 'Linh Nguyễn',
+      'language': 'Tiếng Việt → Tiếng Trung',
+      'age': '11',
+      'image': 'assets/images/tam.jpg',
+    },
+    {
+      'name': 'Sakura Tanaka',
+      'language': 'Tiếng Nhật → Tiếng Việt',
+      'age': '14',
+      'image': 'assets/images/avartar.jpg',
+    },
+    {
+      'name': 'Tom',
+      'language': 'Tiếng Anh → Tiếng Pháp',
+      'age': '15',
+      'image': 'assets/images/phuc.jpg',
+    },
+    {
+      'name': 'Hoàng Minh',
+      'language': 'Tiếng Việt → Tiếng Đức',
+      'age': '13',
+      'image': 'assets/images/truc.jpg',
+    },
+    {
+      'name': 'Alice',
+      'language': 'Tiếng Pháp → Tiếng Anh',
+      'age': '10',
+      'image': 'assets/images/tam.jpg',
+    },
+    {
+      'name': 'Yuki',
+      'language': 'Tiếng Nhật → Tiếng Hàn',
+      'age': '12',
+      'image': 'assets/images/phuc.jpg',
     },
   ];
+
 
   List<Map<String, String>> favorites = [];
 
@@ -52,7 +101,15 @@ class _SwipePageState extends State<SwipePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Kết bạn học ngôn ngữ")),
+      appBar: AppBar(
+        backgroundColor: Colors.pinkAccent,
+        elevation: 0,
+        title: Text(
+          "Kết bạn học ngôn ngữ",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+        centerTitle: true,
+      ),
       body: Center(
         child: SwipeCards(
           matchEngine: _matchEngine,

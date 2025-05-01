@@ -1,20 +1,30 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:dio/dio.dart';
+import 'package:learn_connect/config/app_config.dart';
 import 'package:learn_connect/presentation/screens/messenger/model/message_model.dart';
 
-class MessagingListNotifier extends StateNotifier<List<Messenger>> {
-  MessagingListNotifier() : super([]){
-    loadChats();
+class MessengerListNotifier extends StateNotifier<List<Messenger>> {
+  MessengerListNotifier() : super([]) {
+    fetchMessengerList();
   }
 
-  final MessengerModel _messageModel = MessengerModel();
+  final _dio = Dio(BaseOptions(baseUrl: 'http://127.0.0.1:8080')); // Đổi IP nếu test thật
 
-  Future<void> loadChats() async {
-    state = await _messageModel.fetchChats();
+  Future<void> fetchMessengerList() async {
+    try {
+      final response = await _dio.get('/api/messages/chat-list', queryParameters: {
+        'userId': AppConfig.userId // 🔁 user hiện tại
+      });
+
+      final List data = response.data;
+      state = data.map((json) => Messenger.fromJson(json)).toList();
+    } catch (e) {
+      print('❌ Lỗi khi load danh sách tin nhắn: $e');
+    }
   }
 }
 
-// Provider cho MessagingListNotifier
 final messagingListProvider =
-StateNotifierProvider<MessagingListNotifier, List<Messenger>>(
-      (ref) => MessagingListNotifier(),
+StateNotifierProvider<MessengerListNotifier, List<Messenger>>(
+      (ref) => MessengerListNotifier(),
 );
