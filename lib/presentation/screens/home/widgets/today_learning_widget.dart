@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../ai_conversation/widgets/ai_chat_screen.dart';
+import '../../flashcard_list/topic_flashcard_screen.dart';
 
 class TodayLearningWidget extends StatefulWidget {
   @override
@@ -59,7 +60,9 @@ class _TodayLearningState extends State<TodayLearningWidget> {
                   context,
                   "FLASHCARDS",
                   Icons.menu_book	,
-                      () => !isLoading ? _getTopic() : null,
+                      // () => !isLoading ? _getTopic() : null,
+                        () => Navigator.push(context, MaterialPageRoute(builder: (context) => TopicGridScreen()),
+                    )
                 ),
                 _buildLearningButton(
                   context,
