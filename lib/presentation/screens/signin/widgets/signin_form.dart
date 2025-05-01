@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_connect/config/app_config.dart';
 import 'package:learn_connect/routes/routes.dart';
 import 'package:learn_connect/services/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart'; // Import file xử lý API
@@ -35,6 +36,8 @@ class _SignInFormState extends State<SignInForm> {
       _showMessage("Đăng nhập thành công!");
       final prefs = await SharedPreferences.getInstance();
       prefs.setString("access_token", result['data']['accessToken']);
+      AppConfig.userId = result['data']['id'];
+      print("USERID ${AppConfig.userId}");
       Navigator.pushNamed(context, AppRoutes.home);
       print("Token nhận được: ${result['data']['accessToken']}");
     } else {

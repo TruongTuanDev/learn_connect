@@ -7,7 +7,7 @@ import 'package:learn_connect/presentation/screens/chatting/provider/chat_screen
 import 'package:learn_connect/presentation/screens/chatting/view/chat_screen.dart';
 
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
-import 'package:learn_connect/presentation/screens/messenger/view/messenger_list_view.dart';
+import 'package:learn_connect/presentation/screens/messenger/view/messenger_list_screen.dart';
 import 'package:learn_connect/presentation/screens/search_flash_card/view/search_flash_card_view.dart';
 import 'package:learn_connect/presentation/screens/user_information/view/UserInfoScreen.dart';
 import 'package:learn_connect/presentation/screens/user_information/view/UserInterestsScreen.dart';
@@ -15,7 +15,6 @@ import 'package:learn_connect/presentation/screens/user_information/view/UserInt
 import 'package:learn_connect/presentation/screens/flasdcard_ai/view/flashcard_screen.dart';
 import 'package:learn_connect/presentation/screens/flasdcard_ai/view/option_ai.dart';
 import 'package:learn_connect/presentation/screens/home/view/home.dart';
-import 'package:learn_connect/presentation/screens/messenger/view/messenger_list_view.dart';
 import 'package:learn_connect/presentation/screens/search_flash_card/view/search_flash_card_view.dart';
 import 'package:learn_connect/presentation/screens/swipe_friend/view/swipe_friend.dart';
 import 'package:learn_connect/presentation/screens/question_ai/view/question_ai.dart';

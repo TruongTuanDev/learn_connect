@@ -11,11 +11,15 @@ class MessengerListScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final messageList = ref.watch(messagingListProvider);
     ref.watch(socketServiceProvider);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(messagingListProvider.notifier).fetchMessengerList();
+    });
     return Scaffold(
+      backgroundColor: Colors.white ,
         appBar: AppBar(
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.black),
-            onPressed: () {},
+            onPressed: () => Navigator.pop(context),
           ),
           title: Text(
             "Tin nhắn",
@@ -43,46 +47,46 @@ class MessengerListScreen extends ConsumerWidget {
           margin: EdgeInsets.only(left: 20, top: 0, right: 20, bottom: 0),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: FilledButton(
-                      onPressed: () {},
-                      child: const Text("Nhắn"),
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(Colors.green),
-                        foregroundColor: WidgetStateProperty.all(Colors.white),
-                        minimumSize: WidgetStateProperty.all(
-                          Size(double.infinity, 50),
-                        ),
-                        textStyle: WidgetStateProperty.all(
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                  Expanded(
-                    child: FilledButton(
-                      onPressed: () {},
-                      child: const Text("Gọi"),
-                      style: ButtonStyle(
-                        backgroundColor: WidgetStateProperty.all(
-                          Colors.indigo.shade100,
-                        ),
-                        foregroundColor: WidgetStateProperty.all(Colors.black),
-                        minimumSize: WidgetStateProperty.all(
-                          Size(double.infinity, 50),
-                        ),
-                        textStyle: WidgetStateProperty.all(
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Expanded(
+              //       child: FilledButton(
+              //         onPressed: () {},
+              //         child: const Text("Nhắn"),
+              //         style: ButtonStyle(
+              //           backgroundColor: WidgetStateProperty.all(Colors.green),
+              //           foregroundColor: WidgetStateProperty.all(Colors.white),
+              //           minimumSize: WidgetStateProperty.all(
+              //             Size(double.infinity, 50),
+              //           ),
+              //           textStyle: WidgetStateProperty.all(
+              //             TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //     SizedBox(width: 20),
+              //     Expanded(
+              //       child: FilledButton(
+              //         onPressed: () {},
+              //         child: const Text("Gọi"),
+              //         style: ButtonStyle(
+              //           backgroundColor: WidgetStateProperty.all(
+              //             Colors.indigo.shade100,
+              //           ),
+              //           foregroundColor: WidgetStateProperty.all(Colors.black),
+              //           minimumSize: WidgetStateProperty.all(
+              //             Size(double.infinity, 50),
+              //           ),
+              //           textStyle: WidgetStateProperty.all(
+              //             TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
               SizedBox(height: 20),
               Expanded(
                 child: RefreshIndicator(

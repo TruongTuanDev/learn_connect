@@ -38,7 +38,8 @@ class ChatItem extends ConsumerWidget {
                 children: [
                   CircleAvatar(
                     radius: 20,
-                    backgroundImage: NetworkImage(messenger.avatarUrl),
+                    backgroundImage: AssetImage("assets/images/none_avatar.png"),
+                    // NetworkImage(messenger.avatarUrl),
                   ),
                   if (isOnline)
                     Positioned(

@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:learn_connect/config/app_config.dart';
+import 'package:learn_connect/data/models/message_model.dart';
 import 'package:learn_connect/presentation/screens/chatting/provider/chat_screen_provider.dart';
+import 'package:learn_connect/presentation/screens/chatting/widgets/input_field.dart';
+import 'package:learn_connect/presentation/screens/chatting/widgets/message_bubble.dart';
 
 class ChatScreen extends ConsumerStatefulWidget {
   final String receivedId;
   final String receiverName;
+
   const ChatScreen({
     Key? key,
     required this.receivedId,
-    required this.receiverName
+    required this.receiverName,
   }) : super(key: key);
 
   @override
@@ -17,75 +21,93 @@ class ChatScreen extends ConsumerStatefulWidget {
 }
 
 class _ChatScreenState extends ConsumerState<ChatScreen> {
-  final TextEditingController _messageController = TextEditingController();
+  final TextEditingController _controller = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
-  void _sendMessage() {
-    final text = _messageController.text.trim();
-    if (text.isNotEmpty) {
-      ref.read(chatMessagesProvider(widget.receivedId).notifier).sendMessage(text);
-      _messageController.clear();
-    }
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final messages = ref.watch(chatMessagesProvider(widget.receivedId));
+
+    ref.listen<List<Message>>(chatMessagesProvider(widget.receivedId), (
+      previous,
+      next,
+    ) {
+      if (next != previous) {
+        _scrollToBottom();
+      }
+    });
     return Scaffold(
-      appBar: AppBar(title: Text("Chat với ${widget.receiverName}")),
+      backgroundColor: const Color(0xFFF5F7FF),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: Icon(Icons.arrow_back_ios_new, color: Colors.black),
+        ),
+        title: Row(
+          children: [
+            CircleAvatar(
+              radius: 20,
+              backgroundImage: AssetImage("assets/images/none_avatar.png"),
+            ),
+            SizedBox(width: 8,),
+            Text(
+              widget.receiverName,
+              style: const TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
       body: Column(
         children: [
           Expanded(
             child: ListView.builder(
+              controller: _scrollController,
+              padding: const EdgeInsets.all(12),
               itemCount: messages.length,
               itemBuilder: (context, index) {
                 final msg = messages[index];
                 final isMe = msg.senderId == AppConfig.userId;
-                return Align(
-                  alignment:
-                      isMe ? Alignment.centerRight : Alignment.centerLeft,
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 5,
-                    ),
-                    decoration: BoxDecoration(
-                      color: isMe ? Colors.blue : Colors.grey.shade300,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      msg.content,
-                      style: TextStyle(
-                        color: isMe ? Colors.white : Colors.black,
-                      ),
-                    ),
-                  ),
-                );
+                return MessageBubble(isSentByMe: isMe, message: msg.content);
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: _messageController,
-                    decoration: const InputDecoration(
-                      hintText: "Nhập tin nhắn",
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.send),
-                  onPressed: _sendMessage,
-                ),
-              ],
-            ),
-          ),
+          InputField(controller: _controller, onSend: _sendMessage),
         ],
       ),
     );
+  }
+
+  void _sendMessage() {
+    final msg = _controller.text.trim();
+    if (msg.isNotEmpty) {
+      ref
+          .read(chatMessagesProvider(widget.receivedId).notifier)
+          .sendMessage(msg);
+      _controller.clear();
+    }
   }
 }
