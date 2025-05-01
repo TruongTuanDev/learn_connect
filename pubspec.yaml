@@ -91,6 +91,10 @@ flutter:
     - assets/flag_vn.png
     - assets/images/
     - assets/images/Ava/
+
+    - assets/images/Content/
+    - assets/culture/
+    - assets/friend/
     - assets/images/logo.png
 
 #    - packages/country_icons/icons/flags/svg/
@@ -105,6 +109,7 @@ flutter:
     - assets/images/Shopping.png
     - assets/images/Books.png
     - assets/images/Sport.png
+
 
 
   # To add assets to your application, add an assets section, like this:

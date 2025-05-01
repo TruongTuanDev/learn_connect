@@ -25,10 +25,10 @@ class _MomentsScreenState extends State<MomentsScreen> with SingleTickerProvider
       {
         'username': 'Mai',
         'images': [
-          'assets/images/Ava/7.jpg',
-          'assets/images/mai2.jpg',
+          'assets/images/Content/7.jpg',
+          'assets/images/Content/1.jpg',
         ],
-        'profileImage': 'assets/images/mai1.jpg',
+        'profileImage': 'assets/images/Ava/7.jpg',
         'content': 'Chill cùng bạn bè cuối tuần!',
         'likes': 15,
         'comments': 5,
@@ -37,11 +37,11 @@ class _MomentsScreenState extends State<MomentsScreen> with SingleTickerProvider
       {
         'username': 'Lan',
         'images': [
-          'assets/images/lan1.jpg',
-          'assets/images/lan2.jpg',
-          'assets/images/lan3.jpg',
+          'assets/images/Content/4.jpg',
+          'assets/images/Content/5.jpg',
+          'assets/images/Content/6.jpg',
         ],
-        'profileImage': 'assets/images/lan1.jpg',
+        'profileImage': 'assets/images/Ava/8.jpg',
         'content': 'Đi chơi biển đây! 🌊',
         'likes': 23,
         'comments': 7,
@@ -50,9 +50,9 @@ class _MomentsScreenState extends State<MomentsScreen> with SingleTickerProvider
       {
         'username': 'Hương',
         'images': [
-          'assets/images/huong1.jpg',
+          'assets/images/Content/8.jpg',
         ],
-        'profileImage': 'assets/images/huong1.jpg',
+        'profileImage': 'assets/images/Ava/9.jpg',
         'content': 'Một ngày làm việc hiệu quả',
         'likes': 8,
         'comments': 1,
@@ -61,10 +61,10 @@ class _MomentsScreenState extends State<MomentsScreen> with SingleTickerProvider
       {
         'username': 'Thảo',
         'images': [
-          'assets/images/thao1.jpg',
-          'assets/images/thao2.jpg',
+          'assets/images/Content/4.jpg',
+          'assets/images/Content/5.jpg',
         ],
-        'profileImage': 'assets/images/thao1.jpg',
+        'profileImage': 'assets/images/Ava/10.jpg',
         'content': 'Ăn tối ngon quá!',
         'likes': 12,
         'comments': 4,
@@ -73,12 +73,12 @@ class _MomentsScreenState extends State<MomentsScreen> with SingleTickerProvider
       {
         'username': 'Nam',
         'images': [
-          'assets/images/nam1.jpg',
-          'assets/images/nam2.jpg',
-          'assets/images/nam3.jpg',
-          'assets/images/nam4.jpg',
+          'assets/images/Content/3.jpg',
+          'assets/images/Content/5.jpg',
+          'assets/images/Content/8.jpg',
+
         ],
-        'profileImage': 'assets/images/nam1.jpg',
+        'profileImage': 'assets/images/Ava/1.jpg',
         'content': 'Đá bóng cùng anh em',
         'likes': 18,
         'comments': 6,
@@ -87,9 +87,9 @@ class _MomentsScreenState extends State<MomentsScreen> with SingleTickerProvider
       {
         'username': 'Tuấn',
         'images': [
-          'assets/images/tuan1.jpg',
+          'assets/images/Content/1.jpg',
         ],
-        'profileImage': 'assets/images/tuan1.jpg',
+        'profileImage': 'assets/images/Ava/2.jpg',
         'content': 'Làm việc tại quán cà phê',
         'likes': 5,
         'comments': 0,
@@ -98,10 +98,10 @@ class _MomentsScreenState extends State<MomentsScreen> with SingleTickerProvider
       {
         'username': 'Hùng',
         'images': [
-          'assets/images/hung1.jpg',
-          'assets/images/hung2.jpg',
+          'assets/images/Content/10.jpg',
+          'assets/images/Content/9.jpg',
         ],
-        'profileImage': 'assets/images/hung1.jpg',
+        'profileImage': 'assets/images/Ava/3.jpg',
         'content': 'Du lịch Đà Lạt',
         'likes': 25,
         'comments': 9,
@@ -110,11 +110,11 @@ class _MomentsScreenState extends State<MomentsScreen> with SingleTickerProvider
       {
         'username': 'Đức',
         'images': [
-          'assets/images/duc1.jpg',
-          'assets/images/duc2.jpg',
-          'assets/images/duc3.jpg',
+          'assets/images/Content/3.jpg',
+          'assets/images/Content/7.jpg',
+          'assets/images/Content/8.jpg',
         ],
-        'profileImage': 'assets/images/duc1.jpg',
+        'profileImage': 'assets/images/Ava/4.jpg',
         'content': 'Chụp ảnh cùng team',
         'likes': 14,
         'comments': 3,
@@ -123,9 +123,9 @@ class _MomentsScreenState extends State<MomentsScreen> with SingleTickerProvider
       {
         'username': 'Quang',
         'images': [
-          'assets/images/quang1.jpg',
+          'assets/images/Content/10.jpg',
         ],
-        'profileImage': 'assets/images/quang1.jpg',
+        'profileImage': 'assets/images/Ava/5.jpg',
         'content': 'Ngày mới tốt lành',
         'likes': 7,
         'comments': 2,
@@ -134,10 +134,10 @@ class _MomentsScreenState extends State<MomentsScreen> with SingleTickerProvider
       {
         'username': 'Long',
         'images': [
-          'assets/images/long1.jpg',
-          'assets/images/long2.jpg',
+          'assets/images/Content/4.jpg',
+          'assets/images/Content/8.jpg',
         ],
-        'profileImage': 'assets/images/long1.jpg',
+        'profileImage': 'assets/images/Ava/6.jpg',
         'content': 'Chạy bộ buổi sáng',
         'likes': 9,
         'comments': 1,

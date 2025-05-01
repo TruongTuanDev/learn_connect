@@ -176,6 +176,7 @@ class _CulturePreferencesScreenState extends State<CulturePreferencesScreen> {
                     dailyTime: widget.formData['dailyTime'],
                     interestedCountries: selectedCountries,
                     culturalPreferences: selectedPreferences,
+                    imageBytes: "",
                   );
                   UserInforService().updateInfor(user);
                   Navigator.pushNamed(context, AppRoutes.signin);

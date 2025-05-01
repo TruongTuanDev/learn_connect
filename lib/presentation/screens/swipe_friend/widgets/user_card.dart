@@ -35,7 +35,7 @@ class UserCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15), // hoặc bo tròn theo thẻ bên ngoài
                 child: Image.asset(
                   user['image']!,
-                  height: 400, // hoặc bạn có thể đặt chiều cao cố định
+                  height: 350, // hoặc bạn có thể đặt chiều cao cố định
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),

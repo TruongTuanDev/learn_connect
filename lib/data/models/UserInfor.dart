@@ -14,7 +14,7 @@ class UserInfo {
   final String? dailyTime;
   final List<String>? interestedCountries;
   final List<String>? culturalPreferences;
-
+  final String? imageBytes;
   final String? createdAt;
   final String? updatedAt;
 
@@ -33,6 +33,7 @@ class UserInfo {
     this.dailyTime,
     this.interestedCountries,
     this.culturalPreferences,
+    this.imageBytes,
     this.createdAt,
     this.updatedAt,
   });
@@ -52,6 +53,7 @@ class UserInfo {
     dailyTime: json['dailyTime'],
     interestedCountries: List<String>.from(json['interestedCountries'] ?? []),
     culturalPreferences: List<String>.from(json['culturalPreferences'] ?? []),
+    imageBytes: json['imageBytes'],
     createdAt: json['created_at'],
     updatedAt: json['updated_at'],
   );
@@ -71,6 +73,7 @@ class UserInfo {
     'dailyTime': dailyTime,
     'interestedCountries': interestedCountries,
     'culturalPreferences': culturalPreferences,
+    'imageBytes': imageBytes,
     'created_at': createdAt,
     'updated_at': updatedAt,
   };
