@@ -22,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
         children: [
           ProfileAvatar(),
           Text(userInfor['fullName'] ?? 'Tên người dùng', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          Text(user['email'] ?? '', style: TextStyle(color: Colors.grey)),
+          Text(userInfor['email'] ?? '', style: TextStyle(color: Colors.grey)),
           SizedBox(height: 20),
           Expanded(
             child: ListView(
@@ -33,7 +33,7 @@ class ProfileScreen extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => EditProfileScreen(
                         userInfor: userInfor,
-                        user: user,
+                        user: userInfor,
                       ),
                     ),
                   );
