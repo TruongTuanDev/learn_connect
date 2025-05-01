@@ -22,32 +22,127 @@ class _MomentsScreenState extends State<MomentsScreen> with SingleTickerProvider
     }
   // Dữ liệu giả để hiển thị danh sách các bài viết (moment) với nhiều ảnh
   final List<Map<String, dynamic>> _moments = [
-    {
-      'username': 'Alice',
-      'images': [
-        'assets/images/truc.jpg',
-        'assets/images/tam.jpg',
-      ], // Danh sách ảnh
-      'profileImage': 'assets/images/truc.jpg',
-      'content': 'Enjoying the view!',
-      'likes': 10,
-      'comments': 3,
-      'liked': false,
-    },
-    {
-      'username': 'Bob',
-      'images': [
-        'assets/images/avartar.png',
-        'assets/images/phuc.jpg',
-        'assets/images/avartar.png',
-        'assets/images/phuc.jpg',
-      ], // Danh sách ảnh
-      'profileImage': 'assets/images/avartar.png',
-      'content': 'Had a great time today!',
-      'likes': 5,
-      'comments': 2,
-      'liked': false,
-    },
+      {
+        'username': 'Mai',
+        'images': [
+          'assets/images/Ava/7.jpg',
+          'assets/images/mai2.jpg',
+        ],
+        'profileImage': 'assets/images/mai1.jpg',
+        'content': 'Chill cùng bạn bè cuối tuần!',
+        'likes': 15,
+        'comments': 5,
+        'liked': false,
+      },
+      {
+        'username': 'Lan',
+        'images': [
+          'assets/images/lan1.jpg',
+          'assets/images/lan2.jpg',
+          'assets/images/lan3.jpg',
+        ],
+        'profileImage': 'assets/images/lan1.jpg',
+        'content': 'Đi chơi biển đây! 🌊',
+        'likes': 23,
+        'comments': 7,
+        'liked': true,
+      },
+      {
+        'username': 'Hương',
+        'images': [
+          'assets/images/huong1.jpg',
+        ],
+        'profileImage': 'assets/images/huong1.jpg',
+        'content': 'Một ngày làm việc hiệu quả',
+        'likes': 8,
+        'comments': 1,
+        'liked': false,
+      },
+      {
+        'username': 'Thảo',
+        'images': [
+          'assets/images/thao1.jpg',
+          'assets/images/thao2.jpg',
+        ],
+        'profileImage': 'assets/images/thao1.jpg',
+        'content': 'Ăn tối ngon quá!',
+        'likes': 12,
+        'comments': 4,
+        'liked': false,
+      },
+      {
+        'username': 'Nam',
+        'images': [
+          'assets/images/nam1.jpg',
+          'assets/images/nam2.jpg',
+          'assets/images/nam3.jpg',
+          'assets/images/nam4.jpg',
+        ],
+        'profileImage': 'assets/images/nam1.jpg',
+        'content': 'Đá bóng cùng anh em',
+        'likes': 18,
+        'comments': 6,
+        'liked': true,
+      },
+      {
+        'username': 'Tuấn',
+        'images': [
+          'assets/images/tuan1.jpg',
+        ],
+        'profileImage': 'assets/images/tuan1.jpg',
+        'content': 'Làm việc tại quán cà phê',
+        'likes': 5,
+        'comments': 0,
+        'liked': false,
+      },
+      {
+        'username': 'Hùng',
+        'images': [
+          'assets/images/hung1.jpg',
+          'assets/images/hung2.jpg',
+        ],
+        'profileImage': 'assets/images/hung1.jpg',
+        'content': 'Du lịch Đà Lạt',
+        'likes': 25,
+        'comments': 9,
+        'liked': false,
+      },
+      {
+        'username': 'Đức',
+        'images': [
+          'assets/images/duc1.jpg',
+          'assets/images/duc2.jpg',
+          'assets/images/duc3.jpg',
+        ],
+        'profileImage': 'assets/images/duc1.jpg',
+        'content': 'Chụp ảnh cùng team',
+        'likes': 14,
+        'comments': 3,
+        'liked': true,
+      },
+      {
+        'username': 'Quang',
+        'images': [
+          'assets/images/quang1.jpg',
+        ],
+        'profileImage': 'assets/images/quang1.jpg',
+        'content': 'Ngày mới tốt lành',
+        'likes': 7,
+        'comments': 2,
+        'liked': false,
+      },
+      {
+        'username': 'Long',
+        'images': [
+          'assets/images/long1.jpg',
+          'assets/images/long2.jpg',
+        ],
+        'profileImage': 'assets/images/long1.jpg',
+        'content': 'Chạy bộ buổi sáng',
+        'likes': 9,
+        'comments': 1,
+        'liked': false,
+      }
     // Thêm các bài viết giả vào đây
   ];
 
