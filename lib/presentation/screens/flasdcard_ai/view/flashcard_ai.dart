@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'view/flashcard_ai_screen.dart';
+import 'flashcard_ai_screen.dart';
 
 // Export main screen for easy importing elsewhere
-export 'view/flashcard_ai_screen.dart';
+export 'flashcard_ai_screen.dart';
 
 // Main entry point when running standalone
 void main() {
