@@ -84,7 +84,9 @@ flutter:
     - assets/flag_vn.png
     - assets/images/
     - assets/images/logo.png
+    - assets/images/comunication.png
     - assets/culture/
+
 
   # To add assets to your application, add an assets section, like this:
   # assets:
