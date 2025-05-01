@@ -33,7 +33,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
     fullNameController = TextEditingController(text: widget.userInfor['fullName']);
     nicknameController = TextEditingController(text: widget.userInfor['nickname']);
     birthDateController = TextEditingController(text: widget.userInfor['birthDate']);
-    emailController = TextEditingController(text: widget.user['email']);
+    emailController = TextEditingController(text: widget.userInfor['email']);
     phoneController = TextEditingController(text: widget.userInfor['phoneCode']); // Nếu có sẵn số thì truyền text:
     selectedGender = widget.userInfor['gender'];
 
@@ -52,8 +52,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   Future<void> _updateProfile() async {
     UserInfo user1 = UserInfo(
-      id_user:  widget.user['id'] as String,
-      username: widget.user['username'] as String,
+      id_user:  widget.userInfor['id_user'] as String,
+      username: widget.userInfor['username'] as String,
       fullName: fullNameController.text,
       nickname: nicknameController.text,
       birthDate: birthDateController.text,
@@ -67,13 +67,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       interestedCountries:widget.userInfor['selectedCountries'] ,
       culturalPreferences:widget.userInfor['selectedPreferences'] ,
     );
-    final result = await UserInforService().updatenewInfor(user1);
+     await UserInforService().updatenewInfor(user1);
 
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) => ProfileScreen(
-          user: widget.user,
+          user: widget.userInfor,
           userInfor: user1.toJson(), // Đây mới là dữ liệu đã cập nhật
         ),
       ),
@@ -98,7 +98,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             _buildTextField('Ngày sinh', controller: birthDateController, icon: Icons.calendar_today),
             _buildTextField('Email', controller: emailController, icon: Icons.email),
             _buildPhoneField(),
-            _buildDropdownField('Giới Tính', ['Nam', 'Nữ', 'Khác']),
+            _buildDropdownField('Giới Tính', ['Nam', 'Nữ', '']),
             SizedBox(height: 20),
             _buildUpdateButton(),
           ],
