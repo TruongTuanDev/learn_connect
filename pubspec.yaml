@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+
   speech_to_text: ^7.0.0
   flutter_tts: ^4.2.2
   permission_handler: ^12.0.0+1
@@ -90,9 +91,11 @@ flutter:
     - assets/flag_vn.png
     - assets/images/
     - assets/images/Ava/
+
     - assets/images/Content/
     - assets/culture/
     - assets/friend/
+
     - assets/images/logo.png
 
 #    - packages/country_icons/icons/flags/svg/
