@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:learn_connect/config/app_config.dart';
 import 'package:learn_connect/data/models/UserModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
   final Dio _dio = Dio(
     BaseOptions(
-      baseUrl : "http://172.20.10.9:8080",
+      baseUrl : AppConfig.baseUrl,
       // baseUrl: "http://127.0.0.1:8080",
     ),
   );
