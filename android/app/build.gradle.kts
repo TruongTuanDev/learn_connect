@@ -9,7 +9,12 @@ plugins {
 android {
     namespace = "com.example.learn_connect"
     compileSdk = flutter.compileSdkVersion
+<<<<<<< HEAD
+//    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
+=======
     ndkVersion=  "27.1.12297006"
+>>>>>>> 57291d1bb3e9e57d7b69feab755a3415acbfe478
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

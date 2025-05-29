@@ -21,7 +21,7 @@ class SocketService {
 
   void _initSocket() {
     socket = IO.io(
-      'http://172.20.10.9:8080',
+      'http://localhost:8080',
       IO.OptionBuilder()
           .setTransports(['websocket']) // Chỉ dùng WebSocket
           .disableAutoConnect() // Tắt kết nối tự động

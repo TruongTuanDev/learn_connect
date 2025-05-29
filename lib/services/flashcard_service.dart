@@ -7,6 +7,7 @@ import '../presentation/screens/flasdcard_ai/models/flashcard_model.dart';
 class FlashcardService {
   final Dio _dio = Dio(
     BaseOptions(
+
       baseUrl: AppConfig.baseUrl, // Thay đổi nếu chạy trên thiết bị thật hoặc emulator
     ),
   );

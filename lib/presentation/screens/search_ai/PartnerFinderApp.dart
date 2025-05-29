@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:learn_connect/config/app_config.dart';
 import '../../../providers/providers.dart';
-
+import 'package:learn_connect/services/add_friend.dart';
 class PartnerFinderScreen extends ConsumerWidget {
   const PartnerFinderScreen({Key? key}) : super(key: key);
 
@@ -302,12 +303,26 @@ class PartnerFinderScreen extends ConsumerWidget {
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
                 ),
-                child: Text(
-                  'Kết nối ngay',
-                  style: TextStyle(
-                    color: isFemale ? Colors.pink : Colors.blue,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
+                child: TextButton(
+                  onPressed: () async {
+
+                    String result = await AddFriendService().addFriend(
+                      idUser: AppConfig.userId,
+                      idFriend: partner['id_user'],
+                      nameFriend: partner['fullName'],
+                      avatar: partner['avatarUrl'],
+                    );
+                    // Thực hiện sự kiện ở đây
+                    print('Đã nhấn Kết nối ngay');
+                    // Ví dụ: Navigator.push(...);
+                  },
+                  child: Text(
+                    'Kết nối ngay',
+                    style: TextStyle(
+                      color: isFemale ? Colors.pink : Colors.blue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),

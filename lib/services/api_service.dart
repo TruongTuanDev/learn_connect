@@ -6,6 +6,7 @@ import '../data/models/comment_model.dart';
 import '../data/models/post.dart';
 
 class ApiService {
+
   static const String baseUrl = AppConfig.baseUrl; // Thay bằng IP nếu chạy trên thiết bị thật
 
   static Future<List<Post>> fetchPosts() async {

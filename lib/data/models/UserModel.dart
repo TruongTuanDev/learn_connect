@@ -1,4 +1,5 @@
-import 'package:learn_connect/data/models/UserInfor.dart';
+
+import 'UserInfor.dart';
 
 class UserModel {
   String username;
