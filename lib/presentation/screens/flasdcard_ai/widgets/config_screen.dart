@@ -32,7 +32,7 @@ class ConfigScreen extends StatelessWidget {
           children: [
             const SizedBox(height: 12),
             Text(
-              'Create Your Flashcards',
+              'Tạo từ bạn muốn phát âm',
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
@@ -40,7 +40,7 @@ class ConfigScreen extends StatelessWidget {
               ),
             ),
             Text(
-              'Customize your vocabulary learning experience',
+              'Tùy chỉnh theo trình độ của bạn',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.grey.shade700,
@@ -65,7 +65,7 @@ class ConfigScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _buildConfigSection(
-                    title: 'Language',
+                    title: 'Ngôn ngữ',
                     icon: Icons.language,
                     child: DropdownButtonFormField<String>(
                       decoration: InputDecoration(
@@ -111,7 +111,7 @@ class ConfigScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   _buildConfigSection(
-                    title: 'Topic',
+                    title: 'Chủ đề',
                     icon: Icons.topic,
                     child: DropdownButtonFormField<String>(
                       decoration: InputDecoration(
@@ -158,7 +158,7 @@ class ConfigScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   _buildConfigSection(
-                    title: 'Difficulty Level',
+                    title: 'Mức độ',
                     icon: Icons.trending_up,
                     child: DropdownButtonFormField<String>(
                       decoration: InputDecoration(
@@ -239,7 +239,7 @@ class ConfigScreen extends StatelessWidget {
                           ],
                         )
                         : const Text(
-                          'Generate Flashcards',
+                          'Tạo từ',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,

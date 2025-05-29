@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class FlashcardService {
   final Dio _dio = Dio(
     BaseOptions(
-      baseUrl: "http://127.0.0.1:8080", // Thay đổi nếu chạy trên thiết bị thật hoặc emulator
+      baseUrl: "http://localhost:8080", // Thay đổi nếu chạy trên thiết bị thật hoặc emulator
     ),
   );
 

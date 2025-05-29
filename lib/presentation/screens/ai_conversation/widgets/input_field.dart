@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../view_models/ai_chat_view_model.dart';
 
+
 class InputField extends ConsumerWidget {
   final TextEditingController controller;
   final VoidCallback onSend;

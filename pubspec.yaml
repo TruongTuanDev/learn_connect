@@ -28,6 +28,18 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+
+
+
+
+
+
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+
+
   image_picker: ^1.0.7  # Cập nhật từ 1.0.4
   speech_to_text: ^7.0.0  # Cập nhật từ 7.0.0
   flutter_tts: ^4.2.2  # Cập nhật từ 4.2.2
@@ -68,7 +80,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0  # Giữ nguyên
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -83,17 +101,23 @@ flutter:
 
 
   assets:
-    - assets/.env
     - assets/Logo.png
     - assets/apple.png
     - assets/google.png
     - assets/flag_vn.png
     - assets/images/
     - assets/images/Ava/
+
     - assets/images/Content/
     - assets/culture/
     - assets/friend/
     - assets/images/logo.png
+    - assets/images/
+    - assets/images/Ava/
+    - assets/images/Content/
+    - assets/culture/
+    - assets/friend/
+    - assets/slide/
 
 #    - packages/country_icons/icons/flags/svg/
 

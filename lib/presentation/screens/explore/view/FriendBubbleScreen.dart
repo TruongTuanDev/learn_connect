@@ -62,7 +62,7 @@ class _FriendBubbleScreenState extends State<FriendBubbleScreen> with SingleTick
               Container(
                 height: height * 0.45,
                 width: double.infinity,
-                child: Image.network(
+                child: Image.asset(
                   widget.backgroundImagePath,
                   fit: BoxFit.cover,
                 ),
@@ -101,7 +101,7 @@ class _FriendBubbleScreenState extends State<FriendBubbleScreen> with SingleTick
                               CircleAvatar(
                                 radius: 35,
                                 backgroundImage: friend['avatarUrl'] != null
-                                    ? NetworkImage(friend['avatarUrl']!)
+                                    ? AssetImage(friend['avatarUrl']!)
                                     : null,
                                 backgroundColor: Colors.pinkAccent,
                                 child: friend['avatarUrl'] == null
@@ -142,7 +142,7 @@ class _FriendBubbleScreenState extends State<FriendBubbleScreen> with SingleTick
                   CircleAvatar(
                     radius: 50,
                     backgroundImage: selectedFriend!['avatarUrl'] != null
-                        ? NetworkImage(selectedFriend!['avatarUrl']!)
+                        ?AssetImage(selectedFriend!['avatarUrl']!)
                         : null,
                     backgroundColor: Colors.pinkAccent,
                     child: selectedFriend!['avatarUrl'] == null
@@ -215,7 +215,7 @@ class _FriendBubbleScreenState extends State<FriendBubbleScreen> with SingleTick
                           strokeWidth: 3,
                         ),
                       )
-                          : Text('Connect'),
+                          : Text('Kết nối'),
                     ),
                   ),
                 ],

@@ -9,9 +9,14 @@ class AuthService {
 
   AuthService() : _dio = Dio(
     BaseOptions(
-      baseUrl: AppConfig.baseUrl.toString(),
+
+      // baseUrl: AppConfig.baseUrl.toString(),
       connectTimeout: const Duration(seconds: 10), // Thêm timeout
       receiveTimeout: const Duration(seconds: 10),
+
+      baseUrl : "http://localhost:8080",
+      // baseUrl: "http://127.0.0.1:8080",
+
     ),
   ) {
     // Thêm interceptor để log request/response

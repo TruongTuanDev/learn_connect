@@ -45,7 +45,7 @@ class ConnectionSuggestionWidget extends StatelessWidget {
               ),
               _buildUserItem(
                 "assets/images/truc.jpg",
-                "Merry",
+                "Trúc",
               ),
               _buildUserItem(
                 "assets/images/phuc.jpg",
@@ -54,6 +54,10 @@ class ConnectionSuggestionWidget extends StatelessWidget {
               _buildUserItem(
                 "assets/images/tam.jpg",
                 "Nguyễn Thị Tâm",
+              ),
+              _buildUserItem(
+                "assets/images/tam.jpg",
+                "Lê Viết Toàn",
               ),
             ],
           ),
@@ -70,7 +74,7 @@ class ConnectionSuggestionWidget extends StatelessWidget {
         children: [
           // Ảnh đại diện bo tròn
           ClipOval(
-            child: Image.network(
+            child: Image.asset(
               imageUrl,
               width: 51,
               height: 51,

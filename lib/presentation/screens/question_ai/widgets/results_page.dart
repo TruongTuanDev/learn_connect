@@ -98,7 +98,7 @@ class _ResultsPageState extends State<ResultsPage> {
               child: Column(
                 children: [
                   const Text(
-                    'Quiz Complete!',
+                    'Hoàn thành bài kiểm tra!',
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
@@ -137,7 +137,7 @@ class _ResultsPageState extends State<ResultsPage> {
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    'Your Score: ${(score / totalQuestions * 100).toStringAsFixed(0)}%',
+                    'Điểm của bạn: ${(score / totalQuestions * 100).toStringAsFixed(0)}%',
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
@@ -150,7 +150,7 @@ class _ResultsPageState extends State<ResultsPage> {
                       ElevatedButton.icon(
                         onPressed: widget.onResetQuiz,
                         icon: const Icon(Icons.refresh),
-                        label: const Text('Try Again'),
+                        label: const Text('Thử lại'),
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -161,7 +161,7 @@ class _ResultsPageState extends State<ResultsPage> {
                       ElevatedButton.icon(
                         onPressed: widget.onNewQuiz,
                         icon: const Icon(Icons.settings),
-                        label: const Text('New Quiz'),
+                        label: const Text('Bài kiểm tra mới'),
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -179,7 +179,7 @@ class _ResultsPageState extends State<ResultsPage> {
           ElevatedButton.icon(
             onPressed: widget.onReviewQuestions,
             icon: const Icon(Icons.question_answer),
-            label: const Text('Review Questions'),
+            label: const Text('Xem lại bài làm'),
             style: ElevatedButton.styleFrom(
               minimumSize: const Size.fromHeight(50),
             ),

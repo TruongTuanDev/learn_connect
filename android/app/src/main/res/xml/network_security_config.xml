@@ -1,7 +1,18 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">10.0.2.2</domain> <!-- Cho emulator -->
         <domain includeSubdomains="true">192.168.1.x</domain> <!-- IP local của bạn -->
     </domain-config>
+=======
+<network-security-config>
+    <!-- Cho phép kết nối HTTP (không bảo mật) tới IP cụ thể -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">192.168.1.16</domain> <!-- BỎ http:// và port -->
+    </domain-config>
+
+    <!-- Hoặc nếu muốn cho phép mọi kết nối không bảo mật (chỉ dùng cho dev) -->
+    <base-config cleartextTrafficPermitted="true"/>
+>>>>>>> 57291d1bb3e9e57d7b69feab755a3415acbfe478
 </network-security-config>

@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 class UserInforService {
   final Dio _dio = Dio(
     BaseOptions(
-      baseUrl: "http://127.0.0.1:8080",
+      baseUrl: "http://localhost:8080",
     ),
   );
 
