@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../../../../config/app_config.dart';
+import '../../../../services/flashcard_service.dart';
 import '../models/quiz_question.dart';
 
 class GeminiService {
@@ -12,8 +14,11 @@ class GeminiService {
     required String topic,
     required String difficulty,
   }) async {
+    final flashcardService = FlashcardService();
+    String words =  await flashcardService.fetchWords(AppConfig.userId);
+    print("Từ mày muốn in "+ words);
     final prompt = '''
-Create a multiple-choice quiz about learning $language on the topic of $topic with $difficulty difficulty.
+Create a multiple-choice quiz about $words .
 Generate 5 questions, each with 4 answer options (A, B, C, D).
 Format the response as a JSON array with the following structure for each question:
 {

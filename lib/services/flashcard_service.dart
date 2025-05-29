@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../config/app_config.dart';
+import '../presentation/screens/flasdcard_ai/models/flashcard_model.dart';
 
 class FlashcardService {
   final Dio _dio = Dio(
@@ -156,5 +157,68 @@ class FlashcardService {
       }
     }
   }
+  Future<Map<String, dynamic>> saveFlashcards(String userId, String listword) async {
+    try {
+      Response response = await _dio.post(
+        "/api/flashcards/save",
+        data: {
+          'userId': userId,
+          'response': listword, // hoặc response nếu là chuỗi
+        },
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Authorization': 'Bearer $token', // Nếu bạn cần xác thực
+          },
+        ),
+      );
 
+      if (response.statusCode == 200) {
+        return {
+          'success': true,
+          'message': 'Lưu flashcards thành công!',
+        };
+      } else {
+        print("Lỗi tè le");
+        return {
+
+          'success': false,
+          'message': response.data['message'] ?? 'Lỗi khi lưu flashcards.',
+        };
+      }
+    } catch (e) {
+      print("Cũng lỗi nốt");
+      print("🧨 Chi tiết lỗi: ${e.toString()}");
+
+      if (e is DioException) {
+
+        return {
+          'success': false,
+          'message': e.response?.data['message'] ?? 'Không thể kết nối đến server.',
+        };
+      } else {
+        return {
+          'success': false,
+          'message': 'Lỗi không xác định: ${e.toString()}',
+        };
+      }
+    }
+  }
+
+  Future<String> fetchWords(String userId) async {
+    try {
+      Response response = await _dio.get('/api/words/$userId');
+
+      if (response.statusCode == 200) {
+        String data = response.data.toString(); // ép kiểu về String nếu cần
+        return data;
+      } else {
+        print('Failed to load words');
+        return 'Failed to load words';
+      }
+    } catch (e) {
+      print('Error: $e');
+      return 'Error: $e';
+    }
+  }
 }
