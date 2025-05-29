@@ -62,7 +62,7 @@ class FriendActivityWidget extends StatelessWidget {
               height: 51,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(25.5),
-                child: Image.network(
+                child: Image.asset(
                   url,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) => Container(

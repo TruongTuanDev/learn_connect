@@ -221,7 +221,7 @@ class PartnerFinderScreen extends ConsumerWidget {
                       border: Border.all(color: Colors.white, width: 3),
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: NetworkImage(
+                        image: AssetImage(
                           partner['avatarUrl'] ??
                               (isFemale
                                   ? 'https://www.w3schools.com/howto/img_avatar2.png'
@@ -439,7 +439,7 @@ class PartnerFinderScreen extends ConsumerWidget {
                           ),
                           image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: NetworkImage(
+                            image: AssetImage(
                               partner['avatarUrl'] ??
                                   (isFemale
                                       ? 'https://www.w3schools.com/howto/img_avatar2.png'

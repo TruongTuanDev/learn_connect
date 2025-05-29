@@ -142,6 +142,7 @@ class _SignInFormState extends ConsumerState<SignInForm> {
           ElevatedButton(
             onPressed: _isLoading ? null : _handleLogin,
             style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blueAccent,
               padding: EdgeInsets.symmetric(vertical: 14),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
@@ -153,13 +154,14 @@ class _SignInFormState extends ConsumerState<SignInForm> {
               width: 24,
               child: CircularProgressIndicator(
                 strokeWidth: 2,
-                color: Colors.white,
+                color: Colors.blueAccent,
               ),
             )
                 : Text(
               'ĐĂNG NHẬP',
               style: TextStyle(
                 fontSize: 16,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),

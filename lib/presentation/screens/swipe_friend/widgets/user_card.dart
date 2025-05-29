@@ -11,7 +11,7 @@ class UserCard extends StatelessWidget {
 
     return Container(
       width: screenSize.width * 0.95,
-      height: screenSize.height * 0.75,
+      height: screenSize.height * 0.85,
       margin: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -35,7 +35,7 @@ class UserCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15), // hoặc bo tròn theo thẻ bên ngoài
                 child: Image.asset(
                   user['image']!,
-                  height: 400, // hoặc bạn có thể đặt chiều cao cố định
+                  height: screenSize.height * 0.5, // hoặc bạn có thể đặt chiều cao cố định
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),

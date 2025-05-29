@@ -56,7 +56,7 @@ class _BannerSliderState extends State<BannerSlider> {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(0), // Bỏ bo góc nếu bạn thích full luôn, hoặc giữ cũng được
         image: DecorationImage(
-          image: NetworkImage(imageUrl),
+          image: AssetImage(imageUrl),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.darken),
         ),

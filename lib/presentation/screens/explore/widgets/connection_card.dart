@@ -57,7 +57,7 @@ class _ConnectionCardState extends State<ConnectionCard> {
               fit: StackFit.expand,
               children: [
                 // Ảnh nền RÕ, không bị làm mờ
-                Image.network(
+                Image.asset(
                   widget.imagePath,
                   fit: BoxFit.fill,
                 ),

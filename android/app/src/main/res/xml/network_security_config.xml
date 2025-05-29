@@ -1,0 +1,9 @@
+<network-security-config>
+    <!-- Cho phép kết nối HTTP (không bảo mật) tới IP cụ thể -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">192.168.1.16</domain> <!-- BỎ http:// và port -->
+    </domain-config>
+
+    <!-- Hoặc nếu muốn cho phép mọi kết nối không bảo mật (chỉ dùng cho dev) -->
+    <base-config cleartextTrafficPermitted="true"/>
+</network-security-config>

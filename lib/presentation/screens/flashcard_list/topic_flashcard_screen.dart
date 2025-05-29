@@ -25,16 +25,16 @@ class TopicGridScreen extends StatefulWidget {
 
 class _TopicGridScreenState extends State<TopicGridScreen> {
   final List<Map<String, String>> topics = const [
-    {'title': 'Comunication', 'image': 'assets/images/comunication.png'},
-    {'title': 'Hobbies', 'image': 'assets/images/Hobbies.png'},
-    {'title': 'Music', 'image': 'assets/images/music.png'},
-    {'title': 'Work', 'image': 'assets/images/work.png'},
-    {'title': 'Food', 'image': 'assets/images/food.png'},
-    {'title': 'Beauty', 'image': 'assets/images/Beauty.png'},
-    {'title': 'Cooking', 'image': 'assets/images/Cooking.png'},
-    {'title': 'Shopping', 'image': 'assets/images/Shopping.png'},
-    {'title': 'Books', 'image': 'assets/images/Books.png'},
-    {'title': 'Sport', 'image': 'assets/images/Sport.png'},
+    {'title': 'Giao tiếp', 'image': 'assets/images/comunication.png'},
+    {'title': 'Sở thích', 'image': 'assets/images/Hobbies.png'},
+    {'title': 'Âm nhạc', 'image': 'assets/images/music.png'},
+    {'title': 'Công việc', 'image': 'assets/images/work.png'},
+    {'title': 'Ẩm thực', 'image': 'assets/images/food.png'},
+    {'title': 'Làm đẹp', 'image': 'assets/images/Beauty.png'},
+    {'title': 'Nấu ăn', 'image': 'assets/images/Cooking.png'},
+    {'title': 'Mua sắm', 'image': 'assets/images/Shopping.png'},
+    {'title': 'Sách', 'image': 'assets/images/Books.png'},
+    {'title': 'Thể thao', 'image': 'assets/images/Sport.png'},
   ];
 
   final TextEditingController _searchController = TextEditingController();
@@ -117,7 +117,7 @@ class _TopicGridScreenState extends State<TopicGridScreen> {
                                   });
                                 },
                                 decoration: const InputDecoration(
-                                  hintText: 'Search',
+                                  hintText: 'Tìm kiếm',
                                   border: InputBorder.none,
                                   contentPadding: EdgeInsets.symmetric(
                                     horizontal: 16,
@@ -325,7 +325,7 @@ class _FlashcardAIScreenState extends State<FlashcardAIScreen> {
           FlashcardModel(
             front: word,
             pronunciation: pronunciation,
-            back: 'Definition: $definition\n\nExample: $example',
+            back: 'Định nghĩa: $definition\n\nVí dụ: $example',
           ),
         );
       }
@@ -397,7 +397,7 @@ class _FlashcardAIScreenState extends State<FlashcardAIScreen> {
                       });
                     },
                     child: Text(
-                      'New Flashcards',
+                      'Flashcards mới',
                       style: TextStyle(
                         color: Colors.blue.shade700,
                         fontWeight: FontWeight.bold,
@@ -415,14 +415,14 @@ class _FlashcardAIScreenState extends State<FlashcardAIScreen> {
       child: FlipCard(
         direction: FlipDirection.HORIZONTAL,
         front: EnhancedCardSide(
-          title: 'Word',
+          title: 'Từ',
           content: flashcard.front,
           pronunciation: flashcard.pronunciation,
           isContentPrimary: true,
           textToSpeak: flashcard.front,
         ),
         back: EnhancedCardSide(
-          title: 'Definition',
+          title: 'Định nghĩa',
           content: flashcard.back,
           isContentPrimary: false,
           textToSpeak: flashcard.back,
