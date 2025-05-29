@@ -1,10 +1,12 @@
 import 'package:learn_connect/data/models/UserInfor.dart';
 import 'package:dio/dio.dart';
 
+import '../config/app_config.dart';
+
 class UserInforService {
   final Dio _dio = Dio(
     BaseOptions(
-      baseUrl: "http://172.20.10.9:8080",
+      baseUrl: AppConfig.baseUrl,
     ),
   );
 
