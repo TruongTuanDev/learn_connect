@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:learn_connect/config/app_config.dart';
+import '../../../../services/flashcard_service.dart';
 import '../models/flashcard_model.dart';
 import '../services/gemini_service.dart';
 import '../widgets/config_screen.dart';
@@ -71,9 +73,12 @@ class _FlashcardAIScreenState extends State<FlashcardAIScreen> {
       """;
 
       final response = await _geminiService.generateContent(prompt);
-
+      print('📤 Nội dung sinh ra: ${response}');
       // Parse the response and create flashcard models
       final generatedFlashcards = parseFlashcardsFromResponse(response);
+
+      final flashcardService = FlashcardService();
+      await flashcardService.saveFlashcards(AppConfig.userId,response);
 
       setState(() {
         flashcards = generatedFlashcards;
