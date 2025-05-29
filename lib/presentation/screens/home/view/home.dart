@@ -48,9 +48,13 @@ class _HomeState extends State<Home> {
     final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final user = args['user'];
     final userInfor = args['userInfor'];
+    final addFriends = (args['addFriends'] as List)
+        .map((item) => item as Map<String, dynamic>)
+        .toList();
+
 
     final List<Widget> _pages = [
-      HomePageContent(),
+      HomePageContent(addFriends: addFriends),
       ExploreScreen(),
       MomentsScreen(),
       ProfileScreen(user: user, userInfor: userInfor),
@@ -205,8 +209,12 @@ class _HomeState extends State<Home> {
 }
 
 class HomePageContent extends StatelessWidget {
+  final List<Map<String, dynamic>> addFriends;
+
+  const HomePageContent({super.key, required this.addFriends});
   @override
   Widget build(BuildContext context) {
+    print("Danh sách truyền : "+addFriends.toString());
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

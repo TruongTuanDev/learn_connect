@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:learn_connect/config/app_config.dart';
 import 'package:learn_connect/data/models/UserModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../config/app_config.dart';
@@ -14,7 +15,7 @@ class AuthService {
       connectTimeout: const Duration(seconds: 10), // Thêm timeout
       receiveTimeout: const Duration(seconds: 10),
 
-      baseUrl : "http://localhost:8080",
+      baseUrl : AppConfig.baseUrl,
       // baseUrl: "http://127.0.0.1:8080",
 
     ),
@@ -59,7 +60,8 @@ class AuthService {
           'data': response.data,
           'accessToken': response.data['accessToken'],
           'userInfo': response.data['userInfo'],
-          'matchedLanguagePartners': response.data['matchedLanguagePartners']
+          'matchedLanguagePartners': response.data['matchedLanguagePartners'],
+          'addFriends': response.data['addFriends']
         };
       } else {
         return {

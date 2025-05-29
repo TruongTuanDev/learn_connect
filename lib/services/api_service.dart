@@ -1,11 +1,13 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:learn_connect/config/app_config.dart';
 
 import '../data/models/comment_model.dart';
 import '../data/models/post.dart';
 
 class ApiService {
-  static const String baseUrl = 'http://localhost:8080/api'; // Thay bằng IP nếu chạy trên thiết bị thật
+
+  static const String baseUrl = AppConfig.baseUrl; // Thay bằng IP nếu chạy trên thiết bị thật
 
   static Future<List<Post>> fetchPosts() async {
     final response = await http.get(Uri.parse('$baseUrl/posts'));

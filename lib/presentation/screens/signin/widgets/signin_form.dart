@@ -53,6 +53,11 @@ class _SignInFormState extends ConsumerState<SignInForm> {
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('access_token', result['data']['accessToken']);
         AppConfig.userId = result['data']['id'];
+        final data = result['data']['addFriends']; // Hoặc từ socket
+
+        AppConfig.friendSuggestions = (data as List)
+            .map((e) => e as Map<String, dynamic>)
+            .toList();
         print("Id user "+ AppConfig.userId);
         // final List<dynamic> matchedPartners = result['data']['matchedLanguagePartners'];
         final matchedPartners = result['data']['matchedLanguagePartners'];
@@ -63,7 +68,8 @@ class _SignInFormState extends ConsumerState<SignInForm> {
         );
       Navigator.pushNamed(context, AppRoutes.home,arguments: {
         'user': result['data']['userInfo'],
-        'userInfor': result['data']['userInfo']
+        'userInfor': result['data']['userInfo'],
+        'addFriends': result['data']['addFriends']
       });
         }
 

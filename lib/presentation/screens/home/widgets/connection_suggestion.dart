@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:learn_connect/config/app_config.dart';
 
-class ConnectionSuggestionWidget extends StatelessWidget {
+import '../../../../services/add_friend.dart';
+
+class ConnectionSuggestionWidget extends StatefulWidget {
+  const ConnectionSuggestionWidget({super.key});
+
+  @override
+  State<ConnectionSuggestionWidget> createState() => _ConnectionSuggestionWidgetState();
+}
+
+class _ConnectionSuggestionWidgetState extends State<ConnectionSuggestionWidget> {
+  List<Map<String, dynamic>> suggestions = List.from(AppConfig.friendSuggestions); // Copy dữ liệu ban đầu
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,7 +27,7 @@ class ConnectionSuggestionWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Gợi ý kết nối",
+                  "Lời mời kết bạn",
                   style: TextStyle(
                     color: Color(0xFF202244),
                     fontSize: 20,
@@ -38,41 +50,26 @@ class ConnectionSuggestionWidget extends StatelessWidget {
 
           // Danh sách người dùng
           Column(
-            children: [
-              _buildUserItem(
-                "assets/images/avartar.png",
-                "Tuấn Trương",
-              ),
-              _buildUserItem(
-                "assets/images/truc.jpg",
-                "Trúc",
-              ),
-              _buildUserItem(
-                "assets/images/phuc.jpg",
-                "Phúc",
-              ),
-              _buildUserItem(
-                "assets/images/tam.jpg",
-                "Nguyễn Thị Tâm",
-              ),
-              _buildUserItem(
-                "assets/images/tam.jpg",
-                "Lê Viết Toàn",
-              ),
-            ],
+            children: suggestions.map((friend) {
+              final id_user = friend['id_user'] ?? '';
+              final id_friend = friend['id_friend'] ?? '';
+              final avatar = friend['avatar'] ?? '';
+              final name = friend['name_friend'] ?? '';
+
+              return _buildUserItem(avatar, name, id_user, id_friend);
+            }).toList(),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildUserItem(String imageUrl, String name) {
+  Widget _buildUserItem(String imageUrl, String name, String id_user, String id_friend) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         children: [
-          // Ảnh đại diện bo tròn
           ClipOval(
             child: Image.asset(
               imageUrl,
@@ -88,8 +85,6 @@ class ConnectionSuggestionWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 12),
-
-          // Tên người dùng
           Expanded(
             child: Text(
               name,
@@ -100,11 +95,17 @@ class ConnectionSuggestionWidget extends StatelessWidget {
               ),
             ),
           ),
-
-          // Nút kết bạn
           ElevatedButton(
-            onPressed: () {
-              // TODO: Thêm logic gửi yêu cầu kết bạn
+            onPressed: () async {
+              setState(() {
+                suggestions.removeWhere((item) => item['id_friend'] == id_friend);
+              });
+
+              String result = await AddFriendService().removeFriend(
+                idUser: AppConfig.userId,
+                idFriend: id_friend,
+              );
+              print('✅ Phản hồi: $result');
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.blueAccent,
@@ -115,7 +116,7 @@ class ConnectionSuggestionWidget extends StatelessWidget {
               elevation: 0,
             ),
             child: Text(
-              "Kết bạn",
+              "Chấp nhận",
               style: TextStyle(fontSize: 12, color: Colors.white),
             ),
           ),
