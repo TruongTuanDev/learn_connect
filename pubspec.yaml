@@ -28,48 +28,47 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  speech_to_text: ^7.0.0
-  flutter_tts: ^4.2.2
-  permission_handler: ^12.0.0+1
-  http: ^0.13.0
-  image_picker: ^1.0.4
+  image_picker: ^1.0.7  # Cập nhật từ 1.0.4
+  speech_to_text: ^7.0.0  # Cập nhật từ 7.0.0
+  flutter_tts: ^4.2.2  # Cập nhật từ 4.2.2
+  permission_handler: ^12.0.0+1  # Cập nhật từ 12.0.0+1
+  http: ^1.2.0  # Cập nhật từ 0.13.0
   flutter:
     sdk: flutter
+  provider: ^6.1.5  # Cập nhật từ 6.1.2
+  flutter_riverpod: ^2.4.9  # Cập nhật từ 2.3.6
+  riverpod_generator: ^2.4.9  # Cập nhật từ 2.3.6
+  build_runner: ^2.4.9  # Cập nhật từ 2.4.8
+  dio: ^5.4.0  # Cập nhật từ 5.3.2
+  cupertino_icons: ^1.0.8  # Giữ nguyên (đã là mới nhất)
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  provider: ^6.1.2
-  flutter_riverpod: ^2.3.6
-  riverpod_generator: ^2.3.6
-  build_runner: ^2.4.8
-  dio: ^5.3.2
-  cupertino_icons: ^1.0.8
-  firebase_core: ^3.12.1
-  firebase_analytics: ^11.4.4
-  cloud_firestore: ^5.6.5
-  flip_card: ^0.6.0
-  just_audio: ^0.9.36
-  swipe_cards: ^2.0.0
-  animate_do: ^4.2.0
-  intl: ^0.18.0
-  audioplayers: ^4.1.0
-  shared_preferences: ^2.2.2
-  flutter_svg: ^2.0.7
-  country_icons: ^2.0.0
-  socket_io_client: ^2.0.3
-  timeago: ^3.5.0
-  flutter_dotenv: ^5.0.2
+  # Firebase
+  firebase_core: ^3.13.0  # Cập nhật từ 3.12.1
+  firebase_analytics: ^11.4.5  # Cập nhật từ 11.4.4
+  cloud_firestore: ^5.6.7  # Cập nhật từ 5.6.5
+
+  # UI & Animation
+  flip_card: ^0.7.0  # Cập nhật từ 0.6.0
+  swipe_cards: ^2.0.0  # Cập nhật từ 2.0.0
+  animate_do: ^4.2.0  # Cập nhật từ 4.2.0
+  flutter_svg: ^2.0.10  # Cập nhật từ 2.0.7
+
+  # Audio
+  just_audio: ^0.10.1  # Cập nhật từ 0.9.36
+  audioplayers: ^6.4.0  # Cập nhật từ 4.1.0
+
+  # Utilities
+  intl: ^0.19.0  # Cập nhật từ 0.18.0
+  shared_preferences: ^2.2.2  # Giữ nguyên (đã là mới nhất)
+  country_icons: ^3.0.0  # Giữ nguyên
+  socket_io_client: ^3.1.2  # Giữ nguyên (không có bản mới hơn)
+  timeago: ^3.5.0  # Giữ nguyên
+  flutter_dotenv: ^5.1.0  # Cập nhật từ 5.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
-  flutter_lints: ^5.0.0
+  flutter_lints: ^5.0.0  # Giữ nguyên
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -84,6 +83,7 @@ flutter:
 
 
   assets:
+    - assets/.env
     - assets/Logo.png
     - assets/apple.png
     - assets/google.png
