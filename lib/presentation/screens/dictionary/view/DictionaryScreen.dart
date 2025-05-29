@@ -25,7 +25,7 @@ class _DictionaryScreenState extends State<DictionaryScreen> {
 
   List<String> _history = [];
   List<String> _suggestions = [];
-  String _selectedLanguage = 'ko'; // Default language
+  String _selectedLanguage = 'en'; // Default language
 
   final List<Map<String, String>> languages = [
     {'code': 'en', 'name': 'Tiếng Anh', 'flag': 'gb'},

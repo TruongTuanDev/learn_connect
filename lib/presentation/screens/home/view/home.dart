@@ -14,6 +14,7 @@ import 'package:learn_connect/presentation/screens/home/widgets/friend_activity_
 import 'package:learn_connect/presentation/screens/home/widgets/connection_suggestion.dart';
 import 'package:learn_connect/presentation/screens/home/widgets/post_widget.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:learn_connect/presentation/screens/home/widgets/custom_bottom_navigation.dart'; // Thêm import này
 
 class Home extends StatefulWidget {
   @override
@@ -26,8 +27,6 @@ class _HomeState extends State<Home> {
   File? _selectedImage;
   final ImagePicker _picker = ImagePicker();
   int _currentIndex = 0;
-
-
 
   @override
   void initState() {
@@ -47,19 +46,17 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
-    // print("args là : $args");
     final user = args['user'];
     final userInfor = args['userInfor'];
-    // print("userId là : $user");
-    // print("userInfor là : $userInfor");
+
     final List<Widget> _pages = [
       HomePageContent(),
-      ExploreScreen(), // Giả sử bạn có một ExploreScreen
-      MomentsScreen(), // Giả sử bạn có một MomentsScreen
-      ProfileScreen(user: user, userInfor: userInfor),       // Placeholder
+      ExploreScreen(),
+      MomentsScreen(),
+      ProfileScreen(user: user, userInfor: userInfor),
     ];
-    return Scaffold(
 
+    return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
         children: _pages,
@@ -146,7 +143,7 @@ class _HomeState extends State<Home> {
                                     foregroundColor: Colors.black,
                                   ),
                                 ),
-                                Spacer(),
+                                // Spacer(),
                                 TextButton(
                                   onPressed: () {
                                     _contentController.clear();
@@ -155,7 +152,7 @@ class _HomeState extends State<Home> {
                                   },
                                   child: Text('Hủy'),
                                 ),
-                                SizedBox(width: 10),
+                                // SizedBox(width: 10),
                                 ElevatedButton(
                                   onPressed: () {
                                     print('Nội dung: ${_contentController.text}');
@@ -195,101 +192,13 @@ class _HomeState extends State<Home> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
-        notchMargin: 8.0,
-        color: Colors.white,
-        elevation: 10,
-        child: Container(
-          height: 70,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 10,
-              ),
-            ],
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _buildTabItem(
-                icon: Icons.home,
-                label: "Trang chủ",
-                isSelected: _currentIndex == 0,
-                onTap: () {
-                  setState(() {
-                    _currentIndex = 0;
-                  });
-                },
-              ),
-              _buildTabItem(
-                icon: Icons.explore,
-                label: "Khám phá",
-                isSelected: _currentIndex == 1,
-                onTap: () {
-                  setState(() {
-                    _currentIndex = 1;
-                  });
-                },
-              ),
-              SizedBox(width: 40), // Khoảng trống cho FAB
-              _buildTabItem(
-                icon: Icons.history,
-                label: "Nhật ký",
-                isSelected: _currentIndex == 2,
-                onTap: () {
-                  setState(() {
-                    _currentIndex = 2;
-                  });
-                },
-              ),
-              _buildTabItem(
-                icon: Icons.person,
-                label: "Hồ sơ",
-                isSelected: _currentIndex == 3,
-                onTap: () {
-                  setState(() {
-                    _currentIndex = 3;
-                  });
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTabItem({
-    required IconData icon,
-    required String label,
-    required bool isSelected,
-    required VoidCallback onTap,
-  }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            color: isSelected ? Colors.blueAccent : Colors.grey,
-          ),
-          SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(
-              fontSize: 12,
-              color: isSelected ? Colors.blueAccent : Colors.grey,
-            ),
-          ),
-        ],
+      bottomNavigationBar: CustomBottomNavigation(
+        currentIndex: _currentIndex,
+        onTabSelected: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
       ),
     );
   }

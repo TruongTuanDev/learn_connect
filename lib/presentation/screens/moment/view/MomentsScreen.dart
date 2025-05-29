@@ -251,7 +251,7 @@ class _MomentsScreenState extends State<MomentsScreen> with SingleTickerProvider
                               ),
                               onPressed: () => _toggleLike(index),
                             ),
-                            Text('${moment['likes']} Likes'),
+                            Text('${moment['likes']} Lượt thích'),
                             Spacer(),
                             IconButton(
                               icon: Icon(Icons.comment, color: Colors.grey),
@@ -260,7 +260,7 @@ class _MomentsScreenState extends State<MomentsScreen> with SingleTickerProvider
                                 _showCommentsDialog(context, index);
                               },
                             ),
-                            Text('${moment['comments']} Comments'),
+                            Text('${moment['comments']} Bình luận'),
                           ],
                         ),
                       ],

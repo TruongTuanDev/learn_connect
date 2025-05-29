@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learn_connect/presentation/screens/dictionary/view/DictionaryScreen.dart';
+import 'package:learn_connect/presentation/screens/pronunciation_practice/pronunciation_practice_ai.dart';
 import 'package:learn_connect/routes/routes.dart';
 import 'package:learn_connect/services/flashcard_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -84,6 +85,13 @@ class _TodayLearningState extends State<TodayLearningWidget> {
                   "ÔN TỪ VỰNG",
                   Icons.assignment,
                       () => Navigator.pushNamed(context, AppRoutes.vocabulary),
+                ),
+                _buildLearningButton(
+                  context,
+                  "LUYỆN NÓI AI",
+                  Icons.assignment,
+                      () => Navigator.push(context, MaterialPageRoute(builder: (context) => PronunciationPracticeAIScreen()),
+                ),
                 ),
                 _buildLearningButton(
                   context,

@@ -7,7 +7,6 @@ import '../view_models/ai_chat_screen_state.dart';
 import '../view_models/ai_chat_view_model.dart';
 import 'input_field.dart';
 
-
 class AIChatScreen extends ConsumerStatefulWidget {
   const AIChatScreen({super.key});
 

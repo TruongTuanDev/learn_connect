@@ -8,7 +8,7 @@ class MessengerListNotifier extends StateNotifier<List<Messenger>> {
     fetchMessengerList();
   }
 
-  final _dio = Dio(BaseOptions(baseUrl: 'http://127.0.0.1:8080')); // Đổi IP nếu test thật
+  final _dio = Dio(BaseOptions(baseUrl: 'http://172.20.10.9:8080')); // Đổi IP nếu test thật
 
   Future<void> fetchMessengerList() async {
     try {

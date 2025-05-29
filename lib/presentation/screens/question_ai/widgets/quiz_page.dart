@@ -57,7 +57,7 @@ class QuizPage extends StatelessWidget {
                               border: Border.all(color: Colors.blue.shade200),
                             ),
                             child: Text(
-                              'Question ${index + 1} of $totalQuestions',
+                              'Câu hỏi ${index + 1} của $totalQuestions',
                               style: TextStyle(
                                 color: Colors.blue.shade800,
                                 fontWeight: FontWeight.w600,
@@ -162,7 +162,7 @@ class QuizPage extends StatelessWidget {
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
-                                  'The correct answer is: ${question.correctAnswer}',
+                                  'Câu trả lời đúng là: ${question.correctAnswer}',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.amber[900],
@@ -186,7 +186,7 @@ class QuizPage extends StatelessWidget {
                 ElevatedButton.icon(
                   onPressed: index > 0 ? onPreviousPressed : null,
                   icon: const Icon(Icons.arrow_back),
-                  label: const Text('Previous'),
+                  label: const Text('Lùi lại'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.grey[200],
                     foregroundColor: Colors.black87,
@@ -197,7 +197,7 @@ class QuizPage extends StatelessWidget {
                   icon: Icon(
                     isLastQuestion ? Icons.check_circle : Icons.arrow_forward,
                   ),
-                  label: Text(isLastQuestion ? 'Submit' : 'Next'),
+                  label: Text(isLastQuestion ? 'Nộp' : 'Tiếp theo'),
                 ),
               ],
             ),

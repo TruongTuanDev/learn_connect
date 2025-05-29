@@ -127,7 +127,7 @@ class _TestAiScreenState extends State<TestAiScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Learn languages'),
+        title: const Text('Học ngoại ngữ'),
         leading:
             Navigator.canPop(context)
                 ? IconButton(
@@ -192,7 +192,7 @@ class _TestAiScreenState extends State<TestAiScreen> {
             ),
             const SizedBox(height: 24),
             Text(
-              'Generating your quiz questions...',
+              'Tạo câu hỏi trắc nghiệm của bạn...',
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.blue.shade800,
@@ -201,7 +201,7 @@ class _TestAiScreenState extends State<TestAiScreen> {
             ),
             const SizedBox(height: 8),
             Text(
-              'This may take a moment',
+              'Đợi một lúc',
               style: TextStyle(fontSize: 16, color: Colors.grey.shade700),
             ),
           ],
@@ -261,7 +261,7 @@ class _TestAiScreenState extends State<TestAiScreen> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text(
-                      'Please answer all questions before submitting',
+                      'Vui lòng trả lời tất cả các câu hỏi trước khi gửi',
                     ),
                   ),
                 );
@@ -290,7 +290,7 @@ class TestAiApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'AI English Quiz',
+      title: 'AI Bài kiểm tra',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         colorScheme: ColorScheme.fromSeed(

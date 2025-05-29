@@ -1,9 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
-import 'package:learn_connect/presentation/screens/ai_conversation/data/gemini.dart';
-import 'package:learn_connect/presentation/screens/ai_conversation/view_models/ai_chat_screen_state.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:speech_to_text/speech_to_text.dart';
+import 'package:learn_connect/presentation/screens/ai_conversation/gemini.dart';
+
+import 'ai_chat_screen_state.dart';
 
 class AIChatViewModel extends StateNotifier<AIChatScreenState> {
   final GeminiService _geminiService = GeminiService();
